@@ -3,371 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASIH - Aplikasi Sistem Informasi Sehat</title>
+    <title>ASIH - Sistem Posyandu ILP</title>
     <link rel="stylesheet" href="style.css">
-    <!-- PWA Manifest & Meta Tags untuk Android/iOS -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0D9488">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
-    <!-- CONTAINER LAYAR HP -->
+    <!-- CONTAINER UTAMA (Responsive Fluid: HP & Desktop) -->
     <div class="app-container">
         
         <!-- HEADER GLOBAL -->
         <header class="app-header">
-            <div class="logo">🌿 ASIH Posyandu</div>
+            <div class="logo-wrapper">
+                <span class="logo-icon">🌿</span>
+                <span class="logo-text">ASIH Posyandu</span>
+            </div>
             <div id="statusSinyal" class="status-badge online">🟢 Online</div>
         </header>
 
         <!-- =================================================== -->
-        <!-- LAYAR 1: INPUT BIODATA PASIEN DULU (MENU SKRINING DISEMBUNYIKAN!) -->
+        <!-- 1. HOME SCREEN: DASHBOARD MODERN & MENARIK -->
         <!-- =================================================== -->
         <section id="page-home" class="page active">
+            <!-- Hero Banner Welcome -->
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <span class="hero-badge">✨ Posyandu ILP Digital</span>
+                    <h2>Selamat Datang, Kader & Bidan!</h2>
+                    <p>Sistem pencatatan cepat pengganti kertas manual. Pilih layanan pemeriksaan hari ini:</p>
+                </div>
+            </div>
+
+            <!-- Grid Menu Utama (Di Desktop otomatis jadi 2 Kolom!) -->
+            <div class="section-title">
+                <h4>📋 Kategori Pelayanan Warga:</h4>
+            </div>
             
-            <div class="welcome-box">
-                <h2>Pendaftaran Pasien</h2>
-                <p>Silakan isi biodata warga terlebih dahulu sebelum melakukan pemeriksaan:</p>
-            </div>
-
-            <!-- KARTU FORM BIODATA -->
-            <div class="card-identitas">
-                <div class="form-group">
-                    <label>Nama Pasien / Warga: <span class="wajib">*</span></label>
-                    <input type="text" id="inputNama" placeholder="Cth: Budi Santoso / Mbah Aminah">
-                </div>
-                
-                <div class="row-inputs">
-                    <div class="form-group half">
-                        <label>Umur (Thn/Bln):</label>
-                        <input type="number" id="inputUmur" placeholder="Cth: 2">
-                    </div>
-                    <div class="form-group half">
-                        <label>RT / RW / Dusun:</label>
-                        <input type="text" id="inputRt" placeholder="Cth: RT 01 / Mawar">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Petugas Pemeriksa (Kader): <span class="wajib">*</span></label>
-                    <select id="selectKader">
-                        <option value="">-- Pilih Nama Ibu Kader --</option>
-                        <option value="Ibu Siti (Pos 1)">Ibu Siti (Pos 1)</option>
-                        <option value="Ibu Ani (Pos 2)">Ibu Ani (Pos 2)</option>
-                        <option value="Ibu Budi (Pos 3)">Ibu Budi (Pos 3)</option>
-                    </select>
-                </div>
-
-                <!-- TOMBOL LANJUT KE PILIH SKRINING -->
-                <button class="btn-lanjut" onclick="simpanBiodataDanLanjut()">
-                    ➡️ Simpan Biodata & Pilih Skrining
-                </button>
-            </div>
-
-            <!-- TOMBOL ADMIN BIDAN (Ditaruh di bawah agar tidak ganggu kader) -->
-            <div class="admin-section">
-                <p class="admin-divider"><span>Khusus Bidan Desa</span></p>
-                <button class="btn-menu btn-admin" onclick="bukaHalaman('page-admin')">
-                    <span class="icon">📊</span>
-                    <span class="text-group">
-                        <strong class="title">Dashboard Admin Bidan</strong>
-                        <small class="subtitle">Rekap Data & Download Laporan Excel</small>
-                    </span>
-                </button>
-            </div>
-        </section>
-
-        <!-- =================================================== -->
-        <!-- LAYAR 2: MENU PILIH SKRINING (MUNCUL SETELAH BIODATA DIISI) -->
-        <!-- =================================================== -->
-        <section id="page-menu-skrining" class="page">
-            <div class="nav-top">
-                <button class="btn-back" onclick="bukaHalaman('page-home')">⬅ Ganti Pasien</button>
-                <h3>Pilih Jenis Skrining</h3>
-            </div>
-
-            <!-- Banner Pasien yang Barusan Didaftarkan -->
-            <div class="patient-banner">
-                👤 Pasien Aktif: <br><strong id="banner-menu">-</strong>
-            </div>
-
-            <p class="info-text">Silakan pilih layanan Posyandu ILP untuk pasien ini:</p>
-            
-            <!-- 3 TOMBOL SKRINING MURNI -->
             <div class="menu-grid">
-                <button class="btn-menu" onclick="bukaHalaman('page-balita')">
-                    <span class="icon">👶</span>
-                    <span class="text-group">
-                        <strong class="title">1. Skrining Balita & KMS</strong>
-                        <small class="subtitle">BB, TB, LiLA, LK, Vitamin & Imunisasi</small>
-                    </span>
-                </button>
+                <!-- KARTU 1: BALITA -->
+                <div class="service-card card-balita" onclick="bukaHalaman('page-reg-balita')">
+                    <div class="card-icon">👶</div>
+                    <div class="card-info">
+                        <span class="badge-tag">KMS & Gizi</span>
+                        <h3>1. Pelayanan Balita</h3>
+                        <p>Registrasi KIA, ukur BB, TB, LiLA, LK, imunisasi & vitamin A.</p>
+                    </div>
+                    <div class="card-arrow">➡️</div>
+                </div>
 
-                <button class="btn-menu" onclick="bukaHalaman('page-bumil')">
-                    <span class="icon">🤰</span>
-                    <span class="text-group">
-                        <strong class="title">2. Skrining Ibu Hamil (Bumil)</strong>
-                        <small class="subtitle">LiLA, Usia Hamil & Risiko Stunting</small>
-                    </span>
-                </button>
+                <!-- KARTU 2: BUMIL -->
+                <div class="service-card card-bumil" onclick="bukaHalaman('page-reg-bumil')">
+                    <div class="card-icon">🤰</div>
+                    <div class="card-info">
+                        <span class="badge-tag">Skrining KEK</span>
+                        <h3>2. Pelayanan Ibu Hamil</h3>
+                        <p>Registrasi Bumil, ukur LiLA, pantau usia kehamilan & risiko stunting.</p>
+                    </div>
+                    <div class="card-arrow">➡️</div>
+                </div>
+            </div>
 
-                <button class="btn-menu" onclick="bukaHalaman('page-lansia')">
-                    <span class="icon">👵</span>
-                    <span class="text-group">
-                        <strong class="title">3. Skrining Lansia</strong>
-                        <small class="subtitle">Cek Tensi Darah (Sistolik/Diastolik)</small>
-                    </span>
-                </button>
+            <!-- Bagian Admin Bidan -->
+            <div class="admin-section">
+                <div class="admin-card" onclick="bukaHalaman('page-admin')">
+                    <div class="admin-icon">📊</div>
+                    <div class="admin-text">
+                        <strong>Dashboard Admin Bidan Desa</strong>
+                        <small>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan Excel (CSV)</small>
+                    </div>
+                </div>
             </div>
         </section>
-<!-- =================================================== -->
-        <!-- LAYAR 3A: FORM SKRINING BALITA & KMS -->
+
         <!-- =================================================== -->
-        <section id="page-balita" class="page">
+        <!-- 2A. LANGKAH 1 BALITA: REGISTRASI & IDENTITAS -->
+        <!-- =================================================== -->
+        <section id="page-reg-balita" class="page">
             <div class="nav-top">
-                <button class="btn-back" onclick="bukaHalaman('page-menu-skrining')">⬅ Kembali ke Menu</button>
-                <h3>👶 Skrining Balita</h3>
+                <button class="btn-back" onclick="bukaHalaman('page-home')">⬅ Batal</button>
+                <h3>👶 Langkah 1: Registrasi Balita</h3>
             </div>
-            <div class="patient-banner">👤 Pasien: <strong id="banner-balita">-</strong></div>
-            
-            <form id="form-balita" onsubmit="event.preventDefault(); simpanDataBalita();">
-                <div class="form-card">
-                    <h4>1. Data Tambahan Balita</h4>
-                    <div class="row-inputs">
-                        <div class="form-group half">
-                            <label>Anak Ke- <span class="wajib">*</span></label>
-                            <input type="number" id="balita-anak-ke" placeholder="Cth: 1" min="1" required>
-                        </div>
-                        <div class="form-group half">
-                            <label>Punya BPJS?</label>
-                            <div class="radio-pill-group">
-                                <label><input type="radio" name="balita-bpjs" value="Ya" checked> <span>Ya</span></label>
-                                <label><input type="radio" name="balita-bpjs" value="Tidak"> <span>Tidak</span></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-card">
-                    <h4>2. Pengukuran Fisik (Numpad)</h4>
-                    <div class="row-inputs">
-                        <div class="form-group half">
-                            <label>Berat Badan / BB <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="balita-bb" step="0.1" placeholder="0.0" required>
-                                <span>kg</span>
+            <div class="form-container-desktop">
+                <form id="form-reg-balita" onsubmit="event.preventDefault(); lanjutKeUkurBalita();">
+                    <div class="form-card">
+                        <h4>📋 Identitas dari Buku KIA Pink</h4>
+                        <div class="form-group">
+                            <label>Nama Lengkap Anak: <span class="wajib">*</span></label>
+                            <input type="text" id="reg-balita-anak" placeholder="Cth: Adik Budi Santoso" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Ibu Kandung: <span class="wajib">*</span></label>
+                            <input type="text" id="reg-balita-ibu" placeholder="Cth: Ibu Siti Aminah" required>
+                        </div>
+                        
+                        <!-- INPUT UMUR PRESISE: TAHUN & BULAN -->
+                        <label class="label-main">Umur Anak Sekarang: <span class="wajib">*</span></label>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <div class="input-unit">
+                                    <input type="number" id="reg-balita-thn" placeholder="0" min="0" max="5" required>
+                                    <span>Tahun</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <div class="input-unit">
+                                    <input type="number" id="reg-balita-bln" placeholder="6" min="0" max="11" required>
+                                    <span>Bulan</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group half">
-                            <label>Tinggi / Panjang <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="balita-tb" step="0.1" placeholder="0.0" required>
-                                <span>cm</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row-inputs">
-                        <div class="form-group half">
-                            <label>Lingkar Lengan (LiLA)</label>
-                            <div class="input-unit">
-                                <input type="number" id="balita-lila" step="0.1" placeholder="0.0">
-                                <span>cm</span>
-                            </div>
-                        </div>
-                        <div class="form-group half">
-                            <label>Lingkar Kepala (LK)</label>
-                            <div class="input-unit">
-                                <input type="number" id="balita-lk" step="0.1" placeholder="0.0">
-                                <span>cm</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-card">
-                    <h4>3. Status Kesehatan & Vitamin</h4>
-                    <div class="form-group">
-                        <label>Status Imunisasi Dasar:</label>
-                        <div class="radio-pill-group">
-                            <label><input type="radio" name="balita-imunisasi" value="Lengkap" checked> <span>🔘 Lengkap</span></label>
-                            <label><input type="radio" name="balita-imunisasi" value="Belum Lengkap"> <span>⚪ Belum</span></label>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Anak Ke- (Saudara): <span class="wajib">*</span></label>
+                                <input type="number" id="reg-balita-ke" placeholder="1" min="1" required>
+                            </div>
+                            <div class="form-group half">
+                                <label>Punya BPJS?</label>
+                                <select id="reg-balita-bpjs">
+                                    <option value="Ya">Ya (BPJS)</option>
+                                    <option value="Tidak">Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>RT / RW / Dusun:</label>
+                                <input type="text" id="reg-balita-rt" placeholder="Cth: RT 01 / Mawar">
+                            </div>
+                            <div class="form-group half">
+                                <label>Petugas Kader: <span class="wajib">*</span></label>
+                                <select id="reg-balita-kader" required>
+                                    <option value="">-- Pilih Kader --</option>
+                                    <option value="Ibu Siti (Pos 1)">Ibu Siti (Pos 1)</option>
+                                    <option value="Ibu Ani (Pos 2)">Ibu Ani (Pos 2)</option>
+                                    <option value="Ibu Budi (Pos 3)">Ibu Budi (Pos 3)</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Pemberian Vitamin A Bulan Ini:</label>
-                        <div class="radio-pill-group">
-                            <label><input type="radio" name="balita-vit" value="Ya" checked> <span>🔘 Ya (Sudah)</span></label>
-                            <label><input type="radio" name="balita-vit" value="Tidak"> <span>⚪ Belum</span></label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Catatan Keluhan / Rujukan Bidan:</label>
-                        <textarea id="balita-catatan" rows="2" placeholder="Cth: Anak demam, disarankan ke Puskesmas..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Tombol Simpan Sticky di Bawah -->
-                <button type="submit" class="btn-sticky-simpan">
-                    💾 SIMPAN & CEK HASIL GIZI
-                </button>
-            </form>
+                    
+                    <button type="submit" class="btn-primary-action">
+                        Lanjut ke Pengukuran Fisik ➡️
+                    </button>
+                </form>
+            </div>
         </section>
 
         <!-- =================================================== -->
-        <!-- LAYAR 3B: FORM SKRINING IBU HAMIL (BUMIL) -->
+        <!-- 2B. LANGKAH 2 BALITA: PENGUKURAN FISIK (ANTI KERTAS) -->
         <!-- =================================================== -->
-        <section id="page-bumil" class="page">
+        <section id="page-ukur-balita" class="page">
             <div class="nav-top">
-                <button class="btn-back" onclick="bukaHalaman('page-menu-skrining')">⬅ Kembali ke Menu</button>
-                <h3>🤰 Skrining Ibu Hamil</h3>
+                <button class="btn-back" onclick="bukaHalaman('page-reg-balita')">⬅ Edit Identitas</button>
+                <h3>👶 Langkah 2: Pengukuran Balita</h3>
             </div>
-            <div class="patient-banner">👤 Pasien: <strong id="banner-bumil">-</strong></div>
-            
-            <form id="form-bumil" onsubmit="event.preventDefault(); simpanDataBumil();">
-                <div class="form-card">
-                    <h4>1. Status Kehamilan</h4>
-                    <div class="row-inputs">
-                        <div class="form-group half">
-                            <label>Usia Kandungan <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="bumil-usia" placeholder="0" min="1" max="42" required>
-                                <span>Mgg</span>
-                            </div>
-                        </div>
-                        <div class="form-group half">
-                            <label>Keikutsertaan Senam:</label>
-                            <div class="radio-pill-group">
-                                <label><input type="radio" name="bumil-senam" value="Ikut" checked> <span>Ikut</span></label>
-                                <label><input type="radio" name="bumil-senam" value="Tidak"> <span>Tidak</span></label>
-                            </div>
-                        </div>
+
+            <div class="form-container-desktop">
+                <!-- BANNER PASIEN AKTIF -->
+                <div class="patient-banner">
+                    <span class="banner-icon">👤</span>
+                    <div class="banner-text">
+                        <strong id="banner-balita-nama">-</strong>
+                        <small id="banner-balita-detail">-</small>
                     </div>
                 </div>
 
-                <div class="form-card">
-                    <h4>2. Pengukuran Fisik (Deteksi KEK)</h4>
-                    <div class="row-inputs">
-                        <div class="form-group half">
-                            <label>Berat Badan / BB <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="bumil-bb" step="0.1" placeholder="0.0" required>
-                                <span>kg</span>
+                <form id="form-ukur-balita" onsubmit="event.preventDefault(); simpanHasilBalita();">
+                    <!-- KARTU HASIL UKUR -->
+                    <div class="form-card card-highlight-teal">
+                        <h4>⚖️ Hasil Ukur (Pengganti Kertas Kecil)</h4>
+                        <p class="hint-text">Ketik langsung angka dari timbangan/meteran:</p>
+                        
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Berat Badan (BB) <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="ukur-balita-bb" step="0.1" placeholder="0.0" required style="font-weight:bold; font-size:18px;">
+                                    <span>kg</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <label>Tinggi/Panjang (TB) <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="ukur-balita-tb" step="0.1" placeholder="0.0" required style="font-weight:bold; font-size:18px;">
+                                    <span>cm</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group half">
-                            <label>Tinggi Badan / TB <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="bumil-tb" step="0.1" placeholder="0.0" required>
-                                <span>cm</span>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Lingkar Lengan (LiLA) <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="ukur-balita-lila" step="0.1" placeholder="0.0" required>
+                                    <span>cm</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <label>Lingkar Kepala (LK) <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="ukur-balita-lk" step="0.1" placeholder="0.0" required>
+                                    <span>cm</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Lingkar Lengan Atas (LiLA) <span class="wajib">*</span></label>
-                        <div class="input-unit">
-                            <input type="number" id="bumil-lila" step="0.1" placeholder="Cth: 23.5" required>
-                            <span>cm</span>
+
+                    <!-- KARTU SUNTIK & VITAMIN -->
+                    <div class="form-card">
+                        <h4>💉 Tindakan Medis & Vitamin</h4>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Imunisasi / Suntik?</label>
+                                <select id="ukur-balita-imun">
+                                    <option value="Sudah Suntik">🔘 Sudah Suntik</option>
+                                    <option value="Belum / Tidak">⚪ Belum/Tidak</option>
+                                </select>
+                            </div>
+                            <div class="form-group half">
+                                <label>Vitamin A Bulan Ini?</label>
+                                <select id="ukur-balita-vit">
+                                    <option value="Ya (Diberikan)">🔘 Ya (Diberikan)</option>
+                                    <option value="Tidak">⚪ Tidak</option>
+                                </select>
+                            </div>
                         </div>
-                        <small class="hint-text">💡 Standar normal LiLA Bumil minimal 23.5 cm</small>
+                        <div class="form-group">
+                            <label>Catatan Keluhan / Resep Bidan:</label>
+                            <textarea id="ukur-balita-catatan" rows="2" placeholder="Cth: Anak rewel pasca suntik..."></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-card">
-                    <h4>3. Catatan Medis & Rujukan</h4>
-                    <div class="form-group">
-                        <label>Keluhan / Resep Vitamin dari Bidan:</label>
-                        <textarea id="bumil-catatan" rows="2" placeholder="Cth: Diberikan Tablet Tambah Darah (TTD)..."></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-sticky-simpan">
-                    💾 SIMPAN & CEK RISIKO STUNTING
-                </button>
-            </form>
+                    <button type="submit" class="btn-sticky-simpan">
+                        💾 SIMPAN & CEK STATUS GIZI BALITA
+                    </button>
+                </form>
+            </div>
         </section>
 
         <!-- =================================================== -->
-        <!-- LAYAR 3C: FORM SKRINING LANSIA -->
+        <!-- 3A. LANGKAH 1 BUMIL: REGISTRASI & IDENTITAS -->
         <!-- =================================================== -->
-        <section id="page-lansia" class="page">
+        <section id="page-reg-bumil" class="page">
             <div class="nav-top">
-                <button class="btn-back" onclick="bukaHalaman('page-menu-skrining')">⬅ Kembali ke Menu</button>
-                <h3>👵 Skrining Lansia</h3>
+                <button class="btn-back" onclick="bukaHalaman('page-home')">⬅ Batal</button>
+                <h3>🤰 Langkah 1: Registrasi Ibu Hamil</h3>
             </div>
-            <div class="patient-banner">👤 Pasien: <strong id="banner-lansia">-</strong></div>
-            
-            <form id="form-lansia" onsubmit="event.preventDefault(); simpanDataLansia();">
-                <div class="form-card">
-                    <h4>1. Pengukuran Berat & Tinggi</h4>
-                    <div class="row-inputs">
-                        <div class="form-group half">
-                            <label>Berat Badan / BB <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="lansia-bb" step="0.1" placeholder="0.0" required>
-                                <span>kg</span>
-                            </div>
-                        </div>
-                        <div class="form-group half">
-                            <label>Tinggi Badan / TB <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="lansia-tb" step="0.1" placeholder="0.0" required>
-                                <span>cm</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-card" style="border-color: #EF4444; background-color: #FEF2F2;">
-                    <h4 style="color: #991B1B;">2. Pemeriksaan Tensi Darah (Wajib)</h4>
-                    <p class="hint-text" style="margin-bottom: 10px;">Masukan angka hasil alat tensi meter:</p>
-                    <div class="row-inputs">
-                        <div class="form-group half">
-                            <label style="color: #991B1B;">Sistolik (Atas) <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="lansia-sistolik" placeholder="120" required style="font-weight: bold; font-size: 18px;">
-                                <span>mmHg</span>
+            <div class="form-container-desktop">
+                <form id="form-reg-bumil" onsubmit="event.preventDefault(); lanjutKeUkurBumil();">
+                    <div class="form-card">
+                        <h4>📋 Identitas Ibu Hamil</h4>
+                        <div class="form-group">
+                            <label>Nama Lengkap Ibu Hamil: <span class="wajib">*</span></label>
+                            <input type="text" id="reg-bumil-nama" placeholder="Cth: Ibu Fitriani" required>
+                        </div>
+                        
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Umur Ibu Sekarang: <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="reg-bumil-umur" placeholder="24" min="15" max="55" required style="font-weight:bold;">
+                                    <span>Tahun</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <label>RT / RW / Dusun:</label>
+                                <input type="text" id="reg-bumil-rt" placeholder="Cth: RT 02 / Mawar">
                             </div>
                         </div>
-                        <div class="form-group half">
-                            <label style="color: #991B1B;">Diastolik (Bawah) <span class="wajib">*</span></label>
-                            <div class="input-unit">
-                                <input type="number" id="lansia-diastolik" placeholder="80" required style="font-weight: bold; font-size: 18px;">
-                                <span>mmHg</span>
+
+                        <!-- INPUT USIA KEHAMILAN PRESISE: BULAN & MINGGU -->
+                        <label class="label-main">Usia Kandungan Sekarang: <span class="wajib">*</span></label>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <div class="input-unit">
+                                    <input type="number" id="reg-bumil-hamil-bln" placeholder="5" min="0" max="9" required style="color:#0D9488; font-weight:bold;">
+                                    <span>Bulan</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <div class="input-unit">
+                                    <input type="number" id="reg-bumil-hamil-mgg" placeholder="2" min="0" max="4" required style="color:#0D9488; font-weight:bold;">
+                                    <span>Minggu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Ikut Senam Hamil?</label>
+                                <select id="reg-bumil-senam">
+                                    <option value="Ikut">🔘 Ikut Aktif</option>
+                                    <option value="Tidak">⚪ Tidak Ikut</option>
+                                </select>
+                            </div>
+                            <div class="form-group half">
+                                <label>Petugas Kader: <span class="wajib">*</span></label>
+                                <select id="reg-bumil-kader" required>
+                                    <option value="">-- Pilih Kader --</option>
+                                    <option value="Ibu Siti (Pos 1)">Ibu Siti (Pos 1)</option>
+                                    <option value="Ibu Ani (Pos 2)">Ibu Ani (Pos 2)</option>
+                                    <option value="Ibu Budi (Pos 3)">Ibu Budi (Pos 3)</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-card">
-                    <h4>3. Tindakan & Obat yang Diberikan</h4>
-                    <div class="form-group">
-                        <label>Obat / Vitamin yang Dikasih:</label>
-                        <input type="text" id="lansia-obat" placeholder="Cth: Amlodipine 5mg / Vitamin B Kompleks">
-                    </div>
-                    <div class="form-group">
-                        <label>Catatan Keluhan / Rujukan Bidan:</label>
-                        <textarea id="lansia-catatan" rows="2" placeholder="Cth: Sering pusing, dirujuk cek kolesterol ke Puskesmas..."></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-sticky-simpan" style="background-color: #0F766E;">
-                    💾 SIMPAN & CEK TENSI DARAH
-                </button>
-            </form>
+                    <button type="submit" class="btn-primary-action">
+                        Lanjut ke Pengukuran Fisik ➡️
+                    </button>
+                </form>
+            </div>
         </section>
 
-       <!-- =================================================== -->
-        <!-- LAYAR ADMIN: DASHBOARD BIDAN DESA (FASE 4) -->
+        <!-- =================================================== -->
+        <!-- 3B. LANGKAH 2 BUMIL: PENGUKURAN FISIK (LILA & KEK) -->
+        <!-- =================================================== -->
+        <section id="page-ukur-bumil" class="page">
+            <div class="nav-top">
+                <button class="btn-back" onclick="bukaHalaman('page-reg-bumil')">⬅ Edit Identitas</button>
+                <h3>🤰 Langkah 2: Pengukuran Bumil</h3>
+            </div>
+
+            <div class="form-container-desktop">
+                <!-- BANNER PASIEN AKTIF -->
+                <div class="patient-banner">
+                    <span class="banner-icon">🤰</span>
+                    <div class="banner-text">
+                        <strong id="banner-bumil-nama">-</strong>
+                        <small id="banner-bumil-detail">-</small>
+                    </div>
+                </div>
+
+                <form id="form-ukur-bumil" onsubmit="event.preventDefault(); simpanHasilBumil();">
+                    <div class="form-card card-highlight-teal">
+                        <h4>⚖️ Hasil Ukur Fisik (Deteksi KEK)</h4>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Berat Badan (BB) <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="ukur-bumil-bb" step="0.1" placeholder="0.0" required>
+                                    <span>kg</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <label>Tinggi Badan (TB) <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="ukur-bumil-tb" step="0.1" placeholder="0.0" required>
+                                    <span>cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Lingkar Lengan Atas (LiLA) <span class="wajib">*</span></label>
+                            <div class="input-unit">
+                                <input type="number" id="ukur-bumil-lila" step="0.1" placeholder="23.5" required style="font-weight:bold; font-size:18px;">
+                                <span>cm</span>
+                            </div>
+                            <small class="hint-text">💡 Standar normal LiLA Ibu Hamil minimal 23.5 cm</small>
+                        </div>
+                    </div>
+
+                    <div class="form-card">
+                        <h4>📝 Catatan & Resep Bidan</h4>
+                        <div class="form-group">
+                            <label>Keluhan / Resep Bidan:</label>
+                            <textarea id="ukur-bumil-catatan" rows="2" placeholder="Cth: Diberikan Tablet Tambah Darah (TTD) 30 butir..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-sticky-simpan">
+                        💾 SIMPAN & CEK RISIKO STUNTING
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 4. DASHBOARD ADMIN BIDAN -->
         <!-- =================================================== -->
         <section id="page-admin" class="page">
             <div class="nav-top">
                 <button class="btn-back" onclick="bukaHalaman('page-home')">⬅ Kembali ke Menu</button>
-                <h3>📊 Dashboard Admin Bidan</h3>
+                <h3>📊 Dashboard Admin Bidan Desa</h3>
             </div>
-
-            <!-- Baris Filter & Aksi Ekspor -->
+            
             <div class="admin-toolbar">
                 <div class="filter-box">
                     <input type="text" id="cariPasien" placeholder="🔍 Cari nama pasien / RT..." onkeyup="filterTabelAdmin()">
@@ -375,25 +398,21 @@
                         <option value="Semua">Semua Kategori (ILP)</option>
                         <option value="Balita">👶 Balita & KMS</option>
                         <option value="Ibu Hamil">🤰 Ibu Hamil</option>
-                        <option value="Lansia">👵 Lansia</option>
                     </select>
                 </div>
                 <div class="action-buttons">
-                    <!-- Tombol Baru untuk Kirim Data Tertunda -->
-                    <button type="button" class="btn-export-excel" style="background-color: #0284C7;" onclick="sinkronkanSemuaKeSheets()">
-                        ☁️ Sync Live ke Google Sheets
+                    <button type="button" class="btn-export-excel btn-sync" onclick="sinkronkanSemuaKeSheets()">
+                        ☁️ Sync Live ke Sheets
                     </button>
-                    
                     <button type="button" class="btn-export-excel" onclick="downloadCSV()">
-                        📥 Download CSV (Backup)
+                        📥 Download CSV
                     </button>
                     <button type="button" class="btn-clear-db" onclick="hapusSemuaData()">
                         🗑️ Reset Data
                     </button>
                 </div>
             </div>
-
-            <!-- Wadah Tabel (Bisa digeser horizontal di HP) -->
+            
             <div class="table-responsive">
                 <table class="admin-table">
                     <thead>
@@ -401,64 +420,47 @@
                             <th>No</th>
                             <th>Waktu Periksa</th>
                             <th>Nama Pasien & RT</th>
-                            <th>Kategori</th>
-                            <th>Hasil Pengukuran</th>
+                            <th>Kategori & Umur</th>
+                            <th>Hasil Pengukuran (BB/TB/LiLA/LK)</th>
                             <th>Status Diagnosis</th>
+                            <th>Tindakan (Suntik/Vit/Senam)</th>
                             <th>Petugas Kader</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <!-- Isi tabel akan dimunculkan otomatis oleh JavaScript -->
-                    <tbody id="tabel-body-posyandu">
-                        <!-- Baris kosong sementara -->
-                    </tbody>
+                    <tbody id="tabel-body-posyandu"></tbody>
                 </table>
             </div>
-
-            <!-- Pesan jika database masih kosong -->
             <div id="pesan-kosong" class="empty-state" style="display: none;">
                 <p>📭 <em>Belum ada data pemeriksaan posyandu yang tersimpan di HP ini.</em></p>
-                <small>Silakan daftarkan warga di halaman depan terlebih dahulu.</small>
             </div>
         </section>
 
-    <!-- =================================================== -->
-        <!-- POP-UP MODAL DIAGNOSIS (MUNCUL OTOMATIS SAAT SIMPAN) -->
-        <!-- =================================================== -->
+        <!-- POP-UP MODAL DIAGNOSIS -->
         <div id="modal-diagnosis" class="modal-overlay">
             <div class="modal-card">
-                <!-- Ikon Status (Otomatis berubah: 🟢 / 🟡 / 🔴) -->
                 <div id="modal-icon" class="modal-icon-wrapper">⚠️</div>
-                
-                <!-- Judul Status Diagnosis -->
-                <h3 id="modal-title" class="modal-title">HIPERTENSI!</h3>
-                
-                <!-- Info Pasien & Detail Medis -->
+                <h3 id="modal-title" class="modal-title">STATUS MEDIS</h3>
                 <div class="modal-patient-info">
                     👤 Pasien: <strong id="modal-nama">-</strong> (<span id="modal-kategori">-</span>)
                 </div>
-                
-                <div id="modal-detail" class="modal-detail-box">
-                    Tensi: 150/90 mmHg | Kategori: Bahaya
-                </div>
-
-                <!-- Instruksi / Saran Medis untuk Kader -->
+                <div id="modal-detail" class="modal-detail-box">Detail Pengukuran</div>
                 <div class="modal-saran-box">
-                    <strong>💡 Tindakan / Saran Medis:</strong>
-                    <p id="modal-saran">Segera rujuk pasien ke Meja Bidan Desa untuk pemeriksaan lanjutan.</p>
+                    <strong>💡 Saran & Tindakan Medis:</strong>
+                    <p id="modal-saran">Saran dokter/bidan akan muncul di sini.</p>
                 </div>
-
-                <!-- Tombol Aksi Modal -->
                 <div class="modal-actions">
                     <button type="button" class="btn-modal-simpan" onclick="konfirmasiSimpanKeDatabase()">
                         💾 Simpan ke Database & Selesai
                     </button>
                     <button type="button" class="btn-modal-batal" onclick="tutupModal()">
-                        ⬅ Kembali Edit Data
+                        ⬅ Kembali Edit Angka
                     </button>
                 </div>
             </div>
         </div>
+
+    </div>
 
     <script src="app.js"></script>
 </body>
