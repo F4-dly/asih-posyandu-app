@@ -1,0 +1,817 @@
+/* =================================================== */
+/* 1. DESIGN TOKENS (SIAP DIGANTI SAAT ASET LOURENT DATANG) */
+/* =================================================== */
+
+/* A. Import Font Sementara dari Google Fonts (Poppins & Nunito) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+    /* --- PALET WARNA UTAMA (Tinggal ganti hex dari Lourent nanti) --- */
+    --primary: #0D9488;         /* Warna Utama Medis (Biru Tosca) */
+    --primary-light: #CCFBF1;   /* Warna Background Tombol Hover */
+    --primary-dark: #0F766E;    /* Warna Tombol Saat Ditekan */
+    
+    /* --- WARNA STATUS DIAGNOSIS --- */
+    --success: #10B981;         /* Hijau (Normal / Online) */
+    --warning: #F59E0B;         /* Kuning (Waspada / KEK) */
+    --danger: #EF4444;          /* Merah (Bahaya / Hipertensi / Offline) */
+    
+    /* --- WARNA LATAR & TEKS --- */
+    --bg-app: #F8FAFC;          /* Latar dalam HP (Abu Sangat Muda) */
+    --bg-desktop: #E2E8F0;      /* Latar luar HP di layar Laptop Bidan */
+    --text-main: #1E293B;       /* Hitam Pekat untuk Teks Utama */
+    --text-muted: #64748B;      /* Abu-abu untuk Teks Petunjuk/Subtitle */
+    --border-color: #CBD5E1;    /* Warna Garis Pembatas */
+    --white: #FFFFFF;
+    
+    /* --- ATURAN FONT & UKURAN LANSIA --- */
+    --font-main: 'Nunito', 'Segoe UI', sans-serif;
+    --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+    --size-label: 15px;         /* Minimal 15px-16px agar terbaca Kader Lansia */
+    --size-title: 18px;
+    
+    /* --- EFEK BAYANGAN (SHADOWS & RADIUS) --- */
+    --radius-card: 16px;        /* Kelengkungan kotak form */
+    --radius-btn: 12px;         /* Kelengkungan tombol */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 10px rgba(13, 148, 136, 0.1);
+}   
+
+/* =================================================== */
+/* 2. WADAH SIAP PAKAI UNTUK IKON & LOGO DARI LOURENT  */
+/* =================================================== */
+
+/* Wadah Logo Header */
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo-icon-box {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Kalau gambar dari Lourent sudah ada, ganti emoji dengan tag <img> */
+}
+.logo-icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Wadah Ikon Tombol Menu Utama */
+.btn-menu .icon-wrapper {
+    width: 48px;                /* Ukuran pasti kotak ikon */
+    height: 48px;
+    min-width: 48px;            /* Biar gak tergencet kalau teksnya panjang */
+    background-color: #F1F5F9;  /* Latar belakang sementara sebelum ada ikon */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;            /* Ukuran emoji sementara */
+    margin-right: 16px;
+    transition: all 0.2s;
+}
+
+/* Saat tombol menu disentuh, kotak ikon ikut berubah warna */
+.btn-menu:hover .icon-wrapper {
+    background-color: var(--white);
+    transform: scale(1.05);
+}
+
+/* Wadah gambar di dalam tombol (untuk persiapan file .SVG dari Lourent) */
+.btn-menu .icon-wrapper img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* =================================================== */
+/* 3. MIKRO-INTERAKSI & EFEK SENTUHAN HP (UI POLISHING) */
+/* =================================================== */
+
+/* Efek memantul saat tombol apapun ditekan jari (Active State) */
+button:active, .btn-menu:active, .btn-lanjut:active, .btn-sticky-simpan:active {
+    transform: scale(0.96) !important; /* Tombol mengecil sedikit saat dicubit/ditekan */
+    transition: transform 0.1s ease !important;
+}
+
+/* Animasi halus saat kolom input diklik / ketik */
+input, select, textarea {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2) !important;
+    background-color: #FAFAF9 !important;
+}
+
+/* Animasi munculnya halaman (Smooth Page Transition) */
+.page.active {
+    animation: slideUpFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Indikator visual kolom yang wajib diisi (Biar Kader paham) */
+input:required:invalid {
+    border-left: 3px solid #F59E0B; /* Kasih garis kuning kecil di kiri kolom yang belum diisi */
+}
+input:required:valid {
+    border-left: 3px solid var(--success); /* Berubah hijau kalau sudah diisi! */
+}
+
+/* Terapkan font ke seluruh aplikasi */
+* {
+    font-family: var(--font-main);
+}
+h1, h2, h3, h4, .btn-menu .title {
+    font-family: var(--font-heading);
+}
+
+/* =================================================== */
+/* 4. PEMANTAPAN LAYOUT DESKTOP BIDAN (MONITOR LEBAR)  */
+/* =================================================== */
+
+@media screen and (min-width: 1024px) {
+    /* Saat di laptop, ubah background luar jadi pola bersih */
+    body {
+        background-color: #0F172A; /* Latar gelap mewah di luar HP */
+        background-image: radial-gradient(#1E293B 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+    
+    /* Berikan efek HP mengambang yang elegan di tengah laptop */
+    .app-container {
+        margin: 30px 0;
+        border-radius: 24px;
+        border: 4px solid #334155;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        min-height: calc(100vh - 60px);
+    }
+
+    /* KHUSUS HALAMAN ADMIN: Lepas dari cangkang HP dan meluas memenuhi monitor! */
+    #page-admin.active {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-width: none !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        background-color: #F8FAFC !important;
+        padding: 40px 60px !important;
+        z-index: 9999 !important;
+        overflow-y: auto;
+    }
+
+    /* Atur lebar tabel di laptop maksimal 1280px ke tengah */
+    #page-admin .nav-top, 
+    #page-admin .admin-toolbar, 
+    #page-admin .table-responsive,
+    #page-admin .empty-state {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-desktop);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--bg-app);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    position: relative;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 16px;
+}
+.logo { font-size: 20px; font-weight: 800; color: var(--primary); }
+.status-badge { font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+.status-badge.online { background-color: #D1FAE5; color: #065F46; }
+.status-badge.offline { background-color: #FEE2E2; color: #991B1B; }
+
+/* 2. SISTEM ROUTING HALAMAN */
+.page { display: none; flex-grow: 1; }
+.page.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. DESAIN KARTU BIODATA (LAYAR 1) */
+.welcome-box { margin-bottom: 16px; }
+.welcome-box h2 { font-size: 22px; color: var(--text-main); margin-bottom: 4px; }
+.welcome-box p { font-size: 14px; color: var(--text-muted); }
+
+.card-identitas {
+    background-color: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.08);
+}
+.form-group { margin-bottom: 14px; }
+.form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+.wajib { color: #EF4444; }
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px; /* Wajib 16px agar jelas di HP lansia */
+    background-color: var(--white);
+    color: var(--text-main);
+}
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+.row-inputs { display: flex; gap: 10px; }
+.row-inputs .half { width: 50%; }
+
+/* Tombol Lanjut Raksasa */
+.btn-lanjut {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 8px;
+    box-shadow: 0 4px 6px rgba(13, 148, 136, 0.2);
+    transition: all 0.2s;
+}
+.btn-lanjut:hover, .btn-lanjut:active {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Bagian Admin di Bawah */
+.admin-section { margin-top: auto; padding-top: 20px; }
+.admin-divider {
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+.admin-divider span {
+    background: var(--bg-app);
+    padding: 0 10px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* 4. DESAIN MENU SKRINING (LAYAR 2) */
+.info-text { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 12px; }
+.menu-grid { display: flex; flex-direction: column; gap: 14px; }
+.btn-menu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+    background-color: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+}
+.btn-menu:hover, .btn-menu:active {
+    border-color: var(--primary);
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+.btn-menu .icon { font-size: 36px; margin-right: 16px; }
+.btn-menu .title { font-size: 17px; font-weight: 700; display: block; color: var(--text-main); }
+.btn-menu .subtitle { font-size: 13px; color: var(--text-muted); display: block; margin-top: 2px; }
+
+.btn-menu.btn-admin { background-color: #FEF3C7; border-color: #FDE68A; }
+.btn-menu.btn-admin .title { color: #92400E; }
+
+/* 5. ELEMEN PENDUKUNG HALAMAN DALAM */
+.nav-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border-color);
+}
+.btn-back {
+    padding: 8px 14px;
+    background-color: var(--white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.nav-top h3 { font-size: 18px; }
+
+/* Banner Pasien Aktif */
+.patient-banner {
+    background-color: var(--primary-light);
+    border: 1.5px solid var(--primary);
+    color: var(--primary-dark);
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.4;
+}
+
+.content-placeholder {
+    padding: 30px;
+    text-align: center;
+    background-color: var(--white);
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    color: var(--text-muted);
+}
+
+.app-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+/* =================================================== */
+/* 6. TAMBAHAN STYLING FASE 2 (FORM MEDIS RAMAH LANSIA) */
+/* =================================================== */
+
+/* Kotak Kelompok Pertanyaan (Form Card) */
+.form-card {
+    background-color: var(--white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.form-card h4 {
+    font-size: 15px;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+/* Input Satuan (Ada teks kg/cm di dalam kotak) */
+.input-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-unit input {
+    padding-right: 45px !important; /* Memberi ruang di kanan untuk tulisan kg/cm */
+}
+.input-unit span {
+    position: absolute;
+    right: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+/* Radio Pill Group (Tombol Geser Pilihan Ya/Tidak) */
+.radio-pill-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+.radio-pill-group label {
+    flex: 1;
+    cursor: pointer;
+    margin-bottom: 0 !important;
+}
+.radio-pill-group input[type="radio"] {
+    display: none; /* Sembunyikan bulat-bulat radio aslinya */
+}
+.radio-pill-group span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #F1F5F9;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    text-align: center;
+}
+/* Saat tombol radio dipilih */
+.radio-pill-group input[type="radio"]:checked + span {
+    background-color: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-dark);
+    font-weight: 800;
+    box-shadow: 0 2px 4px rgba(13, 148, 136, 0.15);
+}
+
+/* Textarea & Teks Petunjuk */
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+    background-color: var(--white);
+    color: var(--text-main);
+}
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+.hint-text {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* TOMBOL SIMPAN STICKY (Nempel di Bawah Layar HP) */
+.btn-sticky-simpan {
+    position: sticky;
+    bottom: 16px;
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(13, 148, 136, 0.4);
+    transition: all 0.2s;
+    z-index: 50;
+    margin-top: 20px;
+}
+.btn-sticky-simpan:hover, .btn-sticky-simpan:active {
+    background-color: var(--primary-dark);
+    transform: scale(0.98);
+}
+
+/* =================================================== */
+/* 7. TAMBAHAN STYLING FASE 3 (POP-UP MODAL DIAGNOSIS) */
+/* =================================================== */
+
+/* Latar Belakang Gelap Transparan (Overlay) */
+.modal-overlay {
+    display: none; /* Tersembunyi secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.75); /* Gelap kebiruan dengan efek blur */
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeInModal 0.25s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Kotak Modal Raksasa di Tengah Layar */
+.modal-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border-top: 8px solid var(--primary); /* Warna garis atas akan berubah otomatis */
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Lingkaran Ikon di Tengah */
+.modal-icon-wrapper {
+    font-size: 56px;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Info Pasien & Box Detail */
+.modal-patient-info {
+    font-size: 14px;
+    color: var(--text-muted);
+    background-color: #F8FAFC;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+.modal-detail-box {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+    background-color: #F1F5F9;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+}
+
+/* Box Saran / Instruksi Medis */
+.modal-saran-box {
+    text-align: left;
+    background-color: #FEF3C7; /* Kuning muda ramah mata */
+    border-left: 4px solid #F59E0B;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #92400E;
+    line-height: 1.5;
+}
+.modal-saran-box strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #78350F;
+}
+
+/* Tombol Aksi di dalam Modal */
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn-modal-simpan {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.3);
+}
+.btn-modal-batal {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* =================================================== */
+/* KODE WARNA OTOMATIS (STATUS MEDIS: HIJAU/KUNING/MERAH) */
+/* =================================================== */
+.modal-card.status-aman { border-top-color: #10B981; }
+.modal-card.status-aman .modal-title { color: #065F46; }
+.modal-card.status-aman .modal-saran-box { background-color: #D1FAE5; border-left-color: #10B981; color: #065F46; }
+
+.modal-card.status-waspada { border-top-color: #F59E0B; }
+.modal-card.status-waspada .modal-title { color: #92400E; }
+.modal-card.status-waspada .modal-saran-box { background-color: #FEF3C7; border-left-color: #F59E0B; color: #92400E; }
+
+.modal-card.status-bahaya { border-top-color: #EF4444; }
+.modal-card.status-bahaya .modal-title { color: #991B1B; }
+.modal-card.status-bahaya .modal-saran-box { background-color: #FEE2E2; border-left-color: #EF4444; color: #991B1B; }
+.modal-card.status-bahaya .btn-modal-simpan { background-color: #DC2626; box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); }
+
+/* =================================================== */
+/* 8. TAMBAHAN STYLING FASE 4 (DASHBOARD TABEL BIDAN)  */
+/* =================================================== */
+
+/* Toolbar Filter & Pencarian */
+.admin-toolbar {
+    background-color: var(--white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.filter-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.filter-box input, .filter-box select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: var(--bg-app);
+}
+.filter-box input:focus, .filter-box select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Tombol Aksi Admin */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+.btn-export-excel {
+    flex: 2;
+    padding: 12px;
+    background-color: #10B981; /* Hijau Excel */
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+    transition: all 0.2s;
+}
+.btn-export-excel:hover { background-color: #059669; }
+
+.btn-clear-db {
+    flex: 1;
+    padding: 12px;
+    background-color: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-clear-db:hover { background-color: #FECACA; }
+
+/* Wadah Tabel (Responsive Scroll) */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Bisa digeser ke samping kalau dibuka di HP */
+    background-color: var(--white);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px; /* Lebar minimal agar teks tabel tidak tergencet di HP */
+    font-size: 13px;
+}
+.admin-table th {
+    background-color: #F1F5F9;
+    color: var(--text-main);
+    font-weight: 800;
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--border-color);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+.admin-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #F1F5F9;
+    color: var(--text-main);
+    vertical-align: middle;
+}
+.admin-table tr:hover { background-color: #F8FAFC; }
+
+/* Badge Status di dalam Tabel */
+.badge-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.badge-status.aman { background-color: #D1FAE5; color: #065F46; }
+.badge-status.waspada { background-color: #FEF3C7; color: #92400E; }
+.badge-status.bahaya { background-color: #FEE2E2; color: #991B1B; }
+
+/* Tombol Hapus Baris */
+.btn-hapus-row {
+    padding: 6px 10px;
+    background-color: #FEF2F2;
+    color: #DC2626;
+    border: 1px solid #FECACA;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-hapus-row:hover { background-color: #DC2626; color: var(--white); }
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--white);
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    color: var(--text-muted);
+    margin-top: 16px;
+}
+.empty-state p { font-size: 15px; margin-bottom: 4px; }
+
+/* =================================================== */
+/* 9. RAHASIA RESPONSIF LAPTOP BIDAN (DESKTOP MODE)    */
+/* =================================================== */
+@media screen and (min-width: 1024px) {
+    /* Kalau dibuka di laptop, perluas layar khusus untuk halaman Admin! */
+    #page-admin.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw !important;
+        height: 100vh;
+        max-width: 100% !important;
+        background-color: var(--bg-desktop);
+        padding: 30px 50px;
+        overflow-y: auto;
+        z-index: 500;
+    }
+    #page-admin .nav-top {
+        max-width: 1200px;
+        margin: 0 auto 20px;
+        background-color: var(--white);
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    #page-admin .admin-toolbar, #page-admin .table-responsive {
+        max-width: 1200px;
+        margin: 0 auto 20px;
+    }
+    .filter-box { flex-direction: row; }
+}
