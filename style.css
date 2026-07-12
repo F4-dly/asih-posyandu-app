@@ -36,17 +36,17 @@ body {
 }
 
 /* =================================================== */
-/* 2. CONTAINER RESPONSIVE (ANTI-FRAME HP DI DESKTOP!) */
+/* 2. CONTAINER RESPONSIVE (ANTI-BORDER DI HP!)        */
 /* =================================================== */
 .app-container {
     width: 100%;
-    max-width: 1200px;          /* Di Laptop melebar sampai 1200px! */
+    max-width: 1200px;
     margin: 0 auto;
-    background-color: var(--bg-app);
+    background-color: #FFFFFF;  /* Ubah latar belakang luar jadi putih bersih */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    padding: 0 !important;      /* PENTING: Hapus padding 16px agar tidak ada border di pinggir HP! */
 }
 
 .app-header {
@@ -411,19 +411,29 @@ body {
 /* KODE KHUSUS HOME SCREEN 100% MIRIP FIGMA FRAME 2    */
 /* =================================================== */
 
-/* 1. Bagian Header Logo Tengah ala Figma */
+/* 1. Header Logo Tengah (Bersih Tanpa Halangan) */
 .figma-top-header {
     background-color: #FFFFFF;
-    padding: 20px 16px 24px 16px;
-    text-align: center;
+    padding: 24px 16px 20px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    width: 100%;
 }
 
+/* Kunci Badge Status Online di Pojok Kanan Atas Tanpa Menghalangi Logo */
 .floating-badge {
-    position: absolute;
+    position: absolute !important;
     top: 16px;
     right: 16px;
-    z-index: 10;
+    z-index: 100;
+    width: auto !important;
+    display: inline-block !important;
+    padding: 4px 12px !important;
+    font-size: 11px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .figma-logo-container {
@@ -433,21 +443,24 @@ body {
 }
 
 .figma-main-logo {
-    width: 160px;          /* Ukuran logo besar di tengah layar atas */
+    width: 150px;               /* Ukuran logo pas dan proporsional di tengah */
     height: auto;
     object-fit: contain;
 }
 
-/* 2. Wadah Gradasi Resmi (10A8A7 = 0%, 118DA2 = 50%, 171D43 = 100%) */
+/* 2. Wadah Gradasi Resmi (GELAP DI ATAS: #171D43 -> #118DA2 -> #10A8A7) */
 .home-figma-container {
-    background: linear-gradient(180deg, #10A8A7 0%, #118DA2 50%, #171D43 100%);
+    background: linear-gradient(180deg, #171D43 0%, #118DA2 50%, #10A8A7 100%) !important;
     border-top-left-radius: 36px;
     border-top-right-radius: 36px;
-    padding: 32px 20px 40px 20px;
-    margin-top: -10px;     /* Menarik sedikit ke atas agar menyatu dengan putih */
-    box-shadow: 0 -4px 20px rgba(16, 168, 167, 0.15);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 32px 20px 48px 20px;
+    margin-top: 0;
+    width: 100%;                /* Full width memotong pinggiran layar HP */
+    flex-grow: 1;
+    box-shadow: 0 -4px 20px rgba(23, 29, 67, 0.2);
     text-align: center;
-    min-height: calc(100vh - 180px);
 }
 
 /* 3. Judul "Selamat Datang!" & Pill Kategori */
@@ -457,7 +470,7 @@ body {
     font-weight: 800;
     margin-bottom: 14px;
     letter-spacing: 0.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .welcome-pill {
@@ -497,7 +510,7 @@ body {
 }
 
 .figma-card:hover, .figma-card:active {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
 }
 
@@ -570,7 +583,7 @@ body {
 .figma-arrow-btn {
     width: 38px;
     height: 38px;
-    background-color: #10A8A7;    /* Warna teal senada gradasi atas */
+    background-color: #10A8A7;    /* Warna teal senada gradasi */
     color: #FFFFFF;
     border-radius: 50%;
     display: flex;
@@ -580,20 +593,23 @@ body {
     font-weight: bold;
     position: absolute;
     right: 20px;
-    top: -16px;                   /* Kunci efek menumpuk (half white, half grey) */
+    top: -16px;                   /* Kunci efek menumpuk (overlap) */
     box-shadow: 0 4px 10px rgba(16, 168, 167, 0.4);
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .figma-card:hover .figma-arrow-btn {
     background-color: #0D9488;
-    transform: translateX(4px);   /* Animasi panah bergeser ke kanan saat diklik/hover */
+    transform: translateX(4px);
 }
 
 /* =================================================== */
 /* OTOMATIS MELEBAR RAPI KALAU DIBUKA DI DESKTOP PC    */
 /* =================================================== */
 @media screen and (min-width: 768px) {
+    .app-container {
+        padding: 24px !important; /* Kembalikan padding khusus saat dibuka di layar PC lebar */
+    }
     .figma-cards-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -602,6 +618,7 @@ body {
     }
     .home-figma-container {
         padding: 48px 36px;
+        border-radius: 36px;
     }
     .welcome-title {
         font-size: 34px;
