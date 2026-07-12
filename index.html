@@ -14,9 +14,11 @@
     <div class="app-container">
         
         <!-- HEADER GLOBAL -->
+<!-- HEADER GLOBAL (DENGAN LOGO ASLI FIGMA) -->
         <header class="app-header">
             <div class="logo-wrapper">
-                <span class="logo-icon">🌿</span>
+                <!-- Ganti emoji 🌿 dengan file logo SVG -->
+                <img src="assets/logo-asih.svg" alt="Logo ASIH" class="logo-img">
                 <span class="logo-text">ASIH Posyandu</span>
             </div>
             <div id="statusSinyal" class="status-badge online">🟢 Online</div>
@@ -27,26 +29,16 @@
         <!-- =================================================== -->
         <section id="page-home" class="page active">
             <!-- Hero Banner Welcome -->
-            <div class="hero-banner">
-                <div class="hero-content">
-                    <span class="hero-badge">✨ Posyandu ILP Digital</span>
-                    <h2>Selamat Datang, Lorem Ipsum</h2>
-                    <p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Pilih layanan pemeriksaan hari ini:</p>
-                </div>
-            </div>
-
-            <!-- Grid Menu Utama (Di Desktop otomatis jadi 2 Kolom!) -->
-            <div class="section-title">
-                <h4>📋 Kategori Pelayanan Warga:</h4>
-            </div>
-            
             <div class="menu-grid">
                 <!-- KARTU 1: BALITA -->
                 <div class="service-card card-balita" onclick="bukaHalaman('page-reg-balita')">
-                    <div class="card-icon">👶</div>
+                    <!-- Wadah Gambar Ilustrasi Balita -->
+                    <div class="card-icon-box">
+                        <img src="assets/ill-balita.svg" alt="Ilustrasi Balita">
+                    </div>
                     <div class="card-info">
                         <span class="badge-tag">KMS & Gizi</span>
-                        <h3>1. Pelayanan Balita</h3>
+                        <h3>Pelayanan Balita</h3>
                         <p>Registrasi KIA, ukur BB, TB, LiLA, LK, imunisasi & vitamin A.</p>
                     </div>
                     <div class="card-arrow">➡️</div>
@@ -54,10 +46,13 @@
 
                 <!-- KARTU 2: BUMIL -->
                 <div class="service-card card-bumil" onclick="bukaHalaman('page-reg-bumil')">
-                    <div class="card-icon">🤰</div>
+                    <!-- Wadah Gambar Ilustrasi Ibu Hamil -->
+                    <div class="card-icon-box">
+                        <img src="assets/ill-bumil.svg" alt="Ilustrasi Ibu Hamil">
+                    </div>
                     <div class="card-info">
                         <span class="badge-tag">Skrining KEK</span>
-                        <h3>2. Pelayanan Ibu Hamil</h3>
+                        <h3>Pelayanan Ibu Hamil</h3>
                         <p>Registrasi Bumil, ukur LiLA, pantau usia kehamilan & risiko stunting.</p>
                     </div>
                     <div class="card-arrow">➡️</div>
@@ -67,7 +62,10 @@
             <!-- Bagian Admin Bidan -->
             <div class="admin-section">
                 <div class="admin-card" onclick="bukaHalaman('page-admin')">
-                    <div class="admin-icon">📊</div>
+                    <!-- Wadah Gambar Ilustrasi Admin / Statistik -->
+                    <div class="admin-icon-box">
+                        <img src="assets/ill-admin.svg" alt="Ilustrasi Admin">
+                    </div>
                     <div class="admin-text">
                         <strong>Dashboard Admin Bidan Desa</strong>
                         <small>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan Excel (CSV)</small>
@@ -155,16 +153,19 @@
         <!-- =================================================== -->
         <!-- 2B. LANGKAH 2 BALITA: PENGUKURAN FISIK (ANTI KERTAS) -->
         <!-- =================================================== -->
-        <section id="page-ukur-balita" class="page">
+<section id="page-ukur-balita" class="page">
             <div class="nav-top">
                 <button class="btn-back" onclick="bukaHalaman('page-reg-balita')">⬅ Edit Identitas</button>
                 <h3>👶 Langkah 2: Pengukuran Balita</h3>
             </div>
 
             <div class="form-container-desktop">
-                <!-- BANNER PASIEN AKTIF -->
+                <!-- BANNER PASIEN AKTIF (SUDAH PAKAI ASET FIGMA) -->
                 <div class="patient-banner">
-                    <span class="banner-icon">👤</span>
+                    <div class="banner-icon-box">
+                        <!-- Mengganti emoji 👤 dengan ilustrasi resmi dari Figma -->
+                        <img src="assets/ill-balita.svg" alt="Ikon Balita">
+                    </div>
                     <div class="banner-text">
                         <strong id="banner-balita-nama">-</strong>
                         <small id="banner-balita-detail">-</small>
@@ -236,8 +237,9 @@
                         </div>
                     </div>
 
+                    <!-- TOMBOL SIMPAN KAPSUL (STYLE DARI FIGMA) -->
                     <button type="submit" class="btn-sticky-simpan">
-                        💾 SIMPAN & CEK STATUS GIZI BALITA
+                        <span>💾</span> Simpan & Cek Status Gizi Balita ➡️
                     </button>
                 </form>
             </div>
@@ -322,6 +324,86 @@
         <!-- =================================================== -->
         <!-- 3B. LANGKAH 2 BUMIL: PENGUKURAN FISIK (LILA & KEK) -->
         <!-- =================================================== -->
+      <!-- =================================================== -->
+        <!-- 3A. LANGKAH 1 BUMIL: REGISTRASI & IDENTITAS -->
+        <!-- =================================================== -->
+        <section id="page-reg-bumil" class="page">
+            <div class="nav-top">
+                <button class="btn-back" onclick="bukaHalaman('page-home')">⬅ Batal</button>
+                <h3>🤰 Langkah 1: Registrasi Ibu Hamil</h3>
+            </div>
+
+            <div class="form-container-desktop">
+                <form id="form-reg-bumil" onsubmit="event.preventDefault(); lanjutKeUkurBumil();">
+                    <div class="form-card">
+                        <h4>📋 Identitas Ibu Hamil</h4>
+                        <div class="form-group">
+                            <label>Nama Lengkap Ibu Hamil: <span class="wajib">*</span></label>
+                            <input type="text" id="reg-bumil-nama" placeholder="Cth: Ibu Fitriani" required>
+                        </div>
+                        
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Umur Ibu Sekarang: <span class="wajib">*</span></label>
+                                <div class="input-unit">
+                                    <input type="number" id="reg-bumil-umur" placeholder="24" min="15" max="55" required style="font-weight:bold;">
+                                    <span>Tahun</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <label>RT / RW / Dusun:</label>
+                                <input type="text" id="reg-bumil-rt" placeholder="Cth: RT 02 / Mawar">
+                            </div>
+                        </div>
+
+                        <!-- INPUT USIA KEHAMILAN PRESISE: BULAN & MINGGU -->
+                        <label class="label-main">Usia Kandungan Sekarang: <span class="wajib">*</span></label>
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <div class="input-unit">
+                                    <input type="number" id="reg-bumil-hamil-bln" placeholder="5" min="0" max="9" required style="color:#0D9488; font-weight:bold;">
+                                    <span>Bulan</span>
+                                </div>
+                            </div>
+                            <div class="form-group half">
+                                <div class="input-unit">
+                                    <input type="number" id="reg-bumil-hamil-mgg" placeholder="2" min="0" max="4" required style="color:#0D9488; font-weight:bold;">
+                                    <span>Minggu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row-inputs">
+                            <div class="form-group half">
+                                <label>Ikut Senam Hamil?</label>
+                                <select id="reg-bumil-senam">
+                                    <option value="Ikut">🔘 Ikut Aktif</option>
+                                    <option value="Tidak">⚪ Tidak Ikut</option>
+                                </select>
+                            </div>
+                            <div class="form-group half">
+                                <label>Petugas Kader: <span class="wajib">*</span></label>
+                                <select id="reg-bumil-kader" required>
+                                    <option value="">-- Pilih Kader --</option>
+                                    <option value="Ibu Siti (Pos 1)">Ibu Siti (Pos 1)</option>
+                                    <option value="Ibu Ani (Pos 2)">Ibu Ani (Pos 2)</option>
+                                    <option value="Ibu Budi (Pos 3)">Ibu Budi (Pos 3)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOMBOL LANJUT KAPSUL (STYLE DARI FIGMA) -->
+                    <button type="submit" class="btn-primary-action">
+                        <span>Lanjut ke Pengukuran Fisik</span> ➡️
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- =================================================== -->
+        <!-- 3B. LANGKAH 2 BUMIL: PENGUKURAN FISIK (LILA & KEK) -->
+        <!-- =================================================== -->
         <section id="page-ukur-bumil" class="page">
             <div class="nav-top">
                 <button class="btn-back" onclick="bukaHalaman('page-reg-bumil')">⬅ Edit Identitas</button>
@@ -329,9 +411,12 @@
             </div>
 
             <div class="form-container-desktop">
-                <!-- BANNER PASIEN AKTIF -->
+                <!-- BANNER PASIEN AKTIF (SUDAH PAKAI ASET FIGMA) -->
                 <div class="patient-banner">
-                    <span class="banner-icon">🤰</span>
+                    <div class="banner-icon-box">
+                        <!-- Mengganti emoji 🤰 dengan ilustrasi resmi dari Figma -->
+                        <img src="assets/ill-bumil.svg" alt="Ikon Bumil">
+                    </div>
                     <div class="banner-text">
                         <strong id="banner-bumil-nama">-</strong>
                         <small id="banner-bumil-detail">-</small>
@@ -375,8 +460,9 @@
                         </div>
                     </div>
 
+                    <!-- TOMBOL SIMPAN KAPSUL (STYLE DARI FIGMA) -->
                     <button type="submit" class="btn-sticky-simpan">
-                        💾 SIMPAN & CEK RISIKO STUNTING
+                        <span>💾</span> Simpan & Cek Risiko Stunting ➡️
                     </button>
                 </form>
             </div>

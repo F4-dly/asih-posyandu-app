@@ -76,11 +76,20 @@ function lanjutKeUkurBumil() {
 // ==================================================================
 // 2. ALGORITMA MEDIS & DIAGNOSIS
 // ==================================================================
-function tampilkanModal(status, ikon, judul, kategori, detail, saran, dataObj) {
+function tampilkanModal(status, ikonPath, judul, kategori, detail, saran, dataObj) {
     const modalCard = document.querySelector('.modal-card');
     modalCard.className = "modal-card " + status;
     
-    document.getElementById('modal-icon').textContent = ikon;
+    // MENGGANTI TEKS EMOJI MENJADI TAG GAMBAR
+    const iconWrapper = document.getElementById('modal-icon');
+    if (ikonPath.includes('.')) {
+        // Jika yang dikirim berupa nama file gambar (.svg/.png)
+        iconWrapper.innerHTML = `<img src="${ikonPath}" alt="Status" style="width: 70px; height: 70px; object-fit: contain;">`;
+    } else {
+        // Cadangan jika masih berupa emoji biasa
+        iconWrapper.textContent = ikonPath;
+    }
+    
     document.getElementById('modal-title').textContent = judul;
     document.getElementById('modal-nama').textContent = dataObj.nama;
     document.getElementById('modal-kategori').textContent = kategori;

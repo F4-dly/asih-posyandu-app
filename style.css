@@ -4,11 +4,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
 
 :root {
-    --primary: #0D9488;         /* Biru Tosca Medis */
-    --primary-light: #CCFBF1;
-    --primary-dark: #0F766E;
-    --bg-app: #F8FAFC;
-    --bg-card: #FFFFFF;
+--primary: #0D9488;         /* Warna Teal / Tosca Utama */
+    --primary-dark: #0F766E;    /* Warna Teal Gelap (Latar Container Menu) */
+    --primary-light: #CCFBF1;   /* Warna Biru/Cyan Muda (Latar Input) */
+    --bg-app: #E0F2FE;          /* Warna Latar Paling Luar (Cyan Sangat Muda) */
+    --bg-card: #FFFFFF;         /* Warna Kartu Putih */
+    --radius-card: 24px;        /* Kelengkungan kotak menu besar */
+    --radius-pill: 50px;        /* Kelengkungan tombol & input kapsul */
     --text-main: #1E293B;
     --text-muted: #64748B;
     --border-color: #E2E8F0;
@@ -318,4 +320,90 @@ body {
 @media screen and (min-width: 1024px) {
     /* Saat di monitor Laptop yang sangat lebar (> 1024px) */
     .app-container { padding: 24px 36px; }
+}
+
+/* Container Teal Besar Penampung Menu (Seperti di Frame 2 & 7) */
+.menu-grid, .form-container-desktop {
+    background-color: var(--primary-dark);
+    padding: 24px;
+    border-radius: 32px;
+    box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
+}
+
+/* Mengubah Semua Kolom Input & Select Menjadi Bentuk Kapsul Putih */
+.form-group input, .form-group select {
+    background-color: var(--bg-card);
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill) !important; /* Rahasia bentuk kapsul */
+    padding: 14px 20px;
+    font-size: 15px;
+    color: #1E293B;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Mengubah Tombol "Lanjut" & "Simpan" Menjadi Kapsul Cyan Bersinar */
+.btn-primary-action, .btn-sticky-simpan {
+    background-color: #A5F3FC !important; /* Warna cyan terang dari Figma */
+    color: #0F766E !important;            /* Teks hijau tosca gelap */
+    border-radius: var(--radius-pill) !important;
+    padding: 16px 24px;
+    font-weight: 800;
+    text-transform: none;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+/* =================================================== */
+/* ATURAN UKURAN GAMBAR ASLI DARI FIGMA                */
+/* =================================================== */
+
+/* 1. Logo di Header */
+.logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* 2. Ilustrasi Kartu Menu Home (Balita & Bumil) */
+.card-icon-box {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 3. Ilustrasi Kartu Admin Bidan */
+.admin-icon-box {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 4. Ikon Kecil di Banner Pasien */
+.banner-icon-box {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+}
+.banner-icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
