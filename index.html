@@ -27,48 +27,66 @@
         <!-- =================================================== -->
         <!-- 1. HOME SCREEN: DASHBOARD MODERN & MENARIK -->
         <!-- =================================================== -->
+ <!-- =================================================== -->
+        <!-- 1. HOME SCREEN (100% MIRIP DESAIN FIGMA) -->
+        <!-- =================================================== -->
         <section id="page-home" class="page active">
-            <!-- Hero Banner Welcome -->
-            <div class="menu-grid">
-                <!-- KARTU 1: BALITA -->
-                <div class="service-card card-balita" onclick="bukaHalaman('page-reg-balita')">
-                    <!-- Wadah Gambar Ilustrasi Balita -->
-                    <div class="card-icon-box">
-                        <img src="assets/ill-balita.svg" alt="Ilustrasi Balita">
-                    </div>
-                    <div class="card-info">
-                        <span class="badge-tag">KMS & Gizi</span>
-                        <h3>Pelayanan Balita</h3>
-                        <p>Registrasi KIA, ukur BB, TB, LiLA, LK, imunisasi & vitamin A.</p>
-                    </div>
-                    <div class="card-arrow">➡️</div>
-                </div>
+            <!-- WADAH TEAL GELAP UTAMA ALA FIGMA -->
+            <div class="home-figma-container">
+                <h2 class="welcome-title">Selamat Datang!</h2>
+                <div class="welcome-pill">Kategori Pelayanan Warga</div>
 
-                <!-- KARTU 2: BUMIL -->
-                <div class="service-card card-bumil" onclick="bukaHalaman('page-reg-bumil')">
-                    <!-- Wadah Gambar Ilustrasi Ibu Hamil -->
-                    <div class="card-icon-box">
-                        <img src="assets/ill-bumil.svg" alt="Ilustrasi Ibu Hamil">
+                <div class="figma-cards-grid">
+                    <!-- KARTU 1: BALITA -->
+                    <div class="figma-card" onclick="bukaHalaman('page-reg-balita')">
+                        <div class="figma-card-body">
+                            <div class="figma-card-text">
+                                <h3>Pelayanan<br>Balita</h3>
+                                <span class="figma-badge">KMS & GIZI</span>
+                                <p>Registrasi KIA, ukur BB, TB, LiLA, LK, imunisasi & Vitamin A.</p>
+                            </div>
+                            <div class="figma-card-img">
+                                <img src="assets/ill-balita.svg" alt="Balita">
+                            </div>
+                        </div>
+                        <!-- Strip Abu-Abu & Tombol Panah Bulat di Bawah -->
+                        <div class="figma-card-footer">
+                            <div class="figma-arrow-btn">➔</div>
+                        </div>
                     </div>
-                    <div class="card-info">
-                        <span class="badge-tag">Skrining KEK</span>
-                        <h3>Pelayanan Ibu Hamil</h3>
-                        <p>Registrasi Bumil, ukur LiLA, pantau usia kehamilan & risiko stunting.</p>
-                    </div>
-                    <div class="card-arrow">➡️</div>
-                </div>
-            </div>
 
-            <!-- Bagian Admin Bidan -->
-            <div class="admin-section">
-                <div class="admin-card" onclick="bukaHalaman('page-admin')">
-                    <!-- Wadah Gambar Ilustrasi Admin / Statistik -->
-                    <div class="admin-icon-box">
-                        <img src="assets/ill-admin.svg" alt="Ilustrasi Admin">
+                    <!-- KARTU 2: IBU HAMIL -->
+                    <div class="figma-card" onclick="bukaHalaman('page-reg-bumil')">
+                        <div class="figma-card-body">
+                            <div class="figma-card-text">
+                                <h3>Pelayanan<br>Ibu Hamil</h3>
+                                <span class="figma-badge">SKRINING KEK</span>
+                                <p>Registrasi Bumil, ukur LiLA, pantau usia kehamilan & risiko stunting.</p>
+                            </div>
+                            <div class="figma-card-img">
+                                <img src="assets/ill-bumil.svg" alt="Bumil">
+                            </div>
+                        </div>
+                        <div class="figma-card-footer">
+                            <div class="figma-arrow-btn">➔</div>
+                        </div>
                     </div>
-                    <div class="admin-text">
-                        <strong>Dashboard Admin Bidan Desa</strong>
-                        <small>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan Excel (CSV)</small>
+
+                    <!-- KARTU 3: ADMIN BIDAN (Diseragamkan ala Figma!) -->
+                    <div class="figma-card" onclick="bukaHalaman('page-admin')">
+                        <div class="figma-card-body">
+                            <div class="figma-card-text">
+                                <h3>Dashboard<br>Admin Bidan</h3>
+                                <span class="figma-badge">REKAP & EXCEL</span>
+                                <p>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan CSV.</p>
+                            </div>
+                            <div class="figma-card-img">
+                                <img src="assets/ill-admin.svg" alt="Admin">
+                            </div>
+                        </div>
+                        <div class="figma-card-footer">
+                            <div class="figma-arrow-btn">➔</div>
+                        </div>
                     </div>
                 </div>
             </div>
