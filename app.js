@@ -1,4 +1,20 @@
 // ==================================================================
+// FITUR SPLASH SCREEN OTOMATIS HILANG DALAM 2.5 DETIK
+// ==================================================================
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        if (splash) {
+            splash.classList.add('fade-out');
+            // Menghapus elemen dari memori setelah animasinya selesai
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 600);
+        }
+    }, 2500); // Angka 2500 artinya muncul selama 2.5 detik (bisa diganti misal 3000 untuk 3 detik)
+});
+
+// ==================================================================
 // 1. ROUTING & STATE MANAGEMENT (ALUR 3 LANGKAH)
 // ==================================================================
 const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzk5acMfkzVe2WHoCyJzBtc8yOdBK9kccQo4f8e0q3FXZhilG36-iMYARzglB3EujEn/exec";
