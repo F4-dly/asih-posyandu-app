@@ -411,7 +411,7 @@ body {
 /* KODE KHUSUS HOME SCREEN 100% MIRIP FIGMA FRAME 2    */
 /* =================================================== */
 
-/* 1. Header Logo Tengah (Bersih Tanpa Halangan) */
+/* Wadah latar putih bagian atas */
 .figma-top-header {
     background-color: #FFFFFF;
     padding: 24px 16px 20px 16px;
@@ -422,30 +422,30 @@ body {
     width: 100%;
 }
 
-/* Kunci Badge Status Online di Pojok Kanan Atas Tanpa Menghalangi Logo */
+/* Memastikan logo berada tepat di tengah */
+.figma-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Mengatur ukuran logo agar pas di layar HP (tidak kegedean/kekecilan) */
+.figma-main-logo {
+    width: 160px;       /* Kamu bisa ubah angka ini misal jadi 140px atau 180px sesuai selera */
+    height: auto;
+    object-fit: contain;
+}
+
+/* Kunci badge sinyal di pojok kanan atas agar tidak menggeser posisi logo tengah */
 .floating-badge {
     position: absolute !important;
     top: 16px;
     right: 16px;
     z-index: 100;
-    width: auto !important;
-    display: inline-block !important;
     padding: 4px 12px !important;
     font-size: 11px !important;
     border-radius: 20px !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.figma-logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.figma-main-logo {
-    width: 150px;               /* Ukuran logo pas dan proporsional di tengah */
-    height: auto;
-    object-fit: contain;
 }
 
 /* 2. Wadah Gradasi Resmi (GELAP DI ATAS: #171D43 -> #118DA2 -> #10A8A7) */
