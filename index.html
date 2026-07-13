@@ -15,11 +15,7 @@
     <!-- =================================================== -->
     <div id="splash-screen">
         <div class="splash-content">
-            <img src="assets/logo-asih.svg" alt="Logo ASIH" class="splash-logo">
-            <div class="splash-text-group">
-                <h1 class="splash-title">ASIH</h1>
-                <p class="splash-subtitle">Aplikasi Skrining<br>Ibu & Anak</p>
-            </div>
+            <img src="assets/logo-asihome.svg" alt="Logo ASIH" class="splash-logo">
             <!-- Bar Loading Bergerak -->
             <div class="loading-bar" style="margin-top: 24px;">
                 <div class="loading-progress"></div>
@@ -31,15 +27,10 @@
     <div class="app-container">
         
 <!-- =================================================== -->
-        <!-- HEADER LOGO TENGAH (TRANSPARAN DARI FIGMA) -->
+        <!-- HEADER LOGO TENGAH (BERSIH TANPA STATUS ONLINE) -->
         <!-- =================================================== -->
         <div class="figma-top-header">
-            <!-- Badge Sinyal Melayang di Pojok Kanan Atas -->
-            <div id="statusSinyal" class="status-badge online floating-badge">🟢 Online</div>
-            
-            <!-- Wadah Logo Tengah -->
             <div class="figma-logo-container">
-                <!-- Pastikan nama dan ekstensi file sesuai dengan yang kamu simpan di folder assets -->
                 <img src="assets/logo-asihome.svg" alt="Logo ASIH" class="figma-main-logo">
             </div>
         </div>
@@ -48,7 +39,7 @@
         <!-- 1. HOME SCREEN: KONTAINER GRADASI & KARTU FIGMA -->
         <!-- =================================================== -->
         <section id="page-home" class="page active">
-            <!-- WADAH GRADASI TEAL TO NAVY (10A8A7 -> 118DA2 -> 171D43) -->
+            <!-- WADAH GRADASI TEAL TO NAVY (PROPORSI FIGMA 360x621) -->
             <div class="home-figma-container">
                 <h2 class="welcome-title">Selamat Datang!</h2>
                 <div class="welcome-pill">Kategori Pelayanan Warga</div>
@@ -66,7 +57,6 @@
                                 <img src="assets/ill-balita.svg" alt="Balita">
                             </div>
                         </div>
-                        <!-- Strip Abu-Abu & Tombol Panah Overlapping di Bawah -->
                         <div class="figma-card-footer">
                             <div class="figma-arrow-btn">➔</div>
                         </div>
@@ -89,11 +79,11 @@
                         </div>
                     </div>
 
-                    <!-- KARTU 3: ADMIN BIDAN (Diseragamkan 100% ala Figma!) -->
+                    <!-- KARTU 3: ADMIN BIDAN -->
                     <div class="figma-card" onclick="bukaHalaman('page-admin')">
                         <div class="figma-card-body">
                             <div class="figma-card-text">
-                                <h3>Dashboard<br>Admin Bidan</h3>
+                                <h3>Dashboard<br>Admin Bidan Desa</h3>
                                 <span class="figma-badge">REKAP & EXCEL</span>
                                 <p>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan CSV.</p>
                             </div>
@@ -106,8 +96,13 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- STATUS ONLINE DIPINDAHKAN KE BAWAH DASHBOARD ADMIN DALAM AREA GRADASI -->
+                <div class="status-footer-container">
+                    <div id="statusSinyal" class="status-badge online badge-in-gradient">🟢 Online</div>
+                </div>
             </div>
-        </section>
+        </section>  
 
         <!-- =================================================== -->
         <!-- 2A. LANGKAH 1 BALITA: REGISTRASI & IDENTITAS -->

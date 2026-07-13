@@ -1,7 +1,7 @@
 /* =================================================== */
 /* 1. DESIGN TOKENS & RESET NORMALIZATION              */
 /* =================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
 --primary: #0D9488;         /* Warna Teal / Tosca Utama */
@@ -23,16 +23,17 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Nunito', 'Segoe UI', sans-serif;
-}
+    font-family: 'Hanken Grotesk', sans-serif !important;
+}   
 
 h1, h2, h3, h4, .logo-text, .hero-badge {
     font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #F1F5F9;
-    color: var(--text-main);
+    background-color: #FFFFFF;
+    color: #1E293B;
+    overflow-x: hidden;
 }
 
 /* =================================================== */
@@ -42,11 +43,11 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #FFFFFF;  /* Ubah latar belakang luar jadi putih bersih */
+    background-color: #FFFFFF;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 0 !important;      /* PENTING: Hapus padding 16px agar tidak ada border di pinggir HP! */
+    padding: 0 !important;
 }
 
 .app-header {
@@ -408,21 +409,19 @@ body {
     object-fit: contain;
 }
 /* =================================================== */
-/* KODE KHUSUS HOME SCREEN 100% MIRIP FIGMA FRAME 2    */
+/* KODE KHUSUS HOME SCREEN PRESISI FIGMA (360x800)     */
 /* =================================================== */
 
-/* Wadah latar putih bagian atas */
+/* 1. Header Logo Tengah (Bersih Tanpa Badge Online) */
 .figma-top-header {
-    background-color: #FFFFFF;
-    padding: 24px 16px 20px 16px;
+    background-color: #FFFFFF !important;
+    padding: 43px 16px 42px 16px !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     width: 100%;
 }
 
-/* Memastikan logo berada tepat di tengah */
 .figma-logo-container {
     display: flex;
     justify-content: center;
@@ -430,88 +429,79 @@ body {
     width: 100%;
 }
 
-/* Mengatur ukuran logo agar pas di layar HP (tidak kegedean/kekecilan) */
+/* Ukuran Presisi Figma: persis 74px x 96.37px */
 .figma-main-logo {
-    width: 160px;       /* Kamu bisa ubah angka ini misal jadi 140px atau 180px sesuai selera */
-    height: auto;
+    width: 74px !important;
+    height: 96.37px !important;
     object-fit: contain;
 }
 
-/* Kunci badge sinyal di pojok kanan atas agar tidak menggeser posisi logo tengah */
-.floating-badge {
-    position: absolute !important;
-    top: 16px;
-    right: 16px;
-    z-index: 100;
-    padding: 4px 12px !important;
-    font-size: 11px !important;
-    border-radius: 20px !important;
-}
-
-/* 2. Wadah Gradasi Resmi (GELAP DI ATAS: #171D43 -> #118DA2 -> #10A8A7) */
+/* 2. Wadah Gradasi Resmi (Proporsi Figma 360x621) */
 .home-figma-container {
-    background: linear-gradient(180deg, #171D43 0%, #118DA2 50%, #10A8A7 100%) !important;
-    border-top-left-radius: 36px;
-    border-top-right-radius: 36px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding: 32px 20px 48px 20px;
+    background: linear-gradient(360deg, #10A8A7 0%, #118DA2 50%, #171D43 100%) !important;
+    border-top-left-radius: 32px !important;
+    border-top-right-radius: 32px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    padding: 24px 16px 32px 16px !important;
     margin-top: 0;
-    width: 100%;                /* Full width memotong pinggiran layar HP */
+    width: 100%;
+    min-height: 621px !important; /* Kunci proporsi tinggi minimum sesuai Figma */
     flex-grow: 1;
-    box-shadow: 0 -4px 20px rgba(23, 29, 67, 0.2);
+    box-shadow: 0 -4px 20px rgba(16, 168, 167, 0.15);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 /* 3. Judul "Selamat Datang!" & Pill Kategori */
 .welcome-title {
-    color: #FFFFFF;
-    font-size: 26px;
-    font-weight: 800;
-    margin-bottom: 14px;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    color: #FFFFFF !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    margin-bottom: 10px !important;
+    letter-spacing: 0.3px;
 }
 
+/* Font Figma: Bold (700) ukuran 15px */
 .welcome-pill {
-    background-color: #CCFBF1;
-    color: #0F766E;
-    font-size: 14px;
-    font-weight: 800;
-    padding: 12px 24px;
-    border-radius: 50px;
-    display: block;
-    width: 90%;
-    max-width: 360px;
-    margin: 0 auto 28px auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    letter-spacing: 0.3px;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    padding: 8px 20px !important;
+    border-radius: 50px !important;
+    display: inline-block !important;
+    margin: 0 auto 20px auto !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 4. Grid Kartu */
 .figma-cards-grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 500px;
+    gap: 16px;
+    width: 100%;
+    max-width: 480px;
     margin: 0 auto;
 }
 
 /* 5. Desain Kartu Utama (Putih Melengkung) */
 .figma-card {
     background-color: #FFFFFF;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     text-align: left;
     position: relative;
 }
 
 .figma-card:hover, .figma-card:active {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
 /* 6. Isi Kartu (Teks Kiri, Gambar Kanan) */
@@ -519,48 +509,55 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 18px 16px 20px;
+    padding: 16px 14px 12px 16px;
 }
 
 .figma-card-text {
     flex: 1;
-    padding-right: 14px;
+    padding-right: 10px;
 }
 
+/* Font Figma: Semibold (600), Size 20px, Line-height 20px */
 .figma-card-text h3 {
-    color: #0D9488;
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 8px;
+    color: #128AA1 !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    line-height: 20px !important;
+    margin-bottom: -2px !important;
 }
 
+/* Font Figma: Semibold (600), Size 10px, Line-height 20px */
 .figma-badge {
     background-color: #E2E8F0;
-    color: #475569;
-    font-size: 10.5px;
-    font-weight: 800;
-    padding: 4px 12px;
-    border-radius: 12px;
+    color: #128AA1;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    line-height: 15px !important;
+    /* 👇 INI RAHASIANYA BIAR PANJANG KOTAK ABU-ABUNYA SAMA PERSIS KAYA DI FIGMA */
+    width: 92px !important;          /* Kunci panjang kotaknya (bisa kamu ubah misal 90px, 92px, atau 95px) */
+    text-align: left !important;     /* Rata kiri dulu */
+    padding-left: 6px !important;
+    border-radius: 10px;
     display: inline-block;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
+    margin-top: 2px !important;
+    margin-bottom : 2px !important;
     text-transform: uppercase;
 }
 
+/* Font Figma: Semibold (600), Size 10px, Line-height 10px (diatur ke 11px agar bagian bawah huruf 'g/j/p' tidak terpotong sistem browser) */
 .figma-card-text p {
-    font-size: 12px;
-    color: #0F766E;
-    line-height: 1.4;
-    font-weight: 600;
-    margin: 0;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    line-height: 11px !important;
+    color: #128AA1 !important;
+    margin: 0 !important;
 }
 
-/* 7. Ilustrasi Lingkaran di Kanan */
+/* Ilustrasi Lingkaran di Kanan */
 .figma-card-img {
-    width: 90px;
-    height: 90px;
-    min-width: 90px;
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -572,28 +569,28 @@ body {
     object-fit: contain;
 }
 
-/* 8. Strip Footer Abu-Abu & Tombol Panah Overlap ala Figma */
+/* Strip Footer Abu-Abu & Tombol Panah Overlap ala Figma */
 .figma-card-footer {
     background-color: #E2E8F0;
-    height: 32px;
+    height: 24px;
     width: 100%;
     position: relative;
 }
 
 .figma-arrow-btn {
-    width: 38px;
-    height: 38px;
-    background-color: #10A8A7;    /* Warna teal senada gradasi */
+    width: 32px;
+    height: 32px;
+    background-color: #10A8A7;
     color: #FFFFFF;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     position: absolute;
-    right: 20px;
-    top: -16px;                   /* Kunci efek menumpuk (overlap) */
+    right: 16px;
+    top: -12px;
     box-shadow: 0 4px 10px rgba(16, 168, 167, 0.4);
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
@@ -604,29 +601,47 @@ body {
 }
 
 /* =================================================== */
-/* OTOMATIS MELEBAR RAPI KALAU DIBUKA DI DESKTOP PC    */
+/* 7. POSISI BARU STATUS ONLINE (DI BAWAH KARTU ADMIN) */
+/* =================================================== */
+.status-footer-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.badge-in-gradient {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    padding: 6px 18px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(4px);
+    display: inline-block !important;
+    position: static !important; /* Membatalkan posisi floating lama */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* =================================================== */
+/* OTOMATIS MELEBAR RAPI DI DESKTOP PC                 */
 /* =================================================== */
 @media screen and (min-width: 768px) {
-    .app-container {
-        padding: 24px !important; /* Kembalikan padding khusus saat dibuka di layar PC lebar */
-    }
+    .app-container { padding: 24px !important; }
     .figma-cards-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        max-width: 1000px;
-        gap: 24px;
+        max-width: 960px;
+        gap: 20px;
     }
     .home-figma-container {
-        padding: 48px 36px;
-        border-radius: 36px;
+        padding: 40px 36px !important;
+        border-radius: 36px !important;
     }
-    .welcome-title {
-        font-size: 34px;
-    }
-    .welcome-pill {
-        font-size: 16px;
-        max-width: 420px;
-    }
+    .welcome-title { font-size: 32px !important; }
+    .welcome-pill { font-size: 15px !important; }
 }
 
 /* =================================================== */
