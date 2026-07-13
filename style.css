@@ -449,9 +449,10 @@ body {
     border-top-right-radius: 32px !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
-    padding: 16px 16px 16px 16px !important;
+    padding: 24px 16px 24px 16px !important;
     margin-top: 0;
     width: 100%;
+    height: max-content !important;
     min-height: calc(100vh - 120px) !important;
     flex-grow: 1;
     box-shadow: 0 -4px 20px rgba(16, 168, 167, 0.15);
