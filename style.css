@@ -610,8 +610,8 @@ body {
 /* 7. POSISI BARU STATUS ONLINE (DI BAWAH KARTU ADMIN) */
 /* =================================================== */
 .status-footer-container {
-    margin-top: 16px;
-    margin-bottom: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
