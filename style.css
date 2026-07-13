@@ -449,11 +449,12 @@ body {
     border-top-right-radius: 32px !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
-    padding: 24px 16px 40px 16px !important;
+    padding: 24px 16px 24px 16px !important;
     margin-top: 0;
     width: 100%;
-    min-height: calc(100vh - 120px) !important;
-    flex-grow: 1;
+    height: max-content !important;
+    min-height: auto !important;
+    flex-grow: 0 !important;
     box-shadow: 0 -4px 20px rgba(16, 168, 167, 0.15);
     text-align: center;
     display: flex;
@@ -610,7 +611,8 @@ body {
 /* 7. POSISI BARU STATUS ONLINE (DI BAWAH KARTU ADMIN) */
 /* =================================================== */
 .status-footer-container {
-    margin-top: 24px;
+    margin-top: 16px !important;
+    margin-bottom: 8px !important;   /* Memberikan sedikit nafas pas di batas bawah layar */
     display: flex;
     justify-content: center;
     align-items: center;
