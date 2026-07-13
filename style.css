@@ -453,7 +453,7 @@ body {
     margin-top: 0;
     width: 100%;
     height: max-content !important;
-    min-height: calc(100vh - 120px) !important;
+    min-height: auto !important;
     flex-grow: 0 !important;
     box-shadow: 0 -4px 20px rgba(16, 168, 167, 0.15);
     text-align: center;
