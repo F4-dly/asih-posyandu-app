@@ -105,66 +105,73 @@
         </section>  
 
         <!-- =================================================== -->
-        <!-- 2A. LANGKAH 1 BALITA: REGISTRASI & IDENTITAS -->
+        <!-- 2A. LANGKAH 1 BALITA: REGISTRASI (100% MIRIP FIGMA) -->
         <!-- =================================================== -->
         <section id="page-reg-balita" class="page">
-            <div class="nav-top">
-                <button class="btn-back" onclick="bukaHalaman('page-home')">⬅ Batal</button>
-                <h3>👶 Langkah 1: Registrasi Balita</h3>
-            </div>
 
-            <div class="form-container-desktop">
-                <form id="form-reg-balita" onsubmit="event.preventDefault(); lanjutKeUkurBalita();">
-                    <div class="form-card">
-                        <h4>📋 Identitas dari Buku KIA Pink</h4>
-                        <div class="form-group">
-                            <label>Nama Lengkap Anak: <span class="wajib">*</span></label>
-                            <input type="text" id="reg-balita-anak" placeholder="Cth: Adik Budi Santoso" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Nama Ibu Kandung: <span class="wajib">*</span></label>
-                            <input type="text" id="reg-balita-ibu" placeholder="Cth: Ibu Siti Aminah" required>
-                        </div>
-                        
-                        <!-- INPUT UMUR PRESISE: TAHUN & BULAN -->
-                        <label class="label-main">Umur Anak Sekarang: <span class="wajib">*</span></label>
-                        <div class="row-inputs">
-                            <div class="form-group half">
-                                <div class="input-unit">
-                                    <input type="number" id="reg-balita-thn" placeholder="0" min="0" max="5" required>
-                                    <span>Tahun</span>
-                                </div>
-                            </div>
-                            <div class="form-group half">
-                                <div class="input-unit">
-                                    <input type="number" id="reg-balita-bln" placeholder="6" min="0" max="11" required>
-                                    <span>Bulan</span>
-                                </div>
-                            </div>
-                        </div>
+            <!-- WADAH GRADASI TEAL TO NAVY (SAMA DENGAN HOMESCREEN) -->
+            <div class="home-figma-container">
+                <h2 class="welcome-title">Registrasi Balita</h2>
+                <div class="welcome-pill">Identitas</div>
 
-                        <div class="row-inputs">
-                            <div class="form-group half">
-                                <label>Anak Ke- (Saudara): <span class="wajib">*</span></label>
-                                <input type="number" id="reg-balita-ke" placeholder="1" min="1" required>
+                <!-- FORM INPUT ALA FIGMA FRAME 3 -->
+                <form id="form-reg-balita" class="figma-form-container" onsubmit="event.preventDefault(); lanjutKeUkurBalita();">
+                    
+                    <!-- 1. NAMA LENGKAP ANAK -->
+                    <div class="figma-form-group">
+                        <label>Nama Lengkap Anak:</label>
+                        <input type="text" id="reg-balita-anak" class="figma-input-pill" placeholder="Cth: Adik Budi Santoso" required>
+                    </div>
+
+                    <!-- 2. NAMA IBU KANDUNG -->
+                    <div class="figma-form-group">
+                        <label>Nama Ibu Kandung:</label>
+                        <input type="text" id="reg-balita-ibu" class="figma-input-pill" placeholder="Cth: Ibu Siti Aminah" required>
+                    </div>
+
+                    <!-- 3. UMUR ANAK SEKARANG (2 KOLOM: TAHUN & BULAN) -->
+                    <div class="figma-form-group">
+                        <label>Umur Anak Sekarang:</label>
+                        <div class="figma-row-inputs">
+                            <div class="figma-input-unit">
+                                <input type="number" id="reg-balita-thn" class="figma-input-pill" placeholder="0" min="0" max="5" required>
+                                <span>Tahun</span>
                             </div>
-                            <div class="form-group half">
-                                <label>Punya BPJS?</label>
-                                <select id="reg-balita-bpjs">
-                                    <option value="Ya">Ya (BPJS)</option>
+                            <div class="figma-input-unit">
+                                <input type="number" id="reg-balita-bln" class="figma-input-pill" placeholder="6" min="0" max="11" required>
+                                <span>Bulan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. ANAK KE & BPJS (2 KOLOM) -->
+                    <div class="figma-row-inputs">
+                        <div class="figma-form-group half">
+                            <label>Anak Ke- (Saudara):</label>
+                            <input type="number" id="reg-balita-ke" class="figma-input-pill" placeholder="1" min="1" required>
+                        </div>
+                        <div class="figma-form-group half">
+                            <label>Punya BPJS?</label>
+                            <div class="figma-select-wrapper">
+                                <select id="reg-balita-bpjs" class="figma-input-pill">
+                                    <option value="Ya (BPJS)">Ya (BPJS)</option>
                                     <option value="Tidak">Tidak Ada</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="row-inputs">
-                            <div class="form-group half">
-                                <label>RT / RW / Dusun:</label>
-                                <input type="text" id="reg-balita-rt" placeholder="Cth: RT 01 / Mawar">
-                            </div>
-                            <div class="form-group half">
-                                <label>Petugas Kader: <span class="wajib">*</span></label>
-                                <select id="reg-balita-kader" required>
-                                    <option value="">-- Pilih Kader --</option>
+                    </div>
+
+                    <!-- 5. RT/RW & PETUGAS KADER (2 KOLOM) -->
+                    <div class="figma-row-inputs">
+                        <div class="figma-form-group half">
+                            <label>RT / RW / Dusun:</label>
+                            <input type="text" id="reg-balita-rt" class="figma-input-pill" placeholder="1">
+                        </div>
+                        <div class="figma-form-group half">
+                            <label>Petugas Kader:</label>
+                            <div class="figma-select-wrapper">
+                                <select id="reg-balita-kader" class="figma-input-pill" required>
+                                    <option value="">Pilih Kader</option>
                                     <option value="Ibu Siti (Pos 1)">Ibu Siti (Pos 1)</option>
                                     <option value="Ibu Ani (Pos 2)">Ibu Ani (Pos 2)</option>
                                     <option value="Ibu Budi (Pos 3)">Ibu Budi (Pos 3)</option>
@@ -172,10 +179,15 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <button type="submit" class="btn-primary-action">
-                        Lanjut ke Pengukuran Fisik ➡️
-                    </button>
+
+                    <!-- TOMBOL LANJUT KAPSUL CYAN DI BAWAH -->
+                    <div class="figma-form-footer">
+                        <button type="submit" class="figma-btn-action">
+                            <span>Lanjut ke Pengukuran Fisik</span>
+                            <span class="btn-arrow">❯</span>
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </section>

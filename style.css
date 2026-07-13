@@ -653,6 +653,163 @@ body {
 }
 
 /* =================================================== */
+/* KODE KHUSUS FORM REGISTRASI (100% MIRIP FIGMA)      */
+/* =================================================== */
+
+.figma-form-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.figma-form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.figma-form-group.half {
+    width: 50%;
+}
+
+/* Label Teks Putih Bersih ala Figma */
+.figma-form-group label {
+    color: #FFFFFF !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin-bottom: 6px !important;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Baris 2 Kolom Sejajar */
+.figma-row-inputs {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Input Kapsul Putih ala Figma */
+.figma-input-pill {
+    width: 100%;
+    background-color: #FFFFFF !important;
+    border: 1.5px solid transparent !important;
+    border-radius: 50px !important;
+    padding: 12px 18px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #0D9488 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Warna Teks Placeholder Tosca Muda */
+.figma-input-pill::placeholder {
+    color: #0D9488 !important;
+    opacity: 0.75;
+    font-weight: 500;
+}
+
+.figma-input-pill:focus {
+    border-color: #CCFBF1 !important;
+    box-shadow: 0 0 0 3px rgba(204, 251, 241, 0.3);
+}
+
+/* Unit Input (Tahun & Bulan) di dalam Kapsul */
+.figma-input-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.figma-input-unit input {
+    padding-right: 65px !important;
+}
+
+.figma-input-unit span {
+    position: absolute;
+    right: 18px;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #0D9488 !important;
+    pointer-events: none;
+}
+
+/* Dropdown Select Kapsul dengan Panah Custom */
+.figma-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.figma-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 36px !important;
+}
+
+.figma-select-wrapper::after {
+    content: "❯";
+    font-size: 12px;
+    font-weight: 800;
+    color: #0D9488;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    pointer-events: none;
+}
+
+/* Tombol Lanjut Kapsul Cyan Besar di Bawah */
+.figma-form-footer {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.figma-btn-action {
+    width: 100%;
+    max-width: 400px;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figma-btn-action:hover, .figma-btn-action:active {
+    background-color: #99F6E4 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.figma-btn-action .btn-arrow {
+    font-size: 14px;
+    font-weight: 900;
+    transition: transform 0.2s ease;
+}
+
+.figma-btn-action:hover .btn-arrow {
+    transform: translateX(4px);
+}
+/* =================================================== */
 /* SPLASH SCREEN STYLING (100% FIGMA & ANIMASI HALUS)  */
 /* =================================================== */
 #splash-screen {
