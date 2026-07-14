@@ -485,7 +485,7 @@ body, .app-container, .page {
     padding: 10px 0 !important;      /* Padding kiri-kanan dinonaktifkan karena sudah dipaksa width 300px */
     border-radius: 50px !important;
     display: block !important;
-    width: 300px !important;         /* 👈 KUNCI LEBAR SAMA KAYAK INPUT JAWABAN & KARTU HOMESCREEN */
+    width: 380px !important;         /* 👈 KUNCI LEBAR SAMA KAYAK INPUT JAWABAN & KARTU HOMESCREEN */
     max-width: 100% !important;
     margin: 0 auto 20px auto !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -684,7 +684,7 @@ body, .app-container, .page {
 
 .figma-form-container {
     width: 100%;
-    max-width: 300px !important;     /* Kunci ukuran sama dengan kartu di homescreen */
+    max-width: 380px !important;     /* Kunci ukuran sama dengan kartu di homescreen */
     margin: 0 auto;
     text-align: left;
     display: flex;
@@ -804,7 +804,7 @@ body, .app-container, .page {
 /* Tombol Lanjut Kapsul Cyan: Lebar disamakan 300px */
 .figma-btn-action {
     width: 100% !important;
-    max-width: 300px !important;     /* Lebar tombol pas sama kayak input dan kapsul Identitas */
+    max-width: 380px !important;     /* Lebar tombol pas sama kayak input dan kapsul Identitas */
     background-color: #CCFBF1 !important;
     color: #0F766E !important;
     border: none !important;
