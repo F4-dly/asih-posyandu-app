@@ -31,7 +31,7 @@ h1, h2, h3, h4, .logo-text, .hero-badge {
 }
 
 body, .app-container, .page {
-    background: linear-gradient(360deg, #FFFFFF 0%, #FFFFFF 230px, #10A8A7 230px, #10A8A7 100%) !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 230px, #10A8A7 230px, #10A8A7 100%) !important;
     background-color: #FFFFFF;
     color: #1E293B;
     overflow-x: hidden;
@@ -445,7 +445,7 @@ body, .app-container, .page {
 
 /* 2. Wadah Gradasi Resmi (Proporsi Figma 360x621) */
 .home-figma-container {
-    background: linear-gradient(360deg, #171D43 0%, #118DA2 50%, #10A8A7 100%) !important;
+    background: linear-gradient(180deg, #171D43 0%, #118DA2 50%, #10A8A7 100%) !important;
     border-top-left-radius: 40px !important;
     border-top-right-radius: 40px !important;
     border-bottom-left-radius: 0 !important;
