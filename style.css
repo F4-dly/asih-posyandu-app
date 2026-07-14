@@ -449,11 +449,12 @@ body {
     border-top-right-radius: 32px !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
-    padding: 24px 16px 24px 16px !important;
-    margin-top: 0;
+    /* Urutan padding: Atas(24px) | Kanan(16px) | Bawah(15px) | Kiri(16px) */
+    padding: 24px 16px 15px 16px !important;
+    margin: 0 !important;
     width: 100%;
     height: max-content !important;
-    min-height: calc(100vh - 120px) !important;
+    min-height: auto !important;
     flex-grow: 0 !important;
     box-shadow: 0 -4px 20px rgba(16, 168, 167, 0.15);
     text-align: center;
@@ -488,9 +489,9 @@ body {
 .figma-cards-grid {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px !important;
     width: 100%;
-    max-width: 480px;
+    max-width: 300px !important; /* Mengunci lebar kolom tepat di 300px */
     margin: 0 auto;
 }
 
@@ -500,10 +501,16 @@ body {
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
+    width: 300px !important;
+    height: 131px !important;    /* Kunci tinggi pas 131 piksel */
+    margin: 0 auto;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     text-align: left;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .figma-card:hover, .figma-card:active {
@@ -516,12 +523,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 14px 12px 16px;
+    height: calc(100% - 24px) !important;
+    padding: 10px 12px 6px 14px !important;
 }
 
 .figma-card-text {
     flex: 1;
-    padding-right: 10px;
+    padding-right: 8px;
 }
 
 /* Font Figma: Semibold (600), Size 20px, Line-height 20px */
@@ -562,9 +570,9 @@ body {
 
 /* Ilustrasi Lingkaran di Kanan */
 .figma-card-img {
-    width: 75px;
-    height: 75px;
-    min-width: 75px;
+    width: 91px !important;
+    height: 91px !important;
+    min-width: 91px !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -576,10 +584,17 @@ body {
     object-fit: contain;
 }
 
+.figma-card-img.img-admin {
+    width: 91px !important;
+    height: 109px !important;
+    min-width: 91px !important;
+}
+
 /* Strip Footer Abu-Abu & Tombol Panah Overlap ala Figma */
 .figma-card-footer {
     background-color: #E2E8F0;
-    height: 24px;
+    height: 24px !important;
+    min-height: 24px !important;
     width: 100%;
     position: relative;
 }
@@ -611,8 +626,8 @@ body {
 /* 7. POSISI BARU STATUS ONLINE (DI BAWAH KARTU ADMIN) */
 /* =================================================== */
 .status-footer-container {
-    margin-top: 16px;
-    margin-bottom: 8px;
+    margin-top: 15px !important;     /* Selisih tepat 15 piksel di bawah kartu Dashboard Admin */
+    margin-bottom: 0 !important;     /* Sisa 15 piksel diisi oleh padding-bottom kontainer gradasi */
     display: flex;
     justify-content: center;
     align-items: center;

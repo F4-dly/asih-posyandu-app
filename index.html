@@ -45,7 +45,7 @@
                 <div class="welcome-pill">Kategori Pelayanan Warga</div>
 
                 <div class="figma-cards-grid">
-                    <!-- KARTU 1: BALITA -->
+                    <!-- KARTU 1: BALITA (300x131 | Gambar 91x91) -->
                     <div class="figma-card" onclick="bukaHalaman('page-reg-balita')">
                         <div class="figma-card-body">
                             <div class="figma-card-text">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <!-- KARTU 2: IBU HAMIL -->
+                    <!-- KARTU 2: IBU HAMIL (300x131 | Gambar 91x91) -->
                     <div class="figma-card" onclick="bukaHalaman('page-reg-bumil')">
                         <div class="figma-card-body">
                             <div class="figma-card-text">
@@ -79,15 +79,16 @@
                         </div>
                     </div>
 
-                    <!-- KARTU 3: ADMIN BIDAN -->
+                    <!-- KARTU 3: ADMIN BIDAN (300x131 | Gambar Khusus 91x109) -->
                     <div class="figma-card" onclick="bukaHalaman('page-admin')">
                         <div class="figma-card-body">
                             <div class="figma-card-text">
-                                <h3>Dashboard<br>Admin Bidan Desa</h3>
+                                <h3>Dashboard<br>Admin Bidan</h3>
                                 <span class="figma-badge">REKAP & EXCEL</span>
                                 <p>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan CSV.</p>
                             </div>
-                            <div class="figma-card-img">
+                            <!-- Tambahan kelas 'img-admin' khusus untuk ukuran 91x109 -->
+                            <div class="figma-card-img img-admin">
                                 <img src="assets/ill-admin.svg" alt="Admin">
                             </div>
                         </div>
@@ -97,11 +98,10 @@
                     </div>
                 </div>
 
-                <!-- STATUS ONLINE DIPINDAHKAN KE BAWAH DASHBOARD ADMIN DALAM AREA GRADASI -->
+                <!-- STATUS ONLINE: SELISIH 15PX DARI KARTU & 15PX DARI BAWAH LAYAR (TOTAL 30PX) -->
                 <div class="status-footer-container">
                     <div id="statusSinyal" class="status-badge online badge-in-gradient">🟢 Online</div>
                 </div>
-            </div>
         </section>  
 
         <!-- =================================================== -->
