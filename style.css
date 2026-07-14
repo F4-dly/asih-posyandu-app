@@ -497,6 +497,8 @@ body, .app-container, .page {
     width: 100%;
     max-width: 300px !important;
     margin: 0 auto !important; /* 👈 INI YANG MEMPERBAIKI SEGALA KELONGGARAN */
+    position: relative !important;
+    left: -20px !important;
 }
 
 /* 5. Desain Kartu Utama (Putih Melengkung) */
