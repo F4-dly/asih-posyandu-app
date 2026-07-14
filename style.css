@@ -482,11 +482,15 @@ body, .app-container, .page {
     color: #0F766E !important;
     font-size: 15px !important;
     font-weight: 700 !important;
-    padding: 8px 20px !important;
+    padding: 10px 0 !important;      /* Padding kiri-kanan dinonaktifkan karena sudah dipaksa width 300px */
     border-radius: 50px !important;
-    display: inline-block !important;
+    display: block !important;
+    width: 300px !important;         /* 👈 KUNCI LEBAR SAMA KAYAK INPUT JAWABAN & KARTU HOMESCREEN */
+    max-width: 100% !important;
     margin: 0 auto 20px auto !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center !important;
+    box-sizing: border-box !important;
 }
 
 /* 4. Grid Kartu */
@@ -680,12 +684,12 @@ body, .app-container, .page {
 
 .figma-form-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 300px !important;     /* Kunci ukuran sama dengan kartu di homescreen */
     margin: 0 auto;
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px !important;            /* 👈 Dikecilkan dari 14px agar susunan input lebih rapat/kompak */
 }
 
 .figma-form-group {
@@ -698,39 +702,40 @@ body, .app-container, .page {
     width: 50%;
 }
 
-/* Label Teks Putih Bersih ala Figma */
+/* 3. Label Teks Putih: Ukuran sedikit dikecilkan agar proporsional */
 .figma-form-group label {
     color: #FFFFFF !important;
-    font-size: 13px !important;
+    font-size: 12px !important;      /* 👈 Dikecilkan dari 13px agar lebih rapi */
     font-weight: 700 !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 4px !important;   /* Jarak ke kotak input diperdekat */
     letter-spacing: 0.3px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-/* Baris 2 Kolom Sejajar */
+/* 4. Baris 2 Kolom Sejajar */
 .figma-row-inputs {
     display: flex;
-    gap: 12px;
+    gap: 10px !important;            /* Jarak tengah antara kolom kiri & kanan */
     width: 100%;
 }
 
-/* Input Kapsul Putih ala Figma */
+/* 5. Input Kapsul Putih: Dibuat lebih ramping (Dikecilkan ukurannya) */
 .figma-input-pill {
     width: 100%;
     background-color: #FFFFFF !important;
     border: 1.5px solid transparent !important;
     border-radius: 50px !important;
-    padding: 12px 18px !important;
-    font-size: 13px !important;
+    padding: 10px 14px !important;   /* 👈 Dikecilkan dari 12px 18px agar tidak terlalu gendut */
+    font-size: 12px !important;
     font-weight: 600 !important;
+    height: 38px !important;         /* Kunci tinggi input pas di 38px */
     color: #0D9488 !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box !important;
 }
 
-/* Warna Teks Placeholder Tosca Muda */
 .figma-input-pill::placeholder {
     color: #0D9488 !important;
     opacity: 0.75;
@@ -742,7 +747,7 @@ body, .app-container, .page {
     box-shadow: 0 0 0 3px rgba(204, 251, 241, 0.3);
 }
 
-/* Unit Input (Tahun & Bulan) di dalam Kapsul */
+/* 6. Unit Input (Tahun & Bulan) */
 .figma-input-unit {
     position: relative;
     display: flex;
@@ -751,19 +756,19 @@ body, .app-container, .page {
 }
 
 .figma-input-unit input {
-    padding-right: 65px !important;
+    padding-right: 55px !important;
 }
 
 .figma-input-unit span {
     position: absolute;
-    right: 18px;
-    font-size: 13px !important;
+    right: 14px;
+    font-size: 12px !important;
     font-weight: 700 !important;
     color: #0D9488 !important;
     pointer-events: none;
 }
 
-/* Dropdown Select Kapsul dengan Panah Custom */
+/* 7. Dropdown Select Kapsul */
 .figma-select-wrapper {
     position: relative;
     width: 100%;
@@ -773,39 +778,39 @@ body, .app-container, .page {
     appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
-    padding-right: 36px !important;
+    padding-right: 32px !important;
 }
 
 .figma-select-wrapper::after {
     content: "❯";
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     color: #0D9488;
     position: absolute;
-    right: 18px;
+    right: 14px;
     top: 50%;
     transform: translateY(-50%) rotate(90deg);
     pointer-events: none;
 }
 
-/* Tombol Lanjut Kapsul Cyan Besar di Bawah */
 .figma-form-footer {
-    margin-top: 24px;
-    margin-bottom: 8px;
+    margin-top: 179px !important;    /* 👈 KUNCI MUTLAK: Jarak pas 179px dari baris RT/RW di atasnya! */
+    margin-bottom: 8px !important;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
+/* Tombol Lanjut Kapsul Cyan: Lebar disamakan 300px */
 .figma-btn-action {
-    width: 100%;
-    max-width: 400px;
+    width: 100% !important;
+    max-width: 300px !important;     /* Lebar tombol pas sama kayak input dan kapsul Identitas */
     background-color: #CCFBF1 !important;
     color: #0F766E !important;
     border: none !important;
     border-radius: 50px !important;
-    padding: 14px 24px !important;
-    font-size: 15px !important;
+    padding: 14px 0 !important;      /* Tinggi tombol proporsional */
+    font-size: 14px !important;
     font-weight: 800 !important;
     cursor: pointer;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
