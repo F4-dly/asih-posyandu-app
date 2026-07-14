@@ -30,7 +30,8 @@ h1, h2, h3, h4, .logo-text, .hero-badge {
     font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
 
-body {
+body, .app-container, .page {
+    background: linear-gradient(360deg, #FFFFFF 0%, #FFFFFF 230px, #10A8A7 230px, #10A8A7 100%) !important;
     background-color: #FFFFFF;
     color: #1E293B;
     overflow-x: hidden;
@@ -444,17 +445,17 @@ body {
 
 /* 2. Wadah Gradasi Resmi (Proporsi Figma 360x621) */
 .home-figma-container {
-    background: linear-gradient(360deg, #10A8A7 0%, #118DA2 50%, #171D43 100%) !important;
-    border-top-left-radius: 32px !important;
-    border-top-right-radius: 32px !important;
+    background: linear-gradient(360deg, #171D43 0%, #118DA2 50%, #10A8A7 100%) !important;
+    border-top-left-radius: 40px !important;
+    border-top-right-radius: 40px !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
-    /* Urutan padding: Atas(28px) | Kanan(16px) | Bawah(15px) | Kiri(16px) */
+    
+    /* Padding: Atas(28px) | Kanan(16px) | Bawah(15px) | Kiri(16px) */
     padding: 28px 16px 15px 16px !important;
     margin: 0 !important;
     width: 100%;
     
-    /* 👇 KUNCI RAHASIA: 100% Tinggi Layar dikurangi header putih (181px) */
     min-height: calc(100vh - 181px) !important;
     height: auto !important;
     flex-grow: 1 !important;
@@ -463,7 +464,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-start !important;
 }
 
 /* 3. Judul "Selamat Datang!" & Pill Kategori */
@@ -495,8 +496,7 @@ body {
     gap: 14px !important;
     width: 100%;
     max-width: 300px !important;
-    /* 👇 RAHASIA ANTI-MELAR: Mendorong grid ke bawah secara rapi tanpa merubah ukuran kartu */
-    margin: auto auto 0 auto !important; 
+    margin: 0 auto !important; /* 👈 INI YANG MEMPERBAIKI SEGALA KELONGGARAN */
 }
 
 /* 5. Desain Kartu Utama (Putih Melengkung) */
