@@ -515,6 +515,7 @@ body, .app-container, .page {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    zoom: 1.08 !important; 
 }
 
 .figma-card:hover, .figma-card:active {
