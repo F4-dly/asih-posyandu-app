@@ -43,7 +43,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #FFFFFF;
+    background-color: #171D43 !important;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -449,13 +449,16 @@ body {
     border-top-right-radius: 32px !important;
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
-    /* Urutan padding: Atas(24px) | Kanan(16px) | Bawah(15px) | Kiri(16px) */
-    padding: 24px 16px 15px 16px !important;
+    /* Urutan padding: Atas(28px) | Kanan(16px) | Bawah(15px) | Kiri(16px) */
+    padding: 28px 16px 15px 16px !important;
     margin: 0 !important;
     width: 100%;
-    height: max-content !important;
-    min-height: auto !important;
-    flex-grow: 0 !important;
+    
+    /* 👇 KUNCI RAHASIA: 100% Tinggi Layar dikurangi header putih (181px) */
+    min-height: calc(100vh - 181px) !important;
+    height: auto !important;
+    flex-grow: 1 !important;
+    
     box-shadow: 0 -4px 20px rgba(16, 168, 167, 0.15);
     text-align: center;
     display: flex;
@@ -491,8 +494,9 @@ body {
     flex-direction: column;
     gap: 14px !important;
     width: 100%;
-    max-width: 300px !important; /* Mengunci lebar kolom tepat di 300px */
-    margin: 0 auto;
+    max-width: 300px !important;
+    /* 👇 RAHASIA ANTI-MELAR: Mendorong grid ke bawah secara rapi tanpa merubah ukuran kartu */
+    margin: auto auto 0 auto !important; 
 }
 
 /* 5. Desain Kartu Utama (Putih Melengkung) */
@@ -626,8 +630,8 @@ body {
 /* 7. POSISI BARU STATUS ONLINE (DI BAWAH KARTU ADMIN) */
 /* =================================================== */
 .status-footer-container {
-    margin-top: 15px !important;     /* Selisih tepat 15 piksel di bawah kartu Dashboard Admin */
-    margin-bottom: 0 !important;     /* Sisa 15 piksel diisi oleh padding-bottom kontainer gradasi */
+    margin-top: 15px !important;     /* Selisih 15px dari kartu Admin Bidan */
+    margin-bottom: 0 !important;     /* Sisa 15px dari padding-bottom kontainer gradasi (Total pas 30px) */
     display: flex;
     justify-content: center;
     align-items: center;
