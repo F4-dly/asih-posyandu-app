@@ -34,6 +34,18 @@ function bukaHalaman(idHalaman) {
 
 // ---> A. VALIDASI & LANJUT DARI REGISTRASI BALITA
 function lanjutKeUkurBalita() {
+
+    // 1. Ambil data yang diketik bidan di halaman registrasi sebelumnya
+    const namaAnak = document.getElementById('reg-balita-anak').value || "Nama Lengkap";
+    const namaIbu = document.getElementById('reg-balita-ibu').value || "-";
+
+    // 2. Tampilkan otomatis ke Kartu Ringkasan di halaman Pengukuran Fisik
+    document.getElementById('display-nama-anak').innerHTML = namaAnak.replace(" ", "<br>");
+    document.getElementById('display-nama-ibu').innerText = "Ibu: " + namaIbu;
+
+    // 3. Buka halaman pengukuran fisik
+    bukaHalaman('page-ukur-balita');
+    
     const anak = document.getElementById('reg-balita-anak').value;
     const ibu = document.getElementById('reg-balita-ibu').value;
     const thn = document.getElementById('reg-balita-thn').value || "0";
