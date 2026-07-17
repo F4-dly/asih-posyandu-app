@@ -1221,7 +1221,7 @@ body, .app-container, .page {
 
 /* 4. RAHASIA KUNCI RATA 300PX: Pill, Grid, Ketiga Kartu, dan Tombol Simpan Sejajar Lurus */
 .welcome-pill.ukur-pill {
-    width: 300px !important;                 /* Lebar dikunci persis 300px */
+    width: 320px !important;                 /* Lebar dikunci persis 300px */
     max-width: 300px !important;
     margin: 0 auto 16px auto !important;
     display: block !important;
