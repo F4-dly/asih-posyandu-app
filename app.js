@@ -36,18 +36,32 @@ function bukaHalaman(idHalaman) {
 function lanjutKeUkurBalita() {
 
     // 1. Ambil data yang diketik bidan di halaman registrasi sebelumnya
-    const namaAnak = document.getElementById('reg-balita-anak').value || "Nama Lengkap";
-    const namaIbu = document.getElementById('reg-balita-ibu').value || "-";
-
-    // 2. Tampilkan otomatis ke Kartu Ringkasan di halaman Pengukuran Fisik
-    document.getElementById('display-nama-anak').innerHTML = namaAnak.replace(" ", "<br>");
-    document.getElementById('display-nama-ibu').innerText = "Ibu: " + namaIbu;
-
-    // 3. Buka halaman pengukuran fisik
-    bukaHalaman('page-ukur-balita');
+    const anakInput = document.getElementById('reg-balita-anak');
+    const ibuInput = document.getElementById('reg-balita-ibu');
     
-    const anak = document.getElementById('reg-balita-anak').value;
-    const ibu = document.getElementById('reg-balita-ibu').value;
+    // Validasi data penting
+    if (!anakInput || !anakInput.value) {
+        alert("⚠️ Mohon lengkapi Nama Anak!");
+        bukaHalaman('page-reg-balita');
+        return;
+    }
+    if (!ibuInput || !ibuInput.value) {
+        alert("⚠️ Mohon lengkapi Nama Ibu Kandung!");
+        bukaHalaman('page-reg-balita');
+        return;
+    }
+
+    const namaAnak = anakInput.value;
+    const namaIbu = ibuInput.value;
+
+    // 2. Tampilkan otomatis ke Kartu Identitas di halaman Pengukuran Fisik
+    // Ganti teks Nama Anak Besar
+    document.getElementById('display-nama-anak').innerHTML = namaAnak.replace(" ", "<br>");
+    
+    // Ganti teks Nama Ibu di dalam pill abu-abu
+    const motherNameElement = document.getElementById('display-mother-name');
+    if (motherNameElement) motherNameElement.innerText = namaIbu;
+
     const thn = document.getElementById('reg-balita-thn').value || "0";
     const bln = document.getElementById('reg-balita-bln').value || "0";
     const ke = document.getElementById('reg-balita-ke').value || "1";
@@ -55,22 +69,19 @@ function lanjutKeUkurBalita() {
     const rt = document.getElementById('reg-balita-rt').value || "-";
     const kader = document.getElementById('reg-balita-kader').value;
 
-    if (!anak || !ibu || !kader) {
-        alert("⚠️ Mohon lengkapi Nama Anak, Nama Ibu, dan pilih Kader!");
+    if (!kader) {
+        alert("⚠️ Mohon pilih Kader!");
         return;
     }
 
     // Simpan ke memori draft
     window.draftBalita = {
-        namaAnak: anak, namaIbu: ibu,
+        namaAnak: namaAnak, namaIbu: namaIbu,
         umurTeks: `${thn} Thn ${bln} Bln`,
         anakKe: ke, bpjs: bpjs, rt: rt, kader: kader
     };
 
-    // Tampilkan di Banner Layar Pengukuran
-    document.getElementById('banner-balita-nama').textContent = `${anak} (Ibu: ${ibu})`;
-    document.getElementById('banner-balita-detail').textContent = `Umur: ${thn} Thn ${bln} Bln | Anak Ke-${ke} (${bpjs}) | ${rt}`;
-
+    // 3. Buka halaman pengukuran fisik
     bukaHalaman('page-ukur-balita');
 }
 

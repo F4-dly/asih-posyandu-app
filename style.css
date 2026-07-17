@@ -1338,3 +1338,837 @@ body, .app-container, .page {
     min-height: calc(100vh - 160px) !important;
     padding: 24px 16px 90px 16px !important;
 }
+
+/* =================================================== */
+/* REVISI FINAL: PAGE UKUR BALITA NAIK PRESISI 1/4 LAYAR*/
+/* =================================================== */
+
+/* 1. Latar Belakang: Putih diperpanjang sampai 280px agar TIDAK AKAN PERNAH ada garis teal bocor di atas kartu! */
+#page-ukur-balita {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 280px, #10A8A7 280px, #10A8A7 100%) !important;
+}
+
+/* 2. Header Logo Atas: Dibuat kompak & otomatis pas agar putih yang tersisa nyaman di mata (~1/4 layar) */
+#page-ukur-balita .figma-top-header {
+    padding: 16px 16px 10px 16px !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 0 !important;
+}
+
+/* 3. Ukuran Logo ASIH: Proporsional untuk area atas yang rapi */
+#page-ukur-balita .figma-main-logo {
+    width: 64px !important;
+    height: 82px !important;
+    object-fit: contain !important;
+}
+
+/* 4. WADAH GRADASI BIRU: Langsung naik menempel di bawah logo & mengisi sisa layar dengan mulus */
+#page-ukur-balita .home-figma-container.ukur-container,
+#page-ukur-balita .home-figma-container {
+    margin: 0 !important;
+    padding: 24px 16px 40px 16px !important; /* Padding bawah 40px memberi ruang nafas pas untuk tombol simpan */
+    width: 100% !important;
+    
+    /* 👇 RAHASIA NAIK KE ATAS & ANTI-MELAR: Mengisi sisa layar pas di bawah logo (~108px) */
+    height: auto !important;
+    min-height: calc(100vh - 108px) !important;
+    flex-grow: 1 !important;
+    
+    border-top-left-radius: 40px !important;
+    border-top-right-radius: 40px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+/* =================================================== */
+/* 5. PENGUNCI PRESISI 300PX (AGAR SEMUA KARTU SEJAJAR)  */
+/* =================================================== */
+#page-ukur-balita .welcome-pill.ukur-pill {
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 auto 16px auto !important;
+}
+
+#page-ukur-balita .ukur-cards-grid {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+}
+
+#page-ukur-balita .card-ukur-1,
+#page-ukur-balita .card-ukur-2,
+#page-ukur-balita .card-ukur-3,
+#page-ukur-balita .ukur-card,
+#page-ukur-balita .figma-card.ukur-summary-card {
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    left: 0 !important; /* Membatalkan geseran kiri/kanan lama yang bikin tidak rata */
+}
+
+#page-ukur-balita .figma-form-footer.ukur-footer {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 20px auto 10px auto !important;
+}
+
+#page-ukur-balita .figma-btn-action.ukur-btn {
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+}
+
+/* =================================================== */
+/* KODE PENGUKURAN FISIK BALITA (100% PRESISI FIGMA)   */
+/* =================================================== */
+
+/* 1. Header Logo Atas: Jarak ke ujung atas layar 32px, jarak ke Card Gradient tepat 22px */
+.figma-top-header {
+    background-color: #FFFFFF !important;
+    padding: 43px 16px 42px 16px !important; /* Jarak 22px di bawah menjamin jarak ke Card Pas 22px! */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* 2. Header Logo Horizontal: Logo horizontal centered di white background */
+.figma-header-horizontal {
+    background-color: #FFFFFF !important;
+    padding: 32px 16px 22px 16px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.logo-horiz-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-horiz-icon {
+    width: 42px !important;
+    height: 42px !important;
+    object-fit: contain;
+}
+
+.logo-horiz-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.logo-title-main {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #0D9488 !important;
+    line-height: 1;
+    letter-spacing: 0.5px;
+}
+
+.logo-title-sub {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #0F766E !important;
+    margin-top: 3px !important;
+}
+
+/* 3. Latar Belakang Putih: Diperpanjang agar tidak ada garis teal bocor di atas kartu! */
+#page-ukur-balita {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 160px, #10A8A7 160px, #10A8A7 100%) !important;
+}
+
+/* 4. Pangkas jarak header atas: Khusus di halaman ukur balita agar kartunya naik */
+#page-ukur-balita .figma-top-header {
+    padding: 16px 16px 10px 16px !important;
+}
+
+/* 5. Tarik card gradient khusus halaman ukur: Agar mengisi 3/4 layar ke bawah */
+#page-ukur-balita .home-figma-container.ukur-container,
+#page-ukur-balita .home-figma-container {
+    min-height: calc(100vh - 160px) !important;
+    padding: 24px 16px 14px 16px !important; /* Padding bawah dikecilkan dari 90px agar tombol lebih dekat ke konten */
+    height: auto !important;
+}
+
+/* 6. Tombol Kembali "❮ Edit Identitas" */
+.figma-back-title {
+    color: #FFFFFF !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    margin-bottom: 14px !important;
+    cursor: pointer;
+    text-align: center !important;
+    width: 100%;
+}
+
+/* 7. RAHASIA KUNCI 300PX: Pill, Grid, Ketiga Kartu, dan Tombol Simpan Lurus Sejajar */
+#page-ukur-balita .welcome-pill.ukur-pill {
+    width: 325px !important;
+    max-width: 325px !important;
+    margin: 0 auto 18px auto !important;
+    display: block !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+#page-ukur-balita .ukur-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px !important;
+    width: 100%;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+}
+
+#page-ukur-balita .ukur-footer {
+    width: 100%;
+    max-width: 300px !important;
+    margin: 22px auto 8px auto !important;
+    display: flex;
+    justify-content: center;
+}
+
+#page-ukur-balita .figma-btn-action.ukur-btn {
+    width: 335px !important;
+    max-width: 335px !important;
+    margin: 0 auto !important;
+}
+
+/* --- KARTU 1 (ATAS): IDENTITAS ANAK --- */
+#page-ukur-balita .card-ukur-1 {
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    width: 320px !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    left: -10px !important; /* Geser kartu sedikit ke kiri untuk rata tengah di HP */
+}
+
+#page-ukur-balita .card-ukur-1 .figma-card-body {
+    padding: 14px 14px 14px 18px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+#page-ukur-balita .figma-card-text {
+    flex: 1;
+    padding-right: 12px;
+}
+
+/* Nama Anak Besar */
+#page-ukur-balita .figma-card-text h3 {
+    color: #128AA1 !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    line-height: 24px !important;
+    margin-bottom: 6px !important;
+}
+
+/* Pill Abu-abu untuk Nama Ibu */
+.figma-mother-pill {
+    background-color: #E2E8F0;
+    color: #128AA1;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 15px !important;
+    width: auto !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px !important;
+    border-radius: 10px;
+    margin: 0 !important;
+    text-transform: none;
+}
+
+.mother-label {
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+#page-ukur-balita .figma-card-img {
+    width: 91px !important;
+    height: 91px !important;
+    min-width: 91px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.figma-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ukur-card-footer-strip {
+    background-color: #E2E8F0;
+    height: 12px !important;
+    min-height: 12px !important;
+    width: 100%;
+    position: relative;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+/* --- KARTU 2 & 3: FORM HASIL UKUR & TINDAKAN --- */
+#page-ukur-balita .card-ukur-2,
+#page-ukur-balita .card-ukur-3 {
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    width: 325px !important;
+    max-width: 325px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    text-align: left !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    left: -10px !important; /* Geser kartu sedikit ke kiri untuk rata tengah di HP */
+}
+
+.ukur-card-header {
+    background-color: #E2E8F0 !important;
+    color: #0D9488 !important;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    padding: 8px 14px !important;
+    letter-spacing: 0.2px;
+}
+
+.ukur-card-body {
+    padding: 12px 14px 14px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.ukur-instruction {
+    color: #0D9488 !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    margin: 0 0 2px 0 !important;
+}
+
+.ukur-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.ukur-group.half { width: 50%; }
+.ukur-group.full { width: 100%; }
+
+.ukur-group label {
+    color: #0D9488 !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
+}
+
+/* 7. Input Kapsul Teal Gelap (#118DA2) */
+.teal-input-pill {
+    width: 100%;
+    background-color: #118DA2 !important;
+    border: 1.5px solid transparent !important;
+    border-radius: 50px !important;
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    height: 34px !important;
+    color: #FFFFFF !important;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    box-sizing: border-box !important;
+}
+
+.teal-input-pill::placeholder {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-weight: 500;
+}
+
+.teal-input-pill:focus {
+    background-color: #0D9488 !important;
+    border-color: #CCFBF1 !important;
+}
+
+/* Satuan Unit (kg / cm) Warna Putih */
+.teal-input-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.teal-input-unit input {
+    padding-right: 38px !important;
+}
+.teal-input-unit span {
+    position: absolute;
+    right: 12px;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    pointer-events: none;
+}
+
+/* Dropdown Select Kapsul Teal */
+.teal-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+.teal-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 28px !important;
+}
+.teal-select-wrapper::after {
+    content: "❯";
+    font-size: 11px;
+    font-weight: 800;
+    color: #FFFFFF;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    pointer-events: none;
+}
+
+/* Catatan Keluhan / Resep Bidan: Textarea Gelap */
+.teal-textarea-pill {
+    width: 100%;
+    background-color: #118DA2 !important;
+    border: 1.5px solid transparent !important;
+    border-radius: 12px !important;
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    height: 60px !important;
+    color: #FFFFFF !important;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    box-sizing: border-box !important;
+    resize: none;
+}
+
+.teal-textarea-pill::placeholder {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-weight: 500;
+}
+
+.teal-textarea-pill:focus {
+    background-color: #0D9488 !important;
+    border-color: #CCFBF1 !important;
+}
+
+
+/* =================================================== */
+/* 8. POSISI BARU TOMBOL SIMPAN UKUR (BIRU MUDA)      */
+/* =================================================== */
+#page-ukur-balita .figma-form-footer.ukur-footer {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 20px auto 10px auto !important;
+}
+
+#page-ukur-balita .figma-btn-action.ukur-btn {
+    width: 300px !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border-radius: 50px !important;
+    border: none !important;
+}
+
+/* =================================================== */
+/* KODE PENGUKURAN FISIK BALITA (100% PRESISI FIGMA)   */
+/* =================================================== */
+
+/* 1. Sembunyikan TOTAL logo vertikal bawaan (Hapus Double Logo) */
+#page-ukur-balita .figma-top-header {
+    display: none !important;
+}
+
+/* 2. Background dasar bersih (Putih) */
+#page-ukur-balita {
+    background: #FFFFFF !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 3. Header Logo Horizontal: Presisi tepat di atas layar */
+.figma-header-horizontal {
+    background-color: #FFFFFF !important;
+    padding: 24px 16px 18px 16px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.logo-horiz-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-horiz-icon {
+    width: 42px !important;
+    height: 42px !important;
+    object-fit: contain;
+}
+
+.logo-horiz-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.logo-title-main {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #0D9488 !important;
+    line-height: 1;
+    letter-spacing: 0.5px;
+}
+
+.logo-title-sub {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #0F766E !important;
+    margin-top: 3px !important;
+}
+
+/* 4. Container Gradien: Ditarik ke atas & melengkung 30px seperti Figma */
+#page-ukur-balita .home-figma-container.ukur-container {
+    background: linear-gradient(180deg, #112347 0%, #10A8A7 100%) !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    margin-top: 0 !important;
+    padding: 24px 16px 20px 16px !important;
+    flex: 1;
+    min-height: calc(100vh - 84px) !important;
+    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1) !important;
+    height: auto !important;
+}
+
+/* 5. Tombol Kembali "❮ Edit Identitas" */
+.figma-back-title {
+    color: #FFFFFF !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    margin-bottom: 16px !important;
+    cursor: pointer;
+    text-align: center !important;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* 6. Pill Kategori (Biru Muda) */
+#page-ukur-balita .welcome-pill.ukur-pill {
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 0 auto 16px auto !important;
+    display: block !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+/* 7. Pengaturan Grid dan Lebar Semua Kartu agar Rata Tengah */
+#page-ukur-balita .ukur-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px !important;
+    width: 100%;
+    margin: 0 auto !important;
+}
+
+#page-ukur-balita .card-ukur-1,
+#page-ukur-balita .card-ukur-2,
+#page-ukur-balita .card-ukur-3 {
+    position: relative !important;
+    left: 0 !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 335px !important;
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    box-sizing: border-box !important;
+}
+
+/* --- KARTU 1 (ATAS): IDENTITAS ANAK --- */
+#page-ukur-balita .card-ukur-1 .figma-card-body {
+    padding: 14px 14px 14px 18px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+#page-ukur-balita .figma-card-text {
+    flex: 1;
+    padding-right: 12px;
+}
+
+#page-ukur-balita .figma-card-text h3 {
+    color: #128AA1 !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    line-height: 24px !important;
+    margin-bottom: 6px !important;
+}
+
+.figma-mother-pill {
+    background-color: #E2E8F0;
+    color: #128AA1;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 15px !important;
+    width: auto !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px !important;
+    border-radius: 10px;
+    margin: 0 !important;
+    text-transform: none;
+}
+
+.mother-label {
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+#page-ukur-balita .figma-card-img {
+    width: 91px !important;
+    height: 91px !important;
+    min-width: 91px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.figma-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ukur-card-footer-strip {
+    background-color: #E2E8F0;
+    height: 12px !important;
+    min-height: 12px !important;
+    width: 100%;
+    position: relative;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* --- KARTU 2 & 3: FORM HASIL UKUR & TINDAKAN --- */
+#page-ukur-balita .card-ukur-2,
+#page-ukur-balita .card-ukur-3 {
+    text-align: left !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.ukur-card-header {
+    background-color: #E2E8F0 !important;
+    color: #0D9488 !important;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    padding: 8px 14px !important;
+    letter-spacing: 0.2px;
+}
+
+.ukur-card-body {
+    padding: 12px 14px 14px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.ukur-instruction {
+    color: #0D9488 !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    margin: 0 0 2px 0 !important;
+}
+
+.figma-row-inputs {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.ukur-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.ukur-group.half { width: 50%; }
+.ukur-group.full { width: 100%; }
+
+.ukur-group label {
+    color: #0D9488 !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
+}
+
+/* Input Kapsul Teal Gelap (#118DA2) */
+.teal-input-pill {
+    width: 100%;
+    background-color: #118DA2 !important;
+    border: 1.5px solid transparent !important;
+    border-radius: 50px !important;
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    height: 34px !important;
+    color: #FFFFFF !important;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    box-sizing: border-box !important;
+}
+
+.teal-input-pill::placeholder {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-weight: 500;
+}
+
+.teal-input-pill:focus {
+    background-color: #0D9488 !important;
+    border-color: #CCFBF1 !important;
+}
+
+/* Satuan Unit (kg / cm) Warna Putih */
+.teal-input-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.teal-input-unit input {
+    padding-right: 38px !important;
+}
+.teal-input-unit span {
+    position: absolute;
+    right: 12px;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    pointer-events: none;
+}
+
+/* Dropdown Select Kapsul Teal */
+.teal-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+.teal-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 28px !important;
+}
+.teal-select-wrapper::after {
+    content: "❯";
+    font-size: 11px;
+    font-weight: 800;
+    color: #FFFFFF;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    pointer-events: none;
+}
+
+/* Catatan Keluhan / Resep Bidan: Textarea Gelap */
+.teal-textarea-pill {
+    width: 100%;
+    background-color: #118DA2 !important;
+    border: 1.5px solid transparent !important;
+    border-radius: 12px !important;
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    height: 60px !important;
+    color: #FFFFFF !important;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    box-sizing: border-box !important;
+    resize: none;
+}
+
+.teal-textarea-pill::placeholder {
+    color: rgba(255, 255, 255, 0.75) !important;
+    font-weight: 500;
+}
+
+.teal-textarea-pill:focus {
+    background-color: #0D9488 !important;
+    border-color: #CCFBF1 !important;
+}
+
+/* 8. POSISI BARU TOMBOL SIMPAN UKUR (BIRU MUDA) */
+#page-ukur-balita .figma-form-footer.ukur-footer {
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 20px auto 10px auto !important;
+    display: flex;
+    justify-content: center;
+}
+
+#page-ukur-balita .figma-btn-action.ukur-btn {
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 0 auto !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border-radius: 50px !important;
+    border: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    font-weight: 800 !important;
+    font-size: 14px !important;
+    cursor: pointer;
+}

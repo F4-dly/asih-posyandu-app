@@ -197,16 +197,21 @@
         <!-- =================================================== -->
         <section id="page-ukur-balita" class="page">
             
-            <!-- HANYA 1 LOGO PALING ATAS (VERTIKAL ASLI) -->
-            <div class="figma-top-header" onclick="bukaHalaman('page-home')" title="Kembali ke Beranda" style="cursor: pointer;">
-                <div class="figma-logo-container">
+            <!-- 1. HEADER LOGO HORIZONTAL (HANYA MUNCUL DI SINI) -->
+            <div class="figma-header-horizontal">
+                <div class="logo-horiz-wrapper">
+                    <img src="assets/logo-asihome.svg" alt="Icon ASIH" class="logo-horiz-icon">
+                    <div class="logo-horiz-text">
+                        <div class="logo-title-main">ASIH</div>
+                        <div class="logo-title-sub">Aplikasi Skrining Intregasi Sehat</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- WADAH GRADASI TEAL TO NAVY (PRESISI 360x708) -->
+            <!-- WADAH GRADASI TEAL TO NAVY (SAMA DENGAN HOMESCREEN, TAPI KHUSUS UKUR) -->
             <div class="home-figma-container ukur-container">
                 
-                <!-- TOMBOL KEMBALI -->
+                <!-- TOMBOL KEMBALI & JUDUL -->
                 <div class="figma-back-title" onclick="bukaHalaman('page-reg-balita')">
                     ❮ Edit Identitas
                 </div>
@@ -214,26 +219,29 @@
                 <!-- PILL KATEGORI -->
                 <div class="welcome-pill ukur-pill">Pengukuran Balita</div>
 
-                <!-- GRID 3 KARTU PENGUKURAN -->
-              <!-- GRID 3 KARTU PENGUKURAN (TERPISAH & MANDIRI) -->
+                <!-- GRID 3 KARTU PENGUKURAN (TERPISAH & MANDIRI) -->
                 <div class="ukur-cards-grid">
                     
                     <!-- KARTU 1 (ATAS): RINGKASAN IDENTITAS ANAK -->
                     <div class="card-ukur-1">
                         <div class="figma-card-body">
                             <div class="figma-card-text">
-                                <h3 id="display-nama-anak">Budi<br>Santoso</h3>
-                                <span class="figma-badge" id="display-nama-ibu">IBU: SITI AMINAH</span>
+                                <h3 id="display-nama-anak">NAMA<br>LENGKAP</h3>
+                                <div class="figma-mother-pill">
+                                    <span class="mother-label">IBU:</span>
+                                    <span id="display-mother-name" class="mother-name">NAMA IBU KANDUNG</span>
+                                </div>
                             </div>
                             <div class="figma-card-img">
                                 <img src="assets/ill-balita.svg" alt="Balita">
                             </div>
                         </div>
+                        <div class="ukur-card-footer-strip"></div>
                     </div>
 
                     <!-- KARTU 2 (TENGAH): FORM HASIL UKUR -->
                     <div class="card-ukur-2">
-                        <div class="ukur-card-header">Hasil ukur</div>
+                        <div class="ukur-card-header">Hasil ukur (Pengganti Kertas Kecil)</div>
                         <div class="ukur-card-body">
                             <p class="ukur-instruction">Ketik langsung angka dari timbangan/meteran:</p>
                             
@@ -242,14 +250,14 @@
                                 <div class="ukur-group half">
                                     <label>Berat Badan (BB):</label>
                                     <div class="teal-input-unit">
-                                        <input type="number" id="ukur-bb" class="teal-input-pill" placeholder="0.0" step="0.1" required>
+                                        <input type="number" id="ukur-balita-bb" class="teal-input-pill" placeholder="0.0" step="0.1" required>
                                         <span>kg</span>
                                     </div>
                                 </div>
                                 <div class="ukur-group half">
                                     <label>Tinggi/Panjang (TB):</label>
                                     <div class="teal-input-unit">
-                                        <input type="number" id="ukur-tb" class="teal-input-pill" placeholder="0.0" step="0.1" required>
+                                        <input type="number" id="ukur-balita-tb" class="teal-input-pill" placeholder="0.0" step="0.1" required>
                                         <span>cm</span>
                                     </div>
                                 </div>
@@ -260,14 +268,14 @@
                                 <div class="ukur-group half">
                                     <label>Lingkar Lengan (LiLA):</label>
                                     <div class="teal-input-unit">
-                                        <input type="number" id="ukur-lila" class="teal-input-pill" placeholder="0.0" step="0.1" required>
+                                        <input type="number" id="ukur-balita-lila" class="teal-input-pill" placeholder="0.0" step="0.1" required>
                                         <span>cm</span>
                                     </div>
                                 </div>
                                 <div class="ukur-group half">
                                     <label>Lingkar Kepala (LK):</label>
                                     <div class="teal-input-unit">
-                                        <input type="number" id="ukur-lk" class="teal-input-pill" placeholder="0.0" step="0.1" required>
+                                        <input type="number" id="ukur-balita-lk" class="teal-input-pill" placeholder="0.0" step="0.1" required>
                                         <span>cm</span>
                                     </div>
                                 </div>
@@ -286,7 +294,7 @@
                                 <div class="ukur-group half">
                                     <label>Imunisasi / Suntik?</label>
                                     <div class="teal-select-wrapper">
-                                        <select id="ukur-imunisasi" class="teal-input-pill">
+                                        <select id="ukur-balita-imun" class="teal-input-pill">
                                             <option value="Tidak Ada">Tidak Ada</option>
                                             <option value="Polio / DPT">Polio / DPT</option>
                                             <option value="Campak">Campak</option>
@@ -297,7 +305,7 @@
                                 <div class="ukur-group half">
                                     <label>Vitamin A Bulan Ini?</label>
                                     <div class="teal-select-wrapper">
-                                        <select id="ukur-vitamin" class="teal-input-pill">
+                                        <select id="ukur-balita-vit" class="teal-input-pill">
                                             <option value="Belum">Belum</option>
                                             <option value="Kapsul Biru">Kapsul Biru</option>
                                             <option value="Kapsul Merah">Kapsul Merah</option>
@@ -309,7 +317,7 @@
                             <!-- BARIS 2: CATATAN KELUHAN -->
                             <div class="ukur-group full" style="margin-top: 4px;">
                                 <label>Catatan Keluhan / Resep Bidan:</label>
-                                <input type="text" id="ukur-catatan" class="teal-input-pill" placeholder="Cth: Anak rewel pasca suntik...">
+                                <textarea id="ukur-balita-catatan" class="teal-textarea-pill" placeholder="Cth: Anak rewel pasca suntik..."></textarea>
                             </div>
 
                         </div>
@@ -317,9 +325,9 @@
 
                 </div>
 
-                <!-- TOMBOL SIMPAN -->
+                <!-- TOMBOL SIMPAN (STICKY KAPSUL BIRU MUDA) -->
                 <div class="figma-form-footer ukur-footer">
-                    <button type="button" class="figma-btn-action ukur-btn" onclick="simpanDataBalita()">
+                    <button type="button" class="figma-btn-action ukur-btn" onclick="simpanHasilBalita()">
                         <span>Simpan & Cek Status Gizi Balita</span>
                         <span class="btn-arrow">❯</span>
                     </button>
