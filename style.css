@@ -1238,11 +1238,69 @@ body, .app-container, .page {
     margin: 0 auto !important;
 }
 
-.ukur-card, .figma-card.ukur-summary-card {
-    width: 280px !important;                 /* Lebar setiap kartu dikunci persis 300px */
-    max-width: 280px !important;
-    margin: 0 auto !important;
-    box-sizing: border-box !important;
+/* =================================================== */
+/* 3 KARTU PENGUKURAN (TERPISAH TOTAL & TIDAK DIGABUNG)*/
+/* =================================================== */
+
+/* --- KARTU 1 (ATAS): IDENTITAS ANAK --- */
+.card-ukur-1 {
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    width: 300px !important;                 /* 👈 Lebar dikunci pas 300px */
+    max-width: 300px !important;
+    margin: 0 auto !important;               /* Posisi otomatis di tengah */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    text-align: left !important;
+    box-sizing: border-box !important;       /* Mencegah padding melebarkan kartu */
+    position: relative !important;
+    /* Kalau mau geser Kartu 1 sendiri, aktifkan kode di bawah ini: */
+    /* left: 0px !important; */
+}
+
+.card-ukur-1 .figma-card-body {
+    padding: 14px 14px 14px 18px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+
+/* --- KARTU 2 (TENGAH): FORM HASIL UKUR --- */
+.card-ukur-2 {
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    width: 300px !important;                 /* 👈 Lebar dikunci pas 300px */
+    max-width: 300px !important;
+    margin: 0 auto !important;               /* Posisi otomatis di tengah */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    text-align: left !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;       /* Mencegah padding melebarkan kartu */
+    position: relative !important;
+    /* Kalau mau geser Kartu 2 sendiri, aktifkan kode di bawah ini: */
+    /* left: 0px !important; */
+}
+
+
+/* --- KARTU 3 (BAWAH): TINDAKAN MEDIS & VITAMIN --- */
+.card-ukur-3 {
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    width: 300px !important;                 /* 👈 Lebar dikunci pas 300px */
+    max-width: 300px !important;
+    margin: 0 auto !important;               /* Posisi otomatis di tengah */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    text-align: left !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;       /* Mencegah padding melebarkan kartu */
+    position: relative !important;
+    /* Kalau mau geser Kartu 3 sendiri, aktifkan kode di bawah ini: */
+    /* left: 0px !important; */
 }
 
 .figma-form-footer.ukur-footer {
