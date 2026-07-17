@@ -948,25 +948,6 @@ body, .app-container, .page {
     cursor: pointer;
 }
 
-.logo-horiz-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.logo-horiz-icon {
-    width: 42px !important;
-    height: 42px !important;
-    object-fit: contain;
-}
-
-.logo-horiz-text {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
 .logo-title-main {
     font-size: 22px !important;
     font-weight: 800 !important;
@@ -1454,25 +1435,6 @@ body, .app-container, .page {
     cursor: pointer;
 }
 
-.logo-horiz-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.logo-horiz-icon {
-    width: 42px !important;
-    height: 42px !important;
-    object-fit: contain;
-}
-
-.logo-horiz-text {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
 .logo-title-main {
     font-size: 22px !important;
     font-weight: 800 !important;
@@ -1812,16 +1774,20 @@ body, .app-container, .page {
 /* =================================================== */
 
 /* 1. Sembunyikan TOTAL logo vertikal bawaan (Hapus Double Logo) */
-#page-ukur-balita .figma-top-header {
+body:has(#page-ukur-balita.active) .figma-top-header {
     display: none !important;
 }
 
 /* 2. Background dasar bersih (Putih) */
 #page-ukur-balita {
     background: #FFFFFF !important;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
+}
+
+/* Pastikan tata letak (flex) HANYA berjalan saat halaman dipanggil/aktif */
+#page-ukur-balita.active {
+    display: flex !important;
+    flex-direction: column;
 }
 
 /* 3. Header Logo Horizontal: Presisi tepat di atas layar */
@@ -1833,25 +1799,6 @@ body, .app-container, .page {
     align-items: center;
     width: 100%;
     cursor: pointer;
-}
-
-.logo-horiz-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.logo-horiz-icon {
-    width: 42px !important;
-    height: 42px !important;
-    object-fit: contain;
-}
-
-.logo-horiz-text {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
 }
 
 .logo-title-main {
@@ -2171,4 +2118,11 @@ body, .app-container, .page {
     font-weight: 800 !important;
     font-size: 14px !important;
     cursor: pointer;
+}
+
+/* Pengaturan Ukuran File SVG Logo Horizontal */
+.logo-horiz-svg {
+    height: 38px !important; /* Sesuaikan angka ini jika logonya terasa kekecilan/kebesaran */
+    width: auto !important;
+    object-fit: contain;
 }
