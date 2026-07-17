@@ -1239,8 +1239,8 @@ body, .app-container, .page {
 }
 
 .ukur-card, .figma-card.ukur-summary-card {
-    width: 325px !important;                 /* Lebar setiap kartu dikunci persis 300px */
-    max-width: 325px !important;
+    width: 280px !important;                 /* Lebar setiap kartu dikunci persis 300px */
+    max-width: 280px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
 }
