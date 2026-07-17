@@ -1005,8 +1005,8 @@ body, .app-container, .page {
 
 /* 4. RAHASIA KUNCI 300PX: Kapsul Pengukuran, Ketiga Kartu, dan Tombol Simpan */
 .welcome-pill.ukur-pill {
-    width: 300px !important;                 /* 👈 KUNCI LEBAR 300PX SAMA DENGAN KARTU */
-    max-width: 300px !important;
+    width: 325px !important;                 /* 👈 KUNCI LEBAR 300PX SAMA DENGAN KARTU */
+    max-width: 325px !important;
     margin: 0 auto 18px auto !important;
     display: block !important;
     text-align: center !important;
@@ -1221,8 +1221,8 @@ body, .app-container, .page {
 
 /* 4. RAHASIA KUNCI RATA 300PX: Pill, Grid, Ketiga Kartu, dan Tombol Simpan Sejajar Lurus */
 .welcome-pill.ukur-pill {
-    width: 300px !important;                 /* Lebar dikunci persis 300px */
-    max-width: 300px !important;
+    width: 325px !important;                 /* Lebar dikunci persis 300px */
+    max-width: 325px !important;
     margin: 0 auto 16px auto !important;
     display: block !important;
     text-align: center !important;
