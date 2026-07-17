@@ -1255,7 +1255,7 @@ body, .app-container, .page {
     box-sizing: border-box !important;       /* Mencegah padding melebarkan kartu */
     position: relative !important;
     /* Kalau mau geser Kartu 1 sendiri, aktifkan kode di bawah ini: */
-    /* left: 0px !important; */
+    left: -5px !important; 
 }
 
 .card-ukur-1 .figma-card-body {
