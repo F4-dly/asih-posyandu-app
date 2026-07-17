@@ -984,7 +984,7 @@ body, .app-container, .page {
 
 /* 2. Kontainer Gradasi: Kunci Tinggi 708px (Sesuai rasio Frame 360x800) */
 .home-figma-container.ukur-container {
-    min-height: calc(100vh - 181px) !important;            /* 👈 KUNCI TINGGI GRADASI 708PX */
+    min-height: calc(100vh - 200px) !important;            /* 👈 KUNCI TINGGI GRADASI 708PX */
     height: auto !important;
     padding: 24px 16px 24px 16px !important;
     display: flex;
