@@ -235,7 +235,7 @@
 
                     <!-- KARTU 2 (TENGAH): FORM HASIL UKUR -->
                     <div class="card-ukur-2">
-                        <div class="ukur-card-header">Hasil ukur (Pengganti Kertas Kecil)</div>
+                        <div class="ukur-card-header">Hasil ukur </div>
                         <div class="ukur-card-body">
                             <p class="ukur-instruction">Ketik langsung angka dari timbangan/meteran:</p>
                             
@@ -608,27 +608,58 @@
         </section>
 
         <!-- POP-UP MODAL DIAGNOSIS -->
-        <div id="modal-diagnosis" class="modal-overlay">
-            <div class="modal-card">
-                <div id="modal-icon" class="modal-icon-wrapper">⚠️</div>
-                <h3 id="modal-title" class="modal-title">STATUS MEDIS</h3>
-                <div class="modal-patient-info">
-                    👤 Pasien: <strong id="modal-nama">-</strong> (<span id="modal-kategori">-</span>)
-                </div>
-                <div id="modal-detail" class="modal-detail-box">Detail Pengukuran</div>
-                <div class="modal-saran-box">
-                    <strong>💡 Saran & Tindakan Medis:</strong>
-                    <p id="modal-saran">Saran dokter/bidan akan muncul di sini.</p>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn-modal-simpan" onclick="konfirmasiSimpanKeDatabase()">
-                        💾 Simpan ke Database & Selesai
-                    </button>
-                    <button type="button" class="btn-modal-batal" onclick="tutupModal()">
-                        ⬅ Kembali Edit Angka
-                    </button>
-                </div>
+<!-- =================================================== -->
+<!-- POP-UP MODAL DIAGNOSIS (100% UI FIGMA FRAME 5)      -->
+<!-- =================================================== -->
+<div id="modal-diagnosis" class="modal-overlay">
+    <div class="modal-card-figma">
+        
+        <!-- 1. Logo Horizontal Mini di Dalam Modal -->
+        <div class="modal-figma-logo">
+            <img src="assets/logo-horizontal.svg" alt="Logo ASIH">
+        </div>
+        
+        <!-- 2. Status Gizi Hasil Analisis (Judul Kapital Teal) -->
+        <h3 id="modal-title" class="modal-figma-title">GIZI BAIK & NORMAL</h3>
+        
+        <!-- 3. Ilustrasi Lingkaran Bayi -->
+        <div class="modal-figma-avatar-container">
+            <div class="modal-figma-avatar">
+                <img src="assets/ill-balita.svg" alt="Avatar Balita">
             </div>
+        </div>
+        
+        <!-- 4. Pill Informasi Pasien (Teal Gelap) -->
+        <div class="modal-figma-pill-dark">
+            Pasien: <span id="modal-nama">-</span> (<span id="modal-kategori">KMS Balita</span>)
+        </div>
+        
+        <!-- 5. Pill Hasil Angka Ukur BB/TB/LiLA/LK (Teal Muda) -->
+        <div id="modal-detail" class="modal-figma-pill-light">
+            BB: 0.0 kg | TB: 0.0 cm | LiLA: 0.0 cm | LK: 0.0 cm
+        </div>
+        
+        <!-- 6. Kotak Abu-abu: Saran & Tindakan Medis -->
+        <div class="modal-figma-saran-box">
+            <div class="saran-title">Saran & Tindakan Medis:</div>
+            <p id="modal-saran">Saran dari sistem kesehatan akan otomatis muncul di sini.</p>
+        </div>
+        
+        <!-- 7. Tombol Aksi Kapsul Vertikal -->
+        <div class="modal-figma-buttons">
+            <button type="button" class="btn-figma-save" onclick="konfirmasiSimpanKeDatabase()">
+                Simpan ke Database & Selesai
+            </button>
+            <button type="button" class="btn-figma-back" onclick="tutupModal()">
+                ❮ Kembali Edit Angka
+            </button>
+        </div>
+        
+        <!-- 8. Strip Dekorasi Abu-abu di Paling Bawah Modal -->
+        <div class="modal-figma-footer-strip"></div>
+        
+    </div>
+</div>
         </div>
 
     </div>

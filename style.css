@@ -2126,3 +2126,197 @@ body:has(#page-ukur-balita.active) .figma-top-header {
     width: auto !important;
     object-fit: contain;
 }
+
+/* =================================================== */
+/* MODAL DIAGNOSIS ALA FIGMA FRAME 5                  */
+/* =================================================== */
+
+/* Overlay Background Latar Belakang Blur */
+.modal-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 35, 71, 0.6) !important; /* Warna navy transparan */
+    backdrop-filter: blur(5px);
+    display: none; /* Diatur active via JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999 !important;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+/* Tampilkan modal dengan flex saat class active dipanggil */
+.modal-overlay.active {
+    display: flex !important;
+}
+
+/* Kartu Putih Utama Modal */
+.modal-card-figma {
+    background-color: #FFFFFF !important;
+    width: 100%;
+    max-width: 335px; /* Lebar presisi mengikuti card figma */
+    border-radius: 30px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 24px 20px 0 20px !important;
+    box-sizing: border-box !important;
+    animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 1. Logo Atas Mini */
+.modal-figma-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+.modal-figma-logo img {
+    height: 28px !important;
+    width: auto;
+    object-fit: contain;
+}
+
+/* 2. Judul Status Gizi */
+.modal-figma-title {
+    color: #0D9488 !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    margin: 0 0 14px 0 !important;
+    letter-spacing: 0.5px;
+}
+
+/* 3. Lingkaran Ilustrasi Bayi */
+.modal-figma-avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+.modal-figma-avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border: 1.5px solid #10A8A7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    background-color: #FFFFFF;
+}
+.modal-figma-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 4. Pill Pasien (Teal Gelap) */
+.modal-figma-pill-dark {
+    background-color: #118DA2 !important;
+    color: #FFFFFF !important;
+    border-radius: 50px !important;
+    padding: 8px 16px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* 5. Pill Hasil Angka (Teal Muda) */
+.modal-figma-pill-light {
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border-radius: 50px !important;
+    padding: 8px 16px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* 6. Kotak Abu-abu Saran Medis */
+.modal-figma-saran-box {
+    background-color: #E2E8F0 !important; /* Warna abu-abu halus figma */
+    border-radius: 18px !important;
+    padding: 12px 14px !important;
+    text-align: left !important;
+    margin-bottom: 16px !important;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 70px;
+}
+.modal-figma-saran-box .saran-title {
+    color: #0F766E !important;
+    font-weight: 800 !important;
+    font-size: 12px !important;
+    margin-bottom: 4px;
+}
+#modal-saran {
+    color: #475569 !important;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    line-height: 14px !important;
+    margin: 0 !important;
+}
+
+/* 7. Tombol Kapsul Vertikal */
+.modal-figma-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.btn-figma-save {
+    background-color: #118DA2 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 11px 16px !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+.btn-figma-save:hover {
+    background-color: #0D9488 !important;
+}
+
+.btn-figma-back {
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 11px 16px !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+.btn-figma-back:hover {
+    background-color: #B2F5EA !important;
+}
+
+/* 8. Strip Abu di Paling Bawah */
+.modal-figma-footer-strip {
+    background-color: #E2E8F0 !important;
+    height: 14px !important;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-top: 10px;
+}
