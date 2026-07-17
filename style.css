@@ -1247,8 +1247,8 @@ body, .app-container, .page {
     background-color: #FFFFFF !important;
     border-radius: 20px !important;
     overflow: hidden !important;
-    width: 300px !important;                 /* 👈 Lebar dikunci pas 300px */
-    max-width: 300px !important;
+    width: 320px !important;                 /* 👈 Lebar dikunci pas 300px */
+    max-width: 320px !important;
     margin: 0 auto !important;               /* Posisi otomatis di tengah */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
     text-align: left !important;
