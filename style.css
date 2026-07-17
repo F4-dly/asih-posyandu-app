@@ -1255,7 +1255,7 @@ body, .app-container, .page {
     box-sizing: border-box !important;       /* Mencegah padding melebarkan kartu */
     position: relative !important;
     /* Kalau mau geser Kartu 1 sendiri, aktifkan kode di bawah ini: */
-    left: -5px !important; 
+    left: -10px !important; 
 }
 
 .card-ukur-1 .figma-card-body {
@@ -1271,8 +1271,8 @@ body, .app-container, .page {
     background-color: #FFFFFF !important;
     border-radius: 20px !important;
     overflow: hidden !important;
-    width: 300px !important;                 /* 👈 Lebar dikunci pas 300px */
-    max-width: 300px !important;
+    width: 325px !important;                 /* 👈 Lebar dikunci pas 300px */
+    max-width: 325px !important;
     margin: 0 auto !important;               /* Posisi otomatis di tengah */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
     text-align: left !important;
