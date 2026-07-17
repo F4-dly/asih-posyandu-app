@@ -1191,27 +1191,6 @@ body, .app-container, .page {
     width: 100%;
 }
 
-/* =================================================== */
-/* KODE KHUSUS BIAR CUMAN PAGE UKUR BALITA YANG NAIK   */
-/* =================================================== */
-
-/* 1. Potong latar belakang KHUSUS di halaman ukur balita pada angka 160px (1/4 layar) */
-#page-ukur-balita {
-    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 160px, #10A8A7 160px, #10A8A7 100%) !important;
-}
-
-/* 2. Pangkas jarak header atas KHUSUS di halaman ukur balita agar kartunya naik */
-#page-ukur-balita .figma-top-header {
-    padding: 16px 16px 10px 16px !important;
-}
-
-/* 3. Tarik card gradient KHUSUS halaman ukur agar mengisi 3/4 layar ke bawah */
-#page-ukur-balita .home-figma-container.ukur-container,
-.home-figma-container.ukur-container {
-    min-height: calc(100vh - 160px) !important;
-    padding: 24px 16px 90px 16px !important;
-}
-
 /* 2. Card Gradient: Kunci Tinggi 708px (Sesuai rasio 360x708) & Sudut Melengkung 40px */
 .home-figma-container.ukur-container {
     background: linear-gradient(180deg, #171D43 0%, #118DA2 50%, #10A8A7 100%) !important;
@@ -1337,4 +1316,25 @@ body, .app-container, .page {
     max-width: 335px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
+}
+
+/* =================================================== */
+/* KODE KHUSUS BIAR CUMAN PAGE UKUR BALITA YANG NAIK   */
+/* =================================================== */
+
+/* 1. Potong latar belakang KHUSUS di halaman ukur balita pada angka 160px (1/4 layar) */
+#page-ukur-balita {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 160px, #10A8A7 160px, #10A8A7 100%) !important;
+}
+
+/* 2. Pangkas jarak header atas KHUSUS di halaman ukur balita agar kartunya naik */
+#page-ukur-balita .figma-top-header {
+    padding: 16px 16px 10px 16px !important;
+}
+
+/* 3. Tarik card gradient KHUSUS halaman ukur agar mengisi 3/4 layar ke bawah */
+#page-ukur-balita .home-figma-container.ukur-container,
+.home-figma-container.ukur-container {
+    min-height: calc(100vh - 160px) !important;
+    padding: 24px 16px 90px 16px !important;
 }
