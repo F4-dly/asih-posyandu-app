@@ -1005,8 +1005,8 @@ body, .app-container, .page {
 
 /* 4. RAHASIA KUNCI 300PX: Kapsul Pengukuran, Ketiga Kartu, dan Tombol Simpan */
 .welcome-pill.ukur-pill {
-    width: 325px !important;                 /* 👈 KUNCI LEBAR 300PX SAMA DENGAN KARTU */
-    max-width: 325px !important;
+    width: 300px !important;                 /* 👈 KUNCI LEBAR 300PX SAMA DENGAN KARTU */
+    max-width: 300px !important;
     margin: 0 auto 18px auto !important;
     display: block !important;
     text-align: center !important;
@@ -1239,8 +1239,8 @@ body, .app-container, .page {
 }
 
 .ukur-card, .figma-card.ukur-summary-card {
-    width: 300px !important;                 /* Lebar setiap kartu dikunci persis 300px */
-    max-width: 300px !important;
+    width: 325px !important;                 /* Lebar setiap kartu dikunci persis 300px */
+    max-width: 325px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
 }
