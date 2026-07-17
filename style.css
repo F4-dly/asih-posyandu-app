@@ -1312,8 +1312,8 @@ body, .app-container, .page {
 }
 
 .figma-btn-action.ukur-btn {
-    width: 300px !important;                 /* Lebar tombol simpan dikunci persis 300px */
-    max-width: 300px !important;
+    width: 325px !important;                 /* Lebar tombol simpan dikunci persis 300px */
+    max-width: 325px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
 }
