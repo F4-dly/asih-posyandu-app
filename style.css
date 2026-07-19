@@ -482,12 +482,12 @@ body, .app-container, .page {
     color: #128AA1 !important;
     font-size: 15px !important;
     font-weight: 700 !important;
-    padding: 10px 0 !important;      /* Padding kiri-kanan dinonaktifkan karena sudah dipaksa width 300px */
+    padding: 10px 0 !important;
     border-radius: 50px !important;
     display: block !important;
-    width: 360px !important;         /* 👈 KUNCI LEBAR SAMA KAYAK INPUT JAWABAN & KARTU HOMESCREEN */
-    max-width: 100% !important;
-    margin: 0 auto 20px auto !important;
+    width: 100% !important;
+    max-width: 335px !important;      /* 👈 Disamakan lebar maksimalnya agar sejajar lurus */
+    margin: 0 auto 20px auto !important; /* Memaksa posisi tepat di tengah */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center !important;
     box-sizing: border-box !important;
@@ -499,10 +499,10 @@ body, .app-container, .page {
     flex-direction: column;
     gap: 14px !important;
     width: 100%;
-    max-width: 300px !important;
-    margin: 0 auto !important; /* 👈 INI YANG MEMPERBAIKI SEGALA KELONGGARAN */
+    max-width: 335px !important;      /* 👈 Kunci lebar dudukan kartu */
+    margin: 0 auto !important;        /* 👈 MEMBUAT KARTU OTOMATIS RATA TENGAH SEMPURNA */
     position: relative !important;
-    left: -20px !important;
+    left: 0 !important;               /* 👈 PERBAIKAN: Menghapus nilai minus (-20px) yang bikin miring */
 }
 
 /* 5. Desain Kartu Utama (Putih Melengkung) */
@@ -511,8 +511,9 @@ body, .app-container, .page {
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    width: 300px !important;
-    height: 131px !important;    /* Kunci tinggi pas 131 piksel */
+    width: 100% !important;
+    max-width: 335px !important;      /* 👈 Ukuran lebar kartu mengikuti grid standar Figma */
+    height: 131px !important;         /* Dikunci pas sesuai tinggi di Figma */
     margin: 0 auto;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -521,7 +522,7 @@ body, .app-container, .page {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    zoom: 1.15 !important; 
+    zoom: 1 !important;               /* 👈 PERBAIKAN: Diubah ke 1 agar teks tidak blur/pecah akibat scaling paksa */
 }
 
 .figma-card:hover, .figma-card:active {
@@ -2320,3 +2321,4 @@ body:has(#page-ukur-balita.active) .figma-top-header {
     margin-left: -20px;
     margin-top: 10px;
 }
+

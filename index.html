@@ -15,7 +15,7 @@
     <!-- =================================================== -->
     <div id="splash-screen">
         <div class="splash-content">
-            <img src="assets/logo-asihome.svg" alt="Logo ASIH" class="splash-logo">
+            <img src="assets/logo-asihome2.svg" alt="Logo ASIH" class="splash-logo">
             <!-- Bar Loading Bergerak -->
             <div class="loading-bar" style="margin-top: 24px;">
                 <div class="loading-progress"></div>
@@ -31,78 +31,81 @@
         <!-- =================================================== -->
         <div class="figma-top-header">
             <div class="figma-logo-container">
-                <img src="assets/logo-asihome.svg" alt="Logo ASIH" class="figma-main-logo">
+                <img src="assets/logo-asihome2.svg" alt="Logo ASIH" class="figma-main-logo">
             </div>
         </div>
 
         <!-- =================================================== -->
         <!-- 1. HOME SCREEN: KONTAINER GRADASI & KARTU FIGMA -->
         <!-- =================================================== -->
-        <section id="page-home" class="page active">
-            <!-- WADAH GRADASI TEAL TO NAVY (PROPORSI FIGMA 360x621) -->
-            <div class="home-figma-container">
-                <h2 class="welcome-title">Selamat Datang!</h2>
-                <div class="welcome-pill">Kategori Pelayanan Warga</div>
+        <!-- =================================================== -->
+<!-- 1. HOME SCREEN: KONTAINER GRADASI & KARTU FIGMA -->
+<!-- =================================================== -->
+<section id="page-home" class="page active">
+    <!-- WADAH GRADASI TEAL TO NAVY (PROPORSI FIGMA) -->
+    <div class="home-figma-container">
+        <h2 class="welcome-title">Selamat Datang!</h2>
+        <div class="welcome-pill">Kategori Pelayanan Warga</div>
 
-                <div class="figma-cards-grid">
-                    <!-- KARTU 1: BALITA (300x131 | Gambar 91x91) -->
-                    <div class="figma-card" onclick="bukaHalaman('page-reg-balita')">
-                        <div class="figma-card-body">
-                            <div class="figma-card-text">
-                                <h3>Pelayanan<br>Balita</h3>
-                                <span class="figma-badge">KMS & GIZI</span>
-                                <p>Registrasi KIA, ukur BB, TB, LiLA, LK, imunisasi & Vitamin A.</p>
-                            </div>
-                            <div class="figma-card-img">
-                                <img src="assets/ill-balita.svg" alt="Balita">
-                            </div>
-                        </div>
-                        <div class="figma-card-footer">
-                            <div class="figma-arrow-btn">➔</div>
-                        </div>
+        <div class="figma-cards-grid">
+            <!-- KARTU 1: BALITA -->
+            <div class="figma-card" onclick="bukaHalaman('page-reg-balita')">
+                <div class="figma-card-body">
+                    <div class="figma-card-text">
+                        <h3>Pelayanan<br>Balita</h3>
+                        <span class="figma-badge">KMS & GIZI</span>
+                        <p>Registrasi KIA, ukur BB, TB, LiLA, LK, imunisasi & Vitamin A.</p>
                     </div>
-
-                    <!-- KARTU 2: IBU HAMIL (300x131 | Gambar 91x91) -->
-                    <div class="figma-card" onclick="bukaHalaman('page-reg-bumil')">
-                        <div class="figma-card-body">
-                            <div class="figma-card-text">
-                                <h3>Pelayanan<br>Ibu Hamil</h3>
-                                <span class="figma-badge">SKRINING KEK</span>
-                                <p>Registrasi Bumil, ukur LiLA, pantau usia kehamilan & risiko stunting.</p>
-                            </div>
-                            <div class="figma-card-img">
-                                <img src="assets/ill-bumil.svg" alt="Bumil">
-                            </div>
-                        </div>
-                        <div class="figma-card-footer">
-                            <div class="figma-arrow-btn">➔</div>
-                        </div>
-                    </div>
-
-                    <!-- KARTU 3: ADMIN BIDAN (300x131 | Gambar Khusus 91x109) -->
-                    <div class="figma-card" onclick="bukaHalaman('page-admin')">
-                        <div class="figma-card-body">
-                            <div class="figma-card-text">
-                                <h3>Dashboard<br>Admin Bidan</h3>
-                                <span class="figma-badge">REKAP & EXCEL</span>
-                                <p>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan CSV.</p>
-                            </div>
-                            <!-- Tambahan kelas 'img-admin' khusus untuk ukuran 91x109 -->
-                            <div class="figma-card-img img-admin">
-                                <img src="assets/ill-admin.svg" alt="Admin">
-                            </div>
-                        </div>
-                        <div class="figma-card-footer">
-                            <div class="figma-arrow-btn">➔</div>
-                        </div>
+                    <div class="figma-card-img">
+                        <img src="assets/ill-balita.svg" alt="Balita">
                     </div>
                 </div>
-
-                <!-- STATUS ONLINE: SELISIH 15PX DARI KARTU & 15PX DARI BAWAH LAYAR (TOTAL 30PX) -->
-                <div class="status-footer-container">
-                    <div id="statusSinyal" class="status-badge online badge-in-gradient">🟢 Online</div>
+                <div class="figma-card-footer">
+                    <div class="figma-arrow-btn">➔</div>
                 </div>
-        </section>  
+            </div>
+
+            <!-- KARTU 2: IBU HAMIL -->
+            <div class="figma-card" onclick="bukaHalaman('page-reg-bumil')">
+                <div class="figma-card-body">
+                    <div class="figma-card-text">
+                        <h3>Pelayanan<br>Ibu Hamil</h3>
+                        <span class="figma-badge">SKRINING KEK</span>
+                        <p>Registrasi Bumil, ukur LiLA, pantau usia kehamilan & risiko stunting.</p>
+                    </div>
+                    <div class="figma-card-img">
+                        <img src="assets/ill-bumil.svg" alt="Bumil">
+                    </div>
+                </div>
+                <div class="figma-card-footer">
+                    <div class="figma-arrow-btn">➔</div>
+                </div>
+            </div>
+
+            <!-- KARTU 3: ADMIN BIDAN -->
+            <div class="figma-card" onclick="bukaHalaman('page-admin')">
+                <div class="figma-card-body">
+                    <div class="figma-card-text">
+                        <h3>Dashboard<br>Admin Bidan</h3>
+                        <span class="figma-badge">REKAP & EXCEL</span>
+                        <p>Lihat tabel rekap medis, sync Google Sheets & unduh Laporan CSV.</p>
+                    </div>
+                    <div class="figma-card-img img-admin">
+                        <img src="assets/ill-admin.svg" alt="Admin">
+                    </div>
+                </div>
+                <div class="figma-card-footer">
+                    <div class="figma-arrow-btn">➔</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATUS ONLINE: DI BAWAH KARTU -->
+        <div class="status-footer-container">
+            <div id="statusSinyal" class="status-badge online badge-in-gradient">🟢 Online</div>
+        </div>
+    </div> <!-- 👈 INI KUNCI PERBAIKAN: Tag penutup wadah gradasi yang tadinya hilang -->
+</section>  
 
         <!-- =================================================== -->
         <!-- 2A. LANGKAH 1 BALITA: REGISTRASI (100% MIRIP FIGMA) -->

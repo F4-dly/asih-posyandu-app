@@ -116,17 +116,22 @@ function lanjutKeUkurBumil() {
 // 2. ALGORITMA MEDIS & DIAGNOSIS
 // ==================================================================
 function tampilkanModal(status, ikonPath, judul, kategori, detail, saran, dataObj) {
-    const modalCard = document.querySelector('.modal-card');
-    modalCard.className = "modal-card " + status;
+    // 1. Menyesuaikan dengan class modal versi Figma yang baru
+    const modalCard = document.querySelector('.modal-card-figma') || document.querySelector('.modal-card');
+    if (modalCard) {
+        modalCard.className = "modal-card-figma " + status;
+    }
     
-    // MENGGANTI TEKS EMOJI MENJADI TAG GAMBAR
+    // 2. Mencegah error jika elemen id="modal-icon" terlewat di HTML
     const iconWrapper = document.getElementById('modal-icon');
-    if (ikonPath.includes('.')) {
-        // Jika yang dikirim berupa nama file gambar (.svg/.png)
-        iconWrapper.innerHTML = `<img src="${ikonPath}" alt="Status" style="width: 70px; height: 70px; object-fit: contain;">`;
-    } else {
-        // Cadangan jika masih berupa emoji biasa
-        iconWrapper.textContent = ikonPath;
+    if (iconWrapper) {
+        if (ikonPath.includes('.')) {
+            // Jika yang dikirim berupa nama file gambar (.svg/.png)
+            iconWrapper.innerHTML = `<img src="${ikonPath}" alt="Status" style="width: 70px; height: 70px; object-fit: contain;">`;
+        } else {
+            // Cadangan jika masih berupa emoji biasa
+            iconWrapper.textContent = ikonPath;
+        }
     }
     
     document.getElementById('modal-title').textContent = judul;
@@ -136,6 +141,8 @@ function tampilkanModal(status, ikonPath, judul, kategori, detail, saran, dataOb
     document.getElementById('modal-saran').textContent = saran;
     
     window.dataSiapSimpan = dataObj;
+    
+    // Memunculkan pop-up modal ke layar
     document.getElementById('modal-diagnosis').style.display = "flex";
 }
 function tutupModal() { document.getElementById('modal-diagnosis').style.display = "none"; }
