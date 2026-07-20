@@ -508,12 +508,12 @@ body, .app-container, .page {
 /* 5. Desain Kartu Utama (Putih Melengkung) */
 .figma-card {
     background-color: #FFFFFF;
-    border-radius: 20px;
+    border-radius: 32px !important; /* 👈 Mengubah lengkungan menjadi lebih membulat ala Figma */
     overflow: hidden;
     cursor: pointer;
     width: 100% !important;
-    max-width: 335px !important;      /* 👈 Ukuran lebar kartu mengikuti grid standar Figma */
-    height: 131px !important;         /* Dikunci pas sesuai tinggi di Figma */
+    max-width: 335px !important;
+    height: 131px !important;
     margin: 0 auto;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -522,7 +522,7 @@ body, .app-container, .page {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    zoom: 1 !important;               /* 👈 PERBAIKAN: Diubah ke 1 agar teks tidak blur/pecah akibat scaling paksa */
+    zoom: 1 !important;
 }
 
 .figma-card:hover, .figma-card:active {
@@ -588,6 +588,7 @@ body, .app-container, .page {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 12px !important;   /* 👈 Menambahkan jarak di sebelah kanan ilustrasi */
 }
 
 .figma-card-img img {
@@ -600,6 +601,7 @@ body, .app-container, .page {
     width: 91px !important;
     height: 109px !important;
     min-width: 91px !important;
+    margin-right: 12px !important;   /* 👈 Jarak untuk ilustrasi admin */
 }
 
 /* Strip Footer Abu-Abu & Tombol Panah Overlap ala Figma */
@@ -638,8 +640,8 @@ body, .app-container, .page {
 /* 7. POSISI BARU STATUS ONLINE (DI BAWAH KARTU ADMIN) */
 /* =================================================== */
 .status-footer-container {
-    margin-top: 15px !important;     /* Selisih 15px dari kartu Admin Bidan */
-    margin-bottom: 0 !important;     /* Sisa 15px dari padding-bottom kontainer gradasi (Total pas 30px) */
+    margin-top: 15px !important;
+    margin-bottom: 0 !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -647,17 +649,17 @@ body, .app-container, .page {
 }
 
 .badge-in-gradient {
-    background-color: rgba(255, 255, 255, 0.15) !important;
+    /* Membersihkan kotak tebal, membuatnya lebih rapi dan menyatu dengan gradien */
+    background-color: rgba(255, 255, 255, 0.1) !important;
     color: #FFFFFF !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    padding: 6px 18px !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+    padding: 6px 16px !important;
     font-size: 12px !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     border-radius: 50px !important;
-    backdrop-filter: blur(4px);
     display: inline-block !important;
-    position: static !important; /* Membatalkan posisi floating lama */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: static !important;
+    box-shadow: none !important;
 }
 
 /* =================================================== */
@@ -2322,3 +2324,407 @@ body:has(#page-ukur-balita.active) .figma-top-header {
     margin-top: 10px;
 }
 
+.figma-admin-line {
+    width: 45px !important;          /* Panjang garis */
+    height: 4px !important;          /* Ketebalan garis */
+    background-color: #128AA1 !important; /* Warna sesuai tema teks */
+    border-radius: 4px !important;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+}
+
+/* =================================================== */
+/* KARTU DASHBOARD ADMIN BIDAN DESA (GROUP 64.PNG)     */
+/* =================================================== */
+/* =================================================== */
+/* KARTU DASHBOARD ADMIN BIDAN DESA (REVISI)           */
+/* =================================================== */
+
+/* =================================================== */
+/* KARTU MENU UTAMA (BALITA, BUMIL, ADMIN)             */
+/* =================================================== */
+
+.menu-card {
+    background-color: #FFFFFF;
+    border-radius: 20px; /* Lengkungan yang seragam dan pas */
+    width: 100%;
+    max-width: 330px; /* Ukuran lebar dikunci agar tidak kebesaran */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    margin: 0 auto 1px auto; /* Jarak antar kartu */
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card-body {
+    padding: 8px 8px 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Memastikan teks dan gambar sejajar di tengah */
+    flex: 1;
+}
+
+.menu-card-text {
+    text-align: left;
+    flex: 1;
+    padding-right: 8px;
+}
+
+.menu-card-text h3 {
+    color: #118A9E; /* Warna Tosca */
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+}
+
+/* Kapsul untuk Balita & Bumil */
+.menu-badge {
+    background-color: #E6E6E6;
+    color: #118A9E;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* Garis pemisah khusus untuk Admin */
+.menu-admin-line {
+    width: 60px;
+    height: 2px;
+    background-color: #118A9E;
+    margin-bottom: 8px;
+    margin-top: 2px;
+}
+
+.menu-card-text p {
+    color: #118A9E;
+    font-size: 11px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Kontainer Gambar/Ikon */
+.menu-card-icon {
+    width: 95px; 
+    height: 95px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Bagian Abu-abu di bawah kartu */
+.menu-card-footer {
+    background-color: #E5E5E5;
+    height: 24px; /* Dibuat lebih tipis sesuai Frame 13_2 */
+    width: 100%;
+}
+
+/* Tombol Panah */
+.menu-card-btn {
+    position: absolute;
+    bottom: 8px; /* Mengatur posisi agar pas menimpa batas putih dan abu-abu */
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background-color: #118A9E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.menu-card:active .menu-card-btn {
+    transform: scale(0.95);
+}
+
+/* =================================================== */
+/* KODE FINAL PRESISI 100% FIGMA HOME (FRAME 13.PNG)   */
+/* =================================================== */
+
+/* 1. Header Putih Atas (Logo ASIH): Bersih dan Presisi */
+.figma-top-header {
+    background-color: #FFFFFF !important;
+    padding: 36px 16px 28px 16px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+.figma-main-logo {
+    width: 70px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+/* 2. Wadah Gradasi Teal to Navy: Sudut atas bulat 36px */
+.home-figma-container {
+    background: linear-gradient(180deg, #112347 0%, #118DA2 50%, #10A8A7 100%) !important;
+    border-top-left-radius: 36px !important;
+    border-top-right-radius: 36px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    padding: 24px 16px 30px 16px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-height: calc(100vh - 180px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+/* 3. Judul "❮ Selamat Datang!" */
+.home-header-title {
+    color: #FFFFFF !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    margin-bottom: 14px !important;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.title-arrow {
+    font-size: 18px !important;
+    font-weight: 900 !important;
+}
+
+/* 4. Kapsul Kategori: Lebar dikunci 320px agar sejajar dengan kartu */
+.home-category-pill {
+    background-color: #C8F6FF !important;
+    color: #0F766E !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 10px 0 !important;
+    border-radius: 50px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    text-align: center !important;
+    margin: 0 auto 32px auto !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box !important;
+}
+
+/* 5. Grid Kartu: Kunci lebar mutlak 320px */
+.home-cards-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+}
+
+/* 6. Desain Kartu Putih Melengkung 24px */
+.home-card {
+    background-color: #FFFFFF !important;
+    border-radius: 24px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 136px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    cursor: pointer;
+    box-sizing: border-box !important;
+    transition: transform 0.2s ease;
+}
+.home-card:active {
+    transform: scale(0.98);
+}
+
+/* 7. Isi Kartu (Teks Kiri, Gambar Kanan) */
+.home-card-body {
+    padding: 12px 14px 6px 16px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: calc(100% - 24px) !important;
+}
+.home-card-text {
+    flex: 1;
+    text-align: left !important;
+    padding-right: 8px;
+}
+.home-card-text h3 {
+    color: #128AA1 !important;
+    font-size: 19px !important;
+    font-weight: 700 !important;
+    line-height: 20px !important;
+    margin: 0 0 4px 0 !important;
+}
+
+/* Badge Kapsul Abu-abu (KMS & GIZI / SKRINING KEK) */
+.home-badge {
+    background-color: #E2E8F0 !important;
+    color: #128AA1 !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 2px 8px !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
+    margin-bottom: 4px !important;
+    text-transform: uppercase;
+}
+
+/* Garis Teal Khusus Admin (Pengganti Badge) */
+.home-admin-line {
+    width: 55px !important;
+    height: 2.5px !important;
+    background-color: #128AA1 !important;
+    margin: 4px 0 6px 0 !important;
+    border-radius: 4px;
+}
+
+/* Teks Penjelasan Kecil di Bawah */
+.home-card-text p {
+    color: #128AA1 !important;
+    font-size: 10.5px !important;
+    font-weight: 600 !important;
+    line-height: 12.5px !important;
+    margin: 0 !important;
+}
+
+/* Ilustrasi Lingkaran Kanan */
+.home-card-img {
+    width: 86px !important;
+    height: 86px !important;
+    min-width: 86px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.home-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.home-card-img.img-admin {
+    width: 86px !important;
+    height: 98px !important;
+}
+
+/* 8. Strip Abu-abu Bawah Kartu */
+.home-card-footer {
+    background-color: #E2E8F0 !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    width: 100% !important;
+}
+
+/* =================================================== */
+/* RAHASIA FIGMA: TOMBOL PANAH OVERLAP MELAYANG        */
+/* =================================================== */
+.home-card-arrow {
+    width: 32px !important;
+    height: 32px !important;
+    background-color: #128AA1 !important;
+    color: #FFFFFF !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    right: 16px !important;
+    
+    /* 👇 KUNCI MATEMATIKA OVERLAP: 
+       Tinggi strip abu-abu adalah 24px. Dengan bottom 8px, titik tengah tombol 
+       (32px / 2 = 16px + 8px = 24px) berada tepat di garis batas putih & abu-abu! */
+    bottom: 8px !important; 
+    
+    box-shadow: 0 4px 8px rgba(16, 168, 167, 0.3) !important;
+}
+
+/* 9. BAR STATUS OFFLINE DI PALING BAWAH LAYAR */
+.home-status-bar {
+    background-color: #E2E8F0 !important;
+    width: 100% !important;
+    padding: 8px 0 !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.status-text {
+    color: #0D9488 !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px;
+}
+
+/* =================================================== */
+/* 1. REVISI SUDUT BAWAH KONTAINER (SEDIKIT MELENGKUNG)*/
+/* =================================================== */
+.home-figma-container {
+    border-top-left-radius: 36px !important;
+    border-top-right-radius: 36px !important;
+    /* 👇 RAHASIA SUDUT SEDIKIT MELENGKUNG: Pakai 8px (Jangan minus!) */
+    border-bottom-left-radius: 8px !important;  
+    border-bottom-right-radius: 8px !important; 
+    
+    /* 👇 RAHASIA JARAK BAWAH: Padding bawah dibuat 32px agar seimbang dengan atasnya */
+    padding: 24px 16px 32px 16px !important;
+    margin-bottom: 0 !important;
+}
+
+/* =================================================== */
+/* 2. GARIS DASHBOARD ADMIN (TIPIS & PANJANG PAS)      */
+/* =================================================== */
+.home-admin-line {
+    width: 135px !important;  /* 👈 REVISI: Panjang pas sampai di ujung kata "Admin" */
+    height: 2px !important;   /* 👈 REVISI: Lebih tipis & elegan (2px) */
+    background-color: #128AA1 !important;
+    margin: 4px 0 6px 0 !important;
+    border-radius: 2px;
+}
+
+/* =================================================== */
+/* 3. BAR STATUS FULL-WIDTH (ONLINE VS OFFLINE FIGMA)  */
+/* =================================================== */
+.home-status-bar {
+    width: 100% !important;
+    padding: 5px 0 !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Gambar 2 (Group 72 1): Kondisi Online (Latar Biru Es / Cyan Muda) */
+.home-status-bar.online {
+    background-color: #D5F5F6 !important; 
+    color: #0D9488 !important;
+}
+
+/* Gambar 3 (Group 72): Kondisi Offline (Latar Abu-abu Halus) */
+.home-status-bar.offline {
+    background-color: #DCE3E8 !important; 
+    color: #0D9488 !important;
+}

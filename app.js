@@ -326,10 +326,19 @@ function downloadCSV() {
 }
 
 // SINYAL MONITOR
+// SINYAL MONITOR (100% SESUAI DESAIN FIGMA GROUP 72)
 const badgeSinyal = document.getElementById('statusSinyal');
 function updateSinyal() {
-    badgeSinyal.textContent = navigator.onLine ? "🟢 Online" : "🔴 Offline Mode";
-    badgeSinyal.className = navigator.onLine ? "status-badge online" : "status-badge offline";
+    if (!badgeSinyal) return;
+    if (navigator.onLine) {
+        badgeSinyal.textContent = "● Online";
+        badgeSinyal.className = "home-status-bar online";
+    } else {
+        badgeSinyal.textContent = "● Offline";
+        badgeSinyal.className = "home-status-bar offline";
+    }
 }
-window.addEventListener('online', updateSinyal); window.addEventListener('offline', updateSinyal); updateSinyal();
+window.addEventListener('online', updateSinyal); 
+window.addEventListener('offline', updateSinyal); 
+updateSinyal();
 renderTabelAdmin();
