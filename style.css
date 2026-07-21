@@ -3209,11 +3209,10 @@ body:has(#page-admin.active) .figma-top-header {
 }
 
 /* ================================================================== */
-/* SOLUSI FINAL MUTLAK: PERBAIKAN BORDER RADIUS & POSISI TEKS KARTU    */
+/* SOLUSI FINAL MUTLAK: KONTAINER BAWAH RATA & KARTU 100% GROUP 30.PNG */
 /* ================================================================== */
 
 /* 1. KUNCI BORDER RADIUS KONTAINER (ATAS BULAT 36PX, BAWAH RATA 0PX) */
-/* Mengatasi bocoran warna hijau & membuat kontainer menempel mulus dengan bar status */
 .home-figma-container,
 #page-home .home-figma-container,
 #page-reg-balita .home-figma-container,
@@ -3228,97 +3227,18 @@ body:has(#page-admin.active) .figma-top-header {
     margin-bottom: 0 !important;
 }
 
-/* 2. PERBAIKAN POSISI & RONGGA TEKS DALAM KARTU MENU (BALITA, BUMIL, ADMIN) */
-/* Memberi jarak kiri yang lega (24px) agar tidak mepet pinggir */
-.home-card-body,
-.menu-card-body,
-.figma-card-body {
-    padding: 14px 16px 14px 24px !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    height: calc(100% - 24px) !important;
-}
-
-/* Memaksa blok teks berada persis di tengah vertikal & MENCEGAH badge melar/panjang */
-.home-card-text,
-.menu-card-text,
-.figma-card-text {
-    flex: 1 !important;
-    text-align: left !important;
-    padding-right: 12px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important; /* 👈 Kunci rahasia tengah vertikal */
-    align-items: flex-start !important; /* 👈 KUNCI MUTLAK: Mencegah kapsul abu-abu melar! */
-    height: 100% !important;
-}
-
-/* Jarak harmonis antar Judul, Badge Kapsul, dan Teks Penjelasan */
-.home-card-text h3,
-.menu-card-text h3,
-.figma-card-text h3 {
-    font-size: 18px !important;
-    font-weight: 800 !important;
-    color: #128AA1 !important;
-    margin: 0 0 5px 0 !important;
-    line-height: 1.15 !important;
-}
-
-/* Kapsul Abu-abu (KMS & GIZI / SKRINING KEK): Ukuran pas, tidak melar */
-.home-badge,
-.menu-badge,
-.figma-badge {
-    background-color: #E2E8F0 !important;
-    color: #128AA1 !important;
-    font-size: 10px !important;
-    font-weight: 700 !important;
-    padding: 3px 10px !important;
-    border-radius: 12px !important;
-    display: inline-block !important;
-    width: auto !important;
-    max-width: max-content !important;
-    margin: 0 0 6px 0 !important;
-    text-transform: uppercase !important;
-}
-
-/* Garis Teal khusus di kartu Admin */
-.home-admin-line,
-.menu-admin-line {
-    width: 55px !important;
-    height: 2.5px !important;
-    background-color: #128AA1 !important;
-    margin: 2px 0 6px 0 !important;
-    border-radius: 4px !important;
-}
-
-/* Teks penjelasan deskripsi menu */
-.home-card-text p,
-.menu-card-text p,
-.figma-card-text p {
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    color: #128AA1 !important;
-    line-height: 1.3 !important;
-    margin: 0 !important;
-}
-
-/* ================================================================== */
-/* KUNCI 3 KARTU MENU AGAR 100% PERSIS GAMBAR 2 (GROUP 30.PNG)        */
-/* ================================================================== */
-
-/* 1. BENTUK KARTU (BORDER RADIUS 16PX & OVERFLOW HIDDEN) */
+/* 2. BENTUK KARTU (LENGKUNGAN HALUS 16PX & OVERFLOW HIDDEN) */
 .home-card,
 .figma-card,
 .menu-card {
     background-color: #FFFFFF !important;
-    border-radius: 16px !important;       /* 👈 Lengkungan halus persis Group 30.png */
+    border-radius: 16px !important;       /* 👈 Wajib 16px persis desain Group 30.png */
     width: 100% !important;
     max-width: 335px !important;
-    height: 130px !important;             /* 👈 Tinggi kartu proporsional */
+    height: 130px !important;             /* 👈 Tinggi proporsional tidak kebesaran */
     margin: 0 auto !important;
     position: relative !important;
-    overflow: hidden !important;          /* 👈 Wajib hidden agar strip abu-abu bawah ikut melengkung */
+    overflow: hidden !important;          /* 👈 Memotong strip abu di pojok bawah agar ikut melengkung rapi */
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
     display: flex !important;
     flex-direction: column !important;
@@ -3326,11 +3246,11 @@ body:has(#page-admin.active) .figma-top-header {
     box-sizing: border-box !important;
 }
 
-/* 2. AREA ISI KARTU (TEKS KIRI & GAMBAR KANAN) */
+/* 3. AREA ISI KARTU (TEKS KIRI & ILUSTRASI KANAN) */
 .home-card-body,
 .figma-card-body,
 .menu-card-body {
-    padding: 12px 14px 8px 18px !important; /* 👈 Jarak kiri 18px rapi */
+    padding: 12px 14px 8px 18px !important; /* 👈 Rongga kiri 18px rapi */
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -3338,7 +3258,7 @@ body:has(#page-admin.active) .figma-top-header {
     flex: 1 !important;
 }
 
-/* 3. KONTAINER TEKS (RATA TENGAH VERTIKAL & ANTI-MELAR) */
+/* 4. KONTAINER TEKS (RATA TENGAH VERTIKAL & ANTI-MELAR) */
 .home-card-text,
 .figma-card-text,
 .menu-card-text {
@@ -3347,12 +3267,12 @@ body:has(#page-admin.active) .figma-top-header {
     padding-right: 10px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;     /* 👈 Teks berada tepat di tengah vertikal */
-    align-items: flex-start !important;     /* 👈 KUNCI MUTLAK: Mematikan stretch agar badge tidak melar! */
+    justify-content: center !important;     /* 👈 Blok teks pas di tengah vertikal */
+    align-items: flex-start !important;     /* 👈 KUNCI MUTLAK: Mematikan stretch agar kapsul tidak melar! */
     height: 100% !important;
 }
 
-/* 4. JUDUL MENU (PELAYANAN BALITA / IBU HAMIL / ADMIN) */
+/* 5. JUDUL MENU (PELAYANAN BALITA / IBU HAMIL / ADMIN) */
 .home-card-text h3,
 .figma-card-text h3,
 .menu-card-text h3 {
@@ -3363,7 +3283,7 @@ body:has(#page-admin.active) .figma-top-header {
     margin: 0 0 6px 0 !important;
 }
 
-/* 5. BADGE KAPSUL ABU-ABU (KMS & GIZI / SKRINING KEK) - PENDEK & RAPI */
+/* 6. BADGE KAPSUL ABU-ABU (KMS & GIZI / SKRINING KEK) - PENDEK & MANIS */
 .home-badge,
 .figma-badge,
 .menu-badge {
@@ -3372,18 +3292,18 @@ body:has(#page-admin.active) .figma-top-header {
     font-size: 10px !important;
     font-weight: 700 !important;
     padding: 3px 10px !important;
-    border-radius: 50px !important;         /* 👈 Kapsul membulat persis Group 30.png */
-    display: inline-flex !important;        /* 👈 Wajib inline-flex agar lebarnya mengikuti teks */
+    border-radius: 50px !important;         /* 👈 Kapsul bulat persis Group 30.png */
+    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: max-content !important;          /* 👈 KUNCI: Lebar maksimal hanya seukuran teks */
+    width: max-content !important;          /* 👈 Kunci lebar hanya seukuran teks */
     max-width: max-content !important;
     margin: 0 0 6px 0 !important;
     text-transform: uppercase !important;
-    align-self: flex-start !important;      /* 👈 Kunci ganda anti-melar */
+    align-self: flex-start !important;      /* 👈 Pengunci anti-melar ganda */
 }
 
-/* Garis Teal khusus di kartu Admin Bidan Desa */
+/* Garis Teal Khusus di Kartu Admin Bidan Desa */
 .home-admin-line,
 .figma-admin-line,
 .menu-admin-line {
@@ -3395,7 +3315,7 @@ body:has(#page-admin.active) .figma-top-header {
     align-self: flex-start !important;
 }
 
-/* 6. DESKRIPSI MENU DI BAWAH BADGE */
+/* 7. DESKRIPSI MENU DI BAWAH BADGE */
 .home-card-text p,
 .figma-card-text p,
 .menu-card-text p {
@@ -3406,7 +3326,7 @@ body:has(#page-admin.active) .figma-top-header {
     margin: 0 !important;
 }
 
-/* 7. ILUSTRASI LINGKARAN DI KANAN */
+/* 8. ILUSTRASI LINGKARAN DI KANAN */
 .home-card-img,
 .figma-card-img,
 .menu-card-icon {
@@ -3424,13 +3344,8 @@ body:has(#page-admin.active) .figma-top-header {
     height: 100% !important;
     object-fit: contain !important;
 }
-.home-card-img.img-admin,
-.figma-card-img.img-admin {
-    width: 86px !important;
-    height: 96px !important;
-}
 
-/* 8. STRIP ABU-ABU DI FOOTER KARTU */
+/* 9. STRIP ABU-ABU DI FOOTER KARTU */
 .home-card-footer,
 .figma-card-footer,
 .menu-card-footer {
@@ -3441,7 +3356,7 @@ body:has(#page-admin.active) .figma-top-header {
     position: relative !important;
 }
 
-/* 9. TOMBOL PANAH TEAL MELAYANG (OVERLAP) */
+/* 10. TOMBOL PANAH TEAL MELAYANG (OVERLAP) */
 .home-card-arrow,
 .figma-arrow-btn,
 .menu-card-btn {
