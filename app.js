@@ -29,6 +29,10 @@ function bukaHalaman(idHalaman) {
     if (tujuan) {
         tujuan.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (idHalaman === 'page-admin') {
+            renderTabelAdmin();
+        }
     }
 }
 
@@ -170,6 +174,8 @@ function simpanHasilBalita() {
         saran = "Hebat! Status gizi balita normal di zona HIJAU. Lanjutkan MPASI bergizi seimbang dan lengkapi imunisasi.";
     }
 
+    document.getElementById("modal-avatar-img").src = "assets/ill-balita.svg";
+
     const detail = `BB: ${bb}kg | TB: ${tb}cm | LiLA: ${lila}cm | LK: ${lk}cm`;
     const paket = {
         kategori: "Balita",
@@ -199,6 +205,8 @@ function simpanHasilBumil() {
         status = "status-aman"; ikon = "🤰"; judul = "STATUS GIZI BUMIL NORMAL";
         saran = "Status gizi Ibu Hamil sangat baik (LiLA >= 23.5 cm). Ingatkan Ibu rutin minum Tablet Tambah Darah (TTD) minimal 90 butir.";
     }
+
+    document.getElementById("modal-avatar-img").src = "assets/ill-bumil.svg";
 
     const detail = `LiLA: ${lila}cm | BB: ${bb}kg | TB: ${tb}cm`;
     const paket = {
@@ -259,9 +267,16 @@ function renderTabelAdmin() {
     const tbody = document.getElementById('tabel-body-posyandu');
     const empty = document.getElementById('pesan-kosong');
     if (!tbody) return;
+    
     let db = JSON.parse(localStorage.getItem('database_asih_v3')) || [];
     tbody.innerHTML = "";
-    if (db.length === 0) { empty.style.display = "block"; return; } else { empty.style.display = "none"; }
+    
+    if (db.length === 0) { 
+        if (empty) empty.style.display = "block"; 
+        return; 
+    } else { 
+        if (empty) empty.style.display = "none"; 
+    }
     
     db.forEach((row, idx) => {
         let bgClass = "aman";
@@ -270,15 +285,16 @@ function renderTabelAdmin() {
         
         tbody.innerHTML += `
             <tr>
-                <td><strong>${idx + 1}</strong></td>
-                <td style="font-size:11px; color:#64748B;">${row.waktu}</td>
-                <td><strong>${row.nama}</strong><br><small style="color:#64748B;">${row.rt}</small></td>
-                <td><span style="color:#0D9488; font-weight:bold;">${row.kategori}</span><br><small>${row.umur}</small></td>
-                <td>${row.hasilUkur}</td>
+                <td style="text-align: center;"><strong>${idx + 1}</strong></td>
+                <td style="font-size:10.5px; color:#64748B; white-space:nowrap;">${row.waktu}</td>
+                <td><strong style="color:#0F766E;">${row.nama}</strong><br><small style="color:#64748B;">${row.rt}</small></td>
+                <td><span style="color:#0D9488; font-weight:800;">${row.kategori}</span><br><small>${row.umur}</small></td>
+                <td style="font-weight:600;">${row.hasilUkur}</td>
                 <td><span class="badge-status ${bgClass}">${row.status}</span></td>
-                <td><small>${row.tindakan}</small></td>
-                <td>${row.kader} <br><small style="color:#0284C7;">${row.statusSync || '-'}</small></td>
-                <td><button class="btn-clear-db" style="padding:4px 8px; font-size:11px;" onclick="hapusPasien(${row.id})">Hapus</button>
+                <td><small style="line-height:1.2; display:block;">${row.tindakan}</small></td>
+                <td><strong>${row.kader}</strong><br><small style="color:#0284C7; font-weight:700;">${row.statusSync || '-'}</small></td>
+                <td style="text-align: center;">
+                    <button type="button" class="btn-del-mini" onclick="hapusPasien(${row.id})">Hapus</button>
                 </td>
             </tr>`;
     });
@@ -328,15 +344,18 @@ function downloadCSV() {
 // SINYAL MONITOR
 // SINYAL MONITOR (100% SESUAI DESAIN FIGMA GROUP 72)
 const badgeSinyal = document.getElementById('statusSinyal');
+// SINYAL MONITOR (100% SESUAI DESAIN FIGMA GROUP 72)
 function updateSinyal() {
-    if (!badgeSinyal) return;
-    if (navigator.onLine) {
-        badgeSinyal.textContent = "● Online";
-        badgeSinyal.className = "home-status-bar online";
-    } else {
-        badgeSinyal.textContent = "● Offline";
-        badgeSinyal.className = "home-status-bar offline";
-    }
+    const badges = document.querySelectorAll('.home-status-bar');
+    badges.forEach(badge => {
+        if (navigator.onLine) {
+            badge.textContent = "● Online";
+            badge.className = "home-status-bar online";
+        } else {
+            badge.textContent = "● Offline";
+            badge.className = "home-status-bar offline";
+        }
+    });
 }
 window.addEventListener('online', updateSinyal); 
 window.addEventListener('offline', updateSinyal); 

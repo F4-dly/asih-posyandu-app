@@ -334,7 +334,7 @@ body, .app-container, .page {
 .menu-grid, .form-container-desktop {
     background-color: var(--primary-dark);
     padding: 24px;
-    border-radius: 32px;
+    border-radius: 8px;
     box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
 }
 
@@ -448,8 +448,8 @@ body, .app-container, .page {
     background: linear-gradient(180deg, #171D43 0%, #118DA2 50%, #10A8A7 100%) !important;
     border-top-left-radius: 40px !important;
     border-top-right-radius: 40px !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
     
     /* Padding: Atas(28px) | Kanan(16px) | Bawah(15px) | Kiri(16px) */
     padding: 28px 16px 15px 16px !important;
@@ -675,7 +675,7 @@ body, .app-container, .page {
     }
     .home-figma-container {
         padding: 40px 36px !important;
-        border-radius: 36px !important;
+        border-radius: 8px !important;
     }
     .welcome-title { font-size: 32px !important; }
     .welcome-pill { font-size: 15px !important; }
@@ -2510,7 +2510,7 @@ body:has(#page-ukur-balita.active) .figma-top-header {
 /* 4. Kapsul Kategori: Lebar dikunci 320px agar sejajar dengan kartu */
 .home-category-pill {
     background-color: #C8F6FF !important;
-    color: #0F766E !important;
+    color: #128AA1 !important;
     font-size: 14px !important;
     font-weight: 700 !important;
     padding: 10px 0 !important;
@@ -2727,4 +2727,456 @@ body:has(#page-ukur-balita.active) .figma-top-header {
 .home-status-bar.offline {
     background-color: #DCE3E8 !important; 
     color: #0D9488 !important;
+}
+
+/* =================================================== */
+/* KODE KHUSUS REGISTRASI IBU HAMIL (FIGMA FRAME 8)   */
+/* =================================================== */
+
+/* 1. Kontainer Utama: Mengisi layar secara presisi dengan sudut bawah halus (8px) */
+#page-reg-bumil .bumil-reg-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    min-height: calc(100vh - 140px) !important;
+    padding: 24px 16px 24px 16px !important;
+    border-top-left-radius: 36px !important;
+    border-top-right-radius: 36px !important;
+    border-bottom-left-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* 2. Judul "❮ Registrasi Ibu Hamil" Rata Tengah */
+#page-reg-bumil .figma-back-title {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 16px !important;
+    cursor: pointer;
+}
+
+/* 3. Pengunci Lebar Form (Maksimal 335px agar sejajar dengan kapsul atas) */
+#page-reg-bumil .reg-bumil-form {
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important; /* Memaksa form mengisi sisa tinggi layar */
+    gap: 12px !important;    /* Jarak antar baris input yang pas dan kompak */
+}
+
+/* 4. Rahasia Tombol Melayang di Bawah: Menggunakan margin-top auto */
+#page-reg-bumil .reg-bumil-footer {
+    margin-top: auto !important; /* Dorong tombol otomatis ke dasar layar */
+    padding-top: 32px !important;
+    margin-bottom: 8px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#page-reg-bumil .reg-bumil-footer .figma-btn-action {
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 0 auto !important;
+}
+
+/* =================================================== */
+/* KODE KHUSUS PENGUKURAN IBU HAMIL (FIGMA FRAME 9)    */
+/* =================================================== */
+
+/* 1. Sembunyikan Logo Utama Saat Halaman Ini Aktif (Anti Double Logo) */
+body:has(#page-ukur-bumil.active) .figma-top-header {
+    display: none !important;
+}
+
+/* 2. Background Dasar Bersih & Tata Letak Flex */
+#page-ukur-bumil {
+    background: #FFFFFF !important;
+    min-height: 100vh;
+}
+
+#page-ukur-bumil.active {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 3. Container Gradien: Melengkung Atas 30px & Mengisi Sisa Layar */
+#page-ukur-bumil .home-figma-container.ukur-container {
+    background: linear-gradient(180deg, #112347 0%, #10A8A7 100%) !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    margin-top: 0 !important;
+    padding: 24px 16px 20px 16px !important;
+    flex: 1;
+    min-height: calc(100vh - 84px) !important;
+    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1) !important;
+    height: auto !important;
+}
+
+/* 4. Pengunci Presisi Lebar (Max 325px) Agar Semua Kartu & Tombol Sejajar Lurus */
+#page-ukur-bumil .welcome-pill.ukur-pill {
+    width: 100% !important;
+    max-width: 325px !important;
+    margin: 0 auto 16px auto !important;
+    display: block !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+#page-ukur-bumil .ukur-cards-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 325px !important;
+    margin: 0 auto !important;
+}
+
+#page-ukur-bumil .card-ukur-1,
+#page-ukur-bumil .card-ukur-2,
+#page-ukur-bumil .card-ukur-3 {
+    position: relative !important;
+    left: 0 !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 325px !important;
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+}
+
+/* 5. Khusus Kartu 1 (Ringkasan Identitas Ibu Hamil) */
+#page-ukur-bumil .card-ukur-1 .figma-card-body {
+    padding: 14px 14px 14px 18px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+#page-ukur-bumil .figma-card-text {
+    flex: 1;
+    padding-right: 12px;
+}
+
+#page-ukur-bumil .figma-card-text h3 {
+    color: #128AA1 !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    line-height: 24px !important;
+    margin-bottom: 4px !important;
+}
+
+#page-ukur-bumil .figma-card-img {
+    width: 91px !important;
+    height: 91px !important;
+    min-width: 91px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 6. Tombol Simpan Kapsul Biru Muda di Bawah */
+#page-ukur-bumil .figma-form-footer.ukur-footer {
+    width: 100% !important;
+    max-width: 325px !important;
+    margin: 20px auto 10px auto !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#page-ukur-bumil .figma-btn-action.ukur-btn {
+    width: 100% !important;
+    max-width: 325px !important;
+    margin: 0 auto !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border-radius: 50px !important;
+    border: none !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 14px 16px !important;
+    font-weight: 800 !important;
+    font-size: 14px !important;
+    cursor: pointer;
+}
+
+/* =================================================== */
+/* REVISI STATUS BAR & KARTU 1 IBU HAMIL               */
+/* =================================================== */
+
+/* 1. Memastikan teks Nama di Kartu 1 Ibu Hamil sejajar vertikal di tengah */
+#page-ukur-bumil .card-ukur-1 .figma-card-text {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 100% !important;
+}
+
+/* 2. Memastikan Bar Status di halaman Bumil persis seperti di Home */
+#page-reg-bumil .home-status-bar,
+#page-ukur-bumil .home-status-bar {
+    width: 100% !important;
+    padding: 5px 0 !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: auto !important; /* Mendorong bar status tepat ke lantai layar */
+}
+
+/* =================================================== */
+/* REVISI FINAL POP-UP MODAL (FIGMA FRAME 11)          */
+/* =================================================== */
+
+/* 1. Memastikan Kartu Modal Tidak Kelebaran di HP & Sudut Bulat Halus */
+.modal-card-figma {
+    width: 100% !important;
+    max-width: 335px !important;     /* Lebar dikunci pas ala kartu Figma */
+    border-radius: 30px !important;  /* Kelengkungan kartu 30px */
+    padding: 24px 20px 0 20px !important;
+    background-color: #FFFFFF !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;     /* 👈 RAHASIA: Mencegah strip abu-abu bawah bocor dari sudut */
+    margin: auto !important;
+}
+
+/* 2. Ukuran Teks Kapsul Angka (BB | TB | LiLA) agar Tidak Pecah/Turun Baris */
+.modal-figma-pill-light {
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    padding: 10px 12px !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border-radius: 50px !important;
+    margin-bottom: 14px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px !important;
+    text-align: center !important;
+}
+
+/* 3. Strip Abu-abu di Bawah Kartu Sejajar Sempurna */
+.modal-figma-footer-strip {
+    background-color: #E2E8F0 !important;
+    height: 16px !important;
+    width: calc(100% + 40px) !important;
+    margin-left: -20px !important;
+    margin-top: 10px !important;
+    border-bottom-left-radius: 30px !important;  /* Menyesuaikan sudut kartu */
+    border-bottom-right-radius: 30px !important; /* Menyesuaikan sudut kartu */
+}
+
+/* 4. Efek Tekan (Active) pada Tombol Modal */
+.btn-figma-save:active, .btn-figma-back:active {
+    transform: scale(0.97) !important;
+}
+
+/* =================================================== */
+/* PERBAIKAN POSISI TEKS KAPSUL MODAL (RATA KIRI FIGMA) */
+/* =================================================== */
+
+/* 1. Kapsul Gelap (Pasien) & Kapsul Muda (BB | TB | LiLA) Rata Kiri Sejajar */
+.modal-figma-pill-dark,
+.modal-figma-pill-light {
+    display: flex !important;
+    justify-content: flex-start !important; /* 👈 RAHASIA FIGMA: Mengubah dari center ke kiri (flex-start) */
+    align-items: center !important;
+    text-align: left !important;            /* 👈 Memaksa teks dimulai dari kiri */
+    padding: 10px 20px !important;          /* 👈 Jarak kiri 20px agar huruf pertama 'P' dan 'B' sejajar lurus */
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. Styling Khusus Kapsul Angka (BB | TB | LiLA) agar Spasi Lega & Rapi */
+.modal-figma-pill-light {
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border-radius: 50px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+    letter-spacing: 0.5px !important;       /* 👈 Memberi rongga antar angka & garis '|' agar tidak dempet */
+    gap: 8px !important;
+}
+
+/* 3. Styling Khusus Kapsul Gelap (Pasien) */
+.modal-figma-pill-dark {
+    background-color: #118DA2 !important;
+    color: #FFFFFF !important;
+    border-radius: 50px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    margin-bottom: 10px !important;
+    gap: 6px !important;
+}
+
+/* =================================================== */
+/* KODE KHUSUS DASHBOARD ADMIN (FIGMA FRAME 14)        */
+/* =================================================== */
+
+/* 1. Kontainer Admin: Gradasi teal to navy dan mengisi layar */
+#page-admin .home-figma-container.admin-container {
+    background: linear-gradient(180deg, #112347 0%, #10A8A7 100%) !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    margin-top: 0 !important;
+    padding: 24px 16px 20px 16px !important;
+    flex: 1;
+    min-height: calc(100vh - 84px) !important;
+    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1) !important;
+    height: auto !important;
+}
+
+/* 2. Pengunci Lebar Kapsul Cari & Filter (Max 335px) */
+.admin-filter-section {
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 0 auto !important;
+}
+
+/* 3. Grid 3 Tombol Aksi (Sync | Download | Reset) Sejajar Sempurna */
+.admin-action-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 0 auto 16px auto !important;
+}
+
+.btn-admin-action {
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
+    border: none !important;
+    border-radius: 16px !important;
+    padding: 10px 4px !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    line-height: 13px !important;
+    text-align: center !important;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-admin-action:hover, .btn-admin-action:active {
+    background-color: #99F6E4 !important;
+    transform: translateY(-2px);
+}
+
+/* 4. Kartu Tabel Melengkung Putih Ala Figma */
+.admin-table-card {
+    background-color: #FFFFFF !important;
+    border-radius: 20px !important;
+    width: 100% !important;
+    max-width: 335px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Scroll Horisontal Halus untuk Tabel Data */
+.table-responsive-figma {
+    width: 100% !important;
+    overflow-x: auto !important;
+    max-height: 420px !important;
+    overflow-y: auto !important;
+}
+
+.admin-table-figma {
+    width: 100% !important;
+    min-width: 680px !important; /* Mencegah teks tabel gencet di HP */
+    border-collapse: collapse !important;
+    font-size: 11.5px !important;
+    text-align: left !important;
+}
+
+/* Header Tabel Abu-abu #E2E8F0 persis Frame 14 */
+.admin-table-figma thead th {
+    background-color: #E2E8F0 !important;
+    color: #0F766E !important;
+    font-weight: 800 !important;
+    padding: 12px 10px !important;
+    border-bottom: 2px solid #CBD5E1 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    white-space: nowrap !important;
+}
+
+.admin-table-figma tbody td {
+    padding: 10px !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+    color: #334155 !important;
+    vertical-align: middle !important;
+}
+
+.admin-table-figma tbody tr:hover {
+    background-color: #F8FAFC !important;
+}
+
+/* Pesan Kosong */
+.empty-state-figma {
+    padding: 30px 16px !important;
+    text-align: center !important;
+    color: #64748B !important;
+    font-size: 13px !important;
+}
+
+/* Tombol Hapus Kecil di Dalam Tabel */
+.btn-del-mini {
+    background-color: #FEE2E2 !important;
+    color: #991B1B !important;
+    border: 1px solid #FCA5A5 !important;
+    padding: 4px 10px !important;
+    border-radius: 50px !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+}
+.btn-del-mini:active { transform: scale(0.95); }
+
+/* Sembunyikan logo utama jika halaman Admin sedang aktif */
+body:has(#page-admin.active) .figma-top-header {
+    display: none !important;
+}
+
+/* Mengatur kontainer gambar ikon */
+.search-icon-wrapper {
+    position: absolute;
+    right: 24px; 
+    top: 21%; 
+    transform: translateY(-50%); 
+    pointer-events: none; /* Agar klik ikon tetap tembus ke input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mengatur ukuran gambar ikon */
+.search-icon-wrapper img {
+    width: 20px;  /* Sesuaikan ukuran jika ingin lebih besar/kecil */
+    height: 20px;
+    object-fit: contain;
+    opacity: 0.8; /* Sedikit transparan agar terlihat elegan */
 }
