@@ -1,4 +1,19 @@
 // ==================================================================
+// DAFTARKAN SERVICE WORKER SEBAGAI SYARAT WAJIB PWA & INSTALL POP-UP
+// ==================================================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then((registration) => {
+                console.log('Service Worker berhasil didaftarkan dengan scope: ', registration.scope);
+            })
+            .catch((err) => {
+                console.error('Pendaftaran Service Worker gagal: ', err);
+            });
+    });
+}
+
+// ==================================================================
 // FITUR SPLASH SCREEN OTOMATIS HILANG DALAM 2.5 DETIK
 // ==================================================================
 window.addEventListener('DOMContentLoaded', () => {
