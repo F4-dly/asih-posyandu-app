@@ -1,0 +1,753 @@
+/* =================================================== */
+/* 1. DESIGN TOKENS & RESET NORMALIZATION              */
+/* =================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --primary: #128AA1;         
+    --primary-dark: #0F766E;    
+    --primary-light: #CCFBF1;   
+    --bg-app: #E0F2FE;          
+    --bg-card: #FFFFFF;         
+    --radius-card: 24px;        
+    --radius-pill: 50px;        
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}   
+
+body {
+    font-family: 'Hanken Grotesk', sans-serif;
+    background-color: #FFFFFF;
+    color: #1E293B;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .logo-text, .hero-badge {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* =================================================== */
+/* 2. CONTAINER RESPONSIVE & SPA ROUTING               */
+/* =================================================== */
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.page { 
+    display: none; 
+    flex-grow: 1; 
+}
+
+.page.active { 
+    display: flex !important; 
+    flex-direction: column; 
+    width: 100%;
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(6px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* Header Standar */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+.logo-wrapper { display: flex; align-items: center; gap: 8px; }
+.logo-icon { font-size: 24px; }
+.logo-text { font-size: 18px; font-weight: 800; color: var(--primary); }
+
+.status-badge { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+.status-badge.online { background-color: #D1FAE5; color: #065F46; }
+.status-badge.offline { background-color: #FEE2E2; color: #991B1B; }
+
+/* =================================================== */
+/* 3. SPLASH SCREEN STYLING                            */
+/* =================================================== */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #DFF5F7; 
+    z-index: 999999;           
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+}
+
+#splash-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: zoomInLogo 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zoomInLogo {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.splash-logo {
+    width: 130px;
+    height: auto;
+    margin-bottom: 16px;
+    object-fit: contain;
+}
+
+.splash-text-group { display: flex; align-items: center; gap: 12px; text-align: left; }
+.splash-title { font-size: 40px; font-weight: 800; color: #128AA1; margin: 0; line-height: 1; }
+.splash-subtitle { font-size: 14px; font-weight: 700; color: #0F766E; margin: 0; line-height: 1.25; border-left: 2.5px solid #128AA1; padding-left: 12px; }
+
+.loading-bar {
+    width: 150px;
+    height: 5px;
+    background: rgba(13, 148, 136, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-progress {
+    width: 50%;
+    height: 100%;
+    background: #128AA1;
+    border-radius: 10px;
+    position: absolute;
+    animation: loadBarAnim 1.2s infinite ease-in-out;
+}
+
+@keyframes loadBarAnim {
+    0% { left: -50%; }
+    100% { left: 100%; }
+}
+
+/* =================================================== */
+/* 4. FIGMA HOMESCREEN & LAYOUT GLOBAL                 */
+/* =================================================== */
+.figma-top-header {
+    background-color: #FFFFFF;
+    padding: 36px 16px 28px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.figma-main-logo {
+    width: 70px;
+    height: auto;
+    object-fit: contain;
+}
+
+.figma-header-horizontal {
+    background-color: #FFFFFF;
+    padding: 24px 16px 18px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.logo-horiz-svg {
+    height: 38px; 
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-title-main { font-size: 22px; font-weight: 800; color: #128AA1; line-height: 1; letter-spacing: 0.5px; }
+.logo-title-sub { font-size: 11px; font-weight: 700; color: #0F766E; margin-top: 3px; }
+
+/* Menyembunyikan logo vertikal saat page ukur aktif */
+body:has(#page-ukur-balita.active) .figma-top-header,
+body:has(#page-ukur-bumil.active) .figma-top-header {
+    display: none;
+}
+
+/* Container Gradasi Global */
+.home-figma-container {
+    background: linear-gradient(180deg, #112347 0%, #118DA2 50%, #10A8A7 100%);
+    border-radius: 36px 36px 8px 8px;
+    padding: 24px 16px 32px 16px;
+    margin: 0;
+    width: 100%;
+    min-height: calc(100vh - 180px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Khusus Container Halaman Ukur (Balita/Bumil) */
+.home-figma-container.ukur-container {
+    border-radius: 30px 30px 0 0;
+    padding: 24px 16px 20px 16px;
+    flex: 1;
+    min-height: calc(100vh - 84px);
+    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1);
+    height: auto;
+}
+
+/* Teks dan Navigasi */
+.home-header-title {
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.title-arrow { font-size: 18px; font-weight: 900; }
+
+.figma-back-title {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.home-category-pill {
+    background-color: #C8F6FF;
+    color: #128AA1;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    margin: 0 auto 32px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-pill.ukur-pill {
+    width: 100%;
+    max-width: 335px;
+    margin: 0 auto 16px auto;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #CCFBF1;
+    color: #128AA1;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Bar Bawah */
+.home-status-bar {
+    width: 100%;
+    padding: 5px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.home-status-bar.online { background-color: #D5F5F6; color: #128AA1; }
+.home-status-bar.offline { background-color: #DCE3E8; color: #128AA1; }
+
+/* =================================================== */
+/* 5. KARTU MENU (HOME & UKUR)                         */
+/* =================================================== */
+.home-cards-grid, .ukur-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 335px;
+    margin: 0 auto;
+}
+
+.home-card {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    width: 100%;
+    height: 136px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.home-card:active { transform: scale(0.98); }
+
+.home-card-body {
+    padding: 12px 14px 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(100% - 24px);
+}
+
+.home-card-text { flex: 1; text-align: left; padding-right: 8px; }
+.home-card-text h3 { color: #128AA1; font-size: 19px; font-weight: 700; line-height: 20px; margin: 0 0 4px 0; }
+.home-card-text p { color: #128AA1; font-size: 10.5px; font-weight: 600; line-height: 12.5px; margin: 0; }
+
+.home-badge {
+    background-color: #E2E8F0;
+    color: #128AA1;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.home-admin-line {
+    width: 135px;
+    height: 2px;
+    background-color: #128AA1;
+    margin: 4px 0 6px 0;
+    border-radius: 2px;
+}
+
+.home-card-img {
+    width: 86px;
+    height: 86px;
+    min-width: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-card-img img { width: 100%; height: 100%; object-fit: contain; }
+.home-card-img.img-admin { height: 98px; }
+
+.home-card-footer {
+    background-color: #E2E8F0;
+    height: 24px;
+    min-height: 24px;
+    width: 100%;
+}
+
+.home-card-arrow {
+    width: 32px;
+    height: 32px;
+    background-color: #128AA1;
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    right: 16px;
+    bottom: 8px;
+    box-shadow: 0 4px 8px rgba(16, 168, 167, 0.3);
+}
+
+/* Desain Kartu Pengukuran (Identitas, Form Ukur, Tindakan) */
+.card-ukur-1, .card-ukur-2, .card-ukur-3 {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 335px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.card-ukur-1 .figma-card-body {
+    padding: 14px 14px 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.figma-card-text { flex: 1; padding-right: 12px; }
+.figma-card-text h3 { color: #128AA1; font-size: 24px; font-weight: 800; line-height: 24px; margin-bottom: 6px; }
+
+.figma-mother-pill {
+    background-color: #E2E8F0;
+    color: #128AA1;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin: 0;
+}
+.mother-label { opacity: 0.7; font-weight: 500; }
+
+.figma-card-img {
+    width: 91px;
+    height: 91px;
+    min-width: 91px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.figma-card-img img { width: 100%; height: 100%; object-fit: contain; }
+
+.ukur-card-footer-strip {
+    background-color: #E2E8F0;
+    height: 12px;
+    min-height: 12px;
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+}
+
+.ukur-card-header {
+    background-color: #E2E8F0;
+    color: #128AA1;
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 8px 14px;
+    letter-spacing: 0.2px;
+}
+
+.ukur-card-body {
+    padding: 12px 14px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ukur-instruction {
+    color: #128AA1;
+    font-size: 10.5px;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+}
+
+/* =================================================== */
+/* 6. FORM & INPUTS (REGISTRASI & PENGUKURAN)          */
+/* =================================================== */
+.figma-form-container, .reg-bumil-form {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reg-bumil-form {
+    max-width: 335px;
+    flex-grow: 1;
+    gap: 12px;
+}
+
+.figma-form-group, .ukur-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.figma-form-group.half, .ukur-group.half { width: 50%; }
+
+.figma-form-group label {
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.ukur-group label {
+    color: #128AA1;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.figma-row-inputs {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Kapsul Putih (Registrasi) */
+.figma-input-pill {
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1.5px solid transparent;
+    border-radius: 50px;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    height: 38px;
+    color: #128AA1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figma-input-pill::placeholder { color: #128AA1; opacity: 0.75; font-weight: 500; }
+.figma-input-pill:focus { border-color: #CCFBF1; box-shadow: 0 0 0 3px rgba(204, 251, 241, 0.3); }
+
+/* Kapsul Teal (Pengukuran) */
+.teal-input-pill {
+    width: 100%;
+    background-color: #118DA2;
+    border: 1.5px solid transparent;
+    border-radius: 50px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    height: 34px;
+    color: #FFFFFF;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.teal-input-pill::placeholder { color: rgba(255, 255, 255, 0.75); font-weight: 500; }
+.teal-input-pill:focus { background-color: #128AA1; border-color: #CCFBF1; }
+
+.teal-textarea-pill {
+    width: 100%;
+    background-color: #118DA2;
+    border: 1.5px solid transparent;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    height: 60px;
+    color: #FFFFFF;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    resize: none;
+}
+
+.teal-textarea-pill::placeholder { color: rgba(255, 255, 255, 0.75); font-weight: 500; }
+.teal-textarea-pill:focus { background-color: #128AA1; border-color: #CCFBF1; }
+
+/* Unit Satuan (Bulan, Kg, Cm) */
+.figma-input-unit, .teal-input-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.figma-input-unit { width: 50%; }
+
+.figma-input-unit input { padding-right: 55px; }
+.teal-input-unit input { padding-right: 38px; }
+
+.figma-input-unit span {
+    position: absolute; right: 14px; font-size: 12px; font-weight: 700; color: #128AA1; pointer-events: none;
+}
+.teal-input-unit span {
+    position: absolute; right: 12px; font-size: 11px; font-weight: 700; color: #FFFFFF; pointer-events: none;
+}
+
+/* Dropdown Wrapper */
+.figma-select-wrapper, .teal-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+.figma-select-wrapper select { appearance: none; cursor: pointer; padding-right: 32px; }
+.teal-select-wrapper select { appearance: none; cursor: pointer; padding-right: 28px; }
+
+.figma-select-wrapper::after, .teal-select-wrapper::after {
+    content: "❯";
+    font-size: 11px;
+    font-weight: 800;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    pointer-events: none;
+}
+.figma-select-wrapper::after { color: #128AA1; right: 14px; }
+.teal-select-wrapper::after { color: #FFFFFF; right: 12px; }
+
+/* Tombol Footer Form */
+.figma-form-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.reg-bumil-footer { margin-top: auto; padding-top: 32px; margin-bottom: 8px; }
+.ukur-footer { max-width: 335px; margin: 20px auto 10px auto; }
+
+.figma-btn-action {
+    width: 100%;
+    max-width: 360px;
+    background-color: #CCFBF1;
+    color: #0F766E;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 0;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ukur-btn { max-width: 335px; padding: 12px 16px; box-shadow: none; }
+
+.figma-btn-action:hover {
+    background-color: #99F6E4;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.figma-btn-action .btn-arrow { font-size: 14px; font-weight: 900; transition: transform 0.2s ease; }
+.figma-btn-action:hover .btn-arrow { transform: translateX(4px); }
+
+/* =================================================== */
+/* 7. MODAL DIAGNOSIS                                  */
+/* =================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(17, 35, 71, 0.6);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 16px;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-card-figma {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 335px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 24px 20px 0 20px;
+    animation: popIn 0.3s ease-out;
+}
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-figma-logo { display: flex; justify-content: center; margin-bottom: 12px; }
+.modal-figma-logo img { height: 28px; width: auto; object-fit: contain; }
+
+.modal-figma-title {
+    color: #128AA1; font-size: 20px; font-weight: 800; text-transform: uppercase; margin: 0 0 14px 0; letter-spacing: 0.5px;
+}
+
+.modal-figma-avatar-container { display: flex; justify-content: center; margin-bottom: 16px; }
+.modal-figma-avatar {
+    width: 84px; height: 84px; border-radius: 50%; border: 1.5px solid #10A8A7; display: flex; align-items: center; justify-content: center; padding: 4px; background-color: #FFFFFF;
+}
+.modal-figma-avatar img { width: 100%; height: 100%; object-fit: contain; }
+
+.modal-figma-pill-dark {
+    background-color: #118DA2; color: #FFFFFF; border-radius: 50px; padding: 8px 16px; font-size: 12.5px; font-weight: 600; margin-bottom: 10px; width: 100%; text-align: center;
+}
+.modal-figma-pill-light {
+    background-color: #CCFBF1; color: #0F766E; border-radius: 50px; padding: 8px 16px; font-size: 12px; font-weight: 700; margin-bottom: 14px; width: 100%; text-align: center;
+}
+
+.modal-figma-saran-box {
+    background-color: #E2E8F0; border-radius: 18px; padding: 12px 14px; text-align: left; margin-bottom: 16px; width: 100%; min-height: 70px;
+}
+.modal-figma-saran-box .saran-title { color: #0F766E; font-weight: 800; font-size: 12px; margin-bottom: 4px; }
+#modal-saran { color: #475569; font-size: 11.5px; font-weight: 600; line-height: 14px; margin: 0; }
+
+.modal-figma-buttons { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; width: 100%; }
+.btn-figma-save { background-color: #118DA2; color: #FFFFFF; border: none; border-radius: 50px; padding: 11px 16px; font-size: 14px; font-weight: 800; cursor: pointer; transition: background 0.2s; }
+.btn-figma-save:hover { background-color: #128AA1; }
+.btn-figma-back { background-color: #CCFBF1; color: #0F766E; border: none; border-radius: 50px; padding: 11px 16px; font-size: 14px; font-weight: 800; cursor: pointer; transition: background 0.2s; }
+.btn-figma-back:hover { background-color: #B2F5EA; }
+
+.modal-figma-footer-strip {
+    background-color: #E2E8F0; height: 14px; width: calc(100% + 40px); margin-left: -20px; margin-top: 10px;
+}
+.figma-admin-line {
+    width: 45px; height: 4px; background-color: #128AA1; border-radius: 4px; margin: 6px auto;
+}
+
+/* =================================================== */
+/* 8. DESKTOP RESPONSIVE BEHAVIOR                      */
+/* =================================================== */
+@media screen and (min-width: 768px) {
+    .app-container { padding: 24px; }
+    .home-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 960px;
+        gap: 20px;
+    }
+    .home-figma-container {
+        padding: 40px 36px;
+    }
+    .welcome-title { font-size: 32px; }
+}
+
+@media screen and (min-width: 1024px) {
+    .app-container { padding: 24px 36px; }
+}

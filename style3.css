@@ -5,8 +5,8 @@
 
 :root {
 --primary: #128AA1;         /* Warna Teal / Tosca Utama */
-    --primary-dark: #128AA1;    /* Warna Teal Gelap (Latar Container Menu) */
-    --primary-light: #C8F6FF;   /* Warna Biru/Cyan Muda (Latar Input) */
+    --primary-dark: #0F766E;    /* Warna Teal Gelap (Latar Container Menu) */
+    --primary-light: #CCFBF1;   /* Warna Biru/Cyan Muda (Latar Input) */
     --bg-app: #E0F2FE;          /* Warna Latar Paling Luar (Cyan Sangat Muda) */
     --bg-card: #FFFFFF;         /* Warna Kartu Putih */
     --radius-card: 24px;        /* Kelengkungan kotak menu besar */
@@ -84,7 +84,7 @@ body, .app-container, .page {
 /* 3. HERO BANNER & DASHBOARD HOME (TAMPILAN MENARIK) */
 /* =================================================== */
 .hero-banner {
-    background: linear-gradient(135deg, #128AA1 0%, #128AA1 50%, #14B8A6 100%);
+    background: linear-gradient(135deg, #0F766E 0%, #128AA1 50%, #14B8A6 100%);
     border-radius: 20px;
     padding: 24px;
     color: white;
@@ -159,7 +159,7 @@ body, .app-container, .page {
     display: inline-block;
     margin-bottom: 4px;
 }
-.card-balita .badge-tag { background-color: #C8F6FF; color: #128AA1; }
+.card-balita .badge-tag { background-color: #CCFBF1; color: #0F766E; }
 .card-bumil .badge-tag { background-color: #FCE7F3; color: #9D174D; }
 
 .card-info h3 { font-size: 17px; color: var(--text-main); margin-bottom: 4px; }
@@ -245,7 +245,7 @@ body, .app-container, .page {
 
 /* BANNER PASIEN AKTIF DI LANGKAH 2 */
 .patient-banner {
-    background: linear-gradient(to right, #C8F6FF, #E0F2FE);
+    background: linear-gradient(to right, #CCFBF1, #E0F2FE);
     border: 1.5px solid var(--primary);
     padding: 14px;
     border-radius: 12px;
@@ -352,7 +352,7 @@ body, .app-container, .page {
 /* Mengubah Tombol "Lanjut" & "Simpan" Menjadi Kapsul Cyan Bersinar */
 .btn-primary-action, .btn-sticky-simpan {
     background-color: #A5F3FC !important; /* Warna cyan terang dari Figma */
-    color: #128AA1 !important;            /* Teks hijau tosca gelap */
+    color: #0F766E !important;            /* Teks hijau tosca gelap */
     border-radius: var(--radius-pill) !important;
     padding: 16px 24px;
     font-weight: 800;
@@ -478,7 +478,7 @@ body, .app-container, .page {
 
 /* Font Figma: Bold (700) ukuran 15px */
 .welcome-pill {
-    background-color: #C8F6FF !important;
+    background-color: #CCFBF1 !important;
     color: #128AA1 !important;
     font-size: 15px !important;
     font-weight: 700 !important;
@@ -746,7 +746,7 @@ body, .app-container, .page {
 }
 
 .figma-input-pill:focus {
-    border-color: #C8F6FF !important;
+    border-color: #CCFBF1 !important;
     box-shadow: 0 0 0 3px rgba(204, 251, 241, 0.3);
 }
 
@@ -808,8 +808,8 @@ body, .app-container, .page {
 .figma-btn-action {
     width: 100% !important;
     max-width: 360px !important;     /* Lebar tombol pas sama kayak input dan kapsul Identitas */
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border: none !important;
     border-radius: 50px !important;
     padding: 14px 0 !important;      /* Tinggi tombol proporsional */
@@ -901,7 +901,7 @@ body, .app-container, .page {
 .splash-subtitle {
     font-size: 14px;
     font-weight: 700;
-    color: #128AA1;
+    color: #0F766E;
     margin: 0;
     line-height: 1.25;
     border-left: 2.5px solid #128AA1;
@@ -962,7 +962,7 @@ body, .app-container, .page {
 .logo-title-sub {
     font-size: 11px !important;
     font-weight: 700 !important;
-    color: #128AA1 !important;
+    color: #0F766E !important;
     margin-top: 3px !important;
 }
 
@@ -1116,7 +1116,7 @@ body, .app-container, .page {
 
 .teal-input-pill:focus {
     background-color: #128AA1 !important;
-    border-color: #C8F6FF !important;
+    border-color: #CCFBF1 !important;
 }
 
 /* Satuan Unit (kg / cm) Warna Putih */
@@ -1449,7 +1449,7 @@ body, .app-container, .page {
 .logo-title-sub {
     font-size: 11px !important;
     font-weight: 700 !important;
-    color: #128AA1 !important;
+    color: #0F766E !important;
     margin-top: 3px !important;
 }
 
@@ -1679,7 +1679,7 @@ body, .app-container, .page {
 
 .teal-input-pill:focus {
     background-color: #128AA1 !important;
-    border-color: #C8F6FF !important;
+    border-color: #CCFBF1 !important;
 }
 
 /* Satuan Unit (kg / cm) Warna Putih */
@@ -1749,7 +1749,7 @@ body, .app-container, .page {
 
 .teal-textarea-pill:focus {
     background-color: #128AA1 !important;
-    border-color: #C8F6FF !important;
+    border-color: #CCFBF1 !important;
 }
 
 
@@ -1766,8 +1766,8 @@ body, .app-container, .page {
     width: 300px !important;
     max-width: 300px !important;
     margin: 0 auto !important;
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border-radius: 50px !important;
     border: none !important;
 }
@@ -1815,7 +1815,7 @@ body:has(#page-ukur-balita.active) .figma-top-header {
 .logo-title-sub {
     font-size: 11px !important;
     font-weight: 700 !important;
-    color: #128AA1 !important;
+    color: #0F766E !important;
     margin-top: 3px !important;
 }
 
@@ -2024,7 +2024,7 @@ body:has(#page-ukur-balita.active) .figma-top-header {
 
 .teal-input-pill:focus {
     background-color: #128AA1 !important;
-    border-color: #C8F6FF !important;
+    border-color: #CCFBF1 !important;
 }
 
 /* Satuan Unit (kg / cm) Warna Putih */
@@ -2094,7 +2094,7 @@ body:has(#page-ukur-balita.active) .figma-top-header {
 
 .teal-textarea-pill:focus {
     background-color: #128AA1 !important;
-    border-color: #C8F6FF !important;
+    border-color: #CCFBF1 !important;
 }
 
 /* 8. POSISI BARU TOMBOL SIMPAN UKUR (BIRU MUDA) */
@@ -2110,8 +2110,8 @@ body:has(#page-ukur-balita.active) .figma-top-header {
     width: 100% !important;
     max-width: 335px !important;
     margin: 0 auto !important;
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border-radius: 50px !important;
     border: none !important;
     display: flex;
@@ -2237,8 +2237,8 @@ body:has(#page-ukur-balita.active) .figma-top-header {
 
 /* 5. Pill Hasil Angka (Teal Muda) */
 .modal-figma-pill-light {
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border-radius: 50px !important;
     padding: 8px 16px !important;
     font-size: 12px !important;
@@ -2261,7 +2261,7 @@ body:has(#page-ukur-balita.active) .figma-top-header {
     min-height: 70px;
 }
 .modal-figma-saran-box .saran-title {
-    color: #128AA1 !important;
+    color: #0F766E !important;
     font-weight: 800 !important;
     font-size: 12px !important;
     margin-bottom: 4px;
@@ -2300,8 +2300,8 @@ body:has(#page-ukur-balita.active) .figma-top-header {
 }
 
 .btn-figma-back {
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border: none !important;
     border-radius: 50px !important;
     padding: 11px 16px !important;
@@ -2899,8 +2899,8 @@ body:has(#page-ukur-bumil.active) .figma-top-header {
     width: 100% !important;
     max-width: 325px !important;
     margin: 0 auto !important;
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border-radius: 50px !important;
     border: none !important;
     display: flex !important;
@@ -2960,8 +2960,8 @@ body:has(#page-ukur-bumil.active) .figma-top-header {
     font-size: 11.5px !important;
     font-weight: 700 !important;
     padding: 10px 12px !important;
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border-radius: 50px !important;
     margin-bottom: 14px !important;
     display: flex !important;
@@ -3005,8 +3005,8 @@ body:has(#page-ukur-bumil.active) .figma-top-header {
 
 /* 2. Styling Khusus Kapsul Angka (BB | TB | LiLA) agar Spasi Lega & Rapi */
 .modal-figma-pill-light {
-    background-color: #C8F6FF !important;
-    color: #128AA1 !important;
+    background-color: #CCFBF1 !important;
+    color: #0F766E !important;
     border-radius: 50px !important;
     font-size: 12px !important;
     font-weight: 700 !important;
@@ -3061,7 +3061,7 @@ body:has(#page-ukur-bumil.active) .figma-top-header {
 }
 
 .btn-admin-action {
-    background-color: #C8F6FF !important;
+    background-color: #CCFBF1 !important;
     color: #128AA1 !important;
     border: none !important;
     border-radius: 16px !important;
@@ -3113,7 +3113,7 @@ body:has(#page-ukur-bumil.active) .figma-top-header {
 
 /* Header Tabel Abu-abu #E2E8F0 persis Frame 14 */
 .admin-table-figma thead th {
-    background-color: #D9D9D9 !important;
+    background-color: #E2E8F0 !important;
     color: #128AA1 !important;
     font-weight: 800 !important;
     padding: 12px 10px !important;
@@ -3239,18 +3239,5 @@ body:has(#page-admin.active) .figma-top-header {
 .page-admin table th,
 .page-admin thead th {
     background-color: #D9D9D9 !important;
-    color: #128AA1 !important;
-}
-
-/* 1. Mengubah warna teks placeholder saat belum diketik */
-.figma-input-pill::placeholder,
-#search-input::placeholder {
-    color: #128AA1 !important;
-    opacity: 1 !important; /* Memastikan warna tajam/tidak pudar */
-}
-
-/* 2. Mengubah warna teks utama & ikon di dalam input (opsional jika dibutuhkan) */
-.figma-input-pill,
-#search-input {
     color: #128AA1 !important;
 }
