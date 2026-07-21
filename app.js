@@ -361,3 +361,57 @@ window.addEventListener('online', updateSinyal);
 window.addEventListener('offline', updateSinyal); 
 updateSinyal();
 renderTabelAdmin();
+
+// Deklarasi variabel untuk menyimpan event prompt dari browser
+let deferredPrompt;
+
+// Ambil elemen HTML yang baru saja kita buat
+const installPopup = document.getElementById('install-popup');
+const btnInstall = document.getElementById('btn-install');
+const btnCloseInstall = document.getElementById('btn-close-install');
+
+// 1. Dengarkan event beforeinstallprompt
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Cegah Chrome agar tidak memunculkan prompt mini bawaannya secara otomatis
+    e.preventDefault();
+    
+    // Simpan event tersebut ke variabel untuk dipanggil nanti
+    deferredPrompt = e;
+    
+    // Munculkan Pop-up Kustom kita yang besar di layar warga
+    installPopup.style.display = 'flex';
+});
+
+// 2. Beri aksi pada tombol "Install Aplikasi Ini ke Homescreen"
+btnInstall.addEventListener('click', async () => {
+    // Sembunyikan pop-up kustom kita
+    installPopup.style.display = 'none';
+    
+    if (deferredPrompt) {
+        // Panggil prompt instalasi bawaan browser
+        deferredPrompt.prompt();
+        
+        // Tunggu hingga warga memilih "Install" atau "Cancel" di prompt browser
+        const { outcome } = await deferredPrompt.userChoice;
+        
+        if (outcome === 'accepted') {
+            console.log('Warga setuju menginstal aplikasi ASIH');
+        } else {
+            console.log('Warga menolak instalasi');
+        }
+        
+        // Kosongkan variabel karena prompt hanya bisa dipanggil satu kali
+        deferredPrompt = null;
+    }
+});
+
+// 3. Tombol untuk menutup pop-up jika warga memilih "Nanti Saja"
+btnCloseInstall.addEventListener('click', () => {
+    installPopup.style.display = 'none';
+});
+
+// (Opsional) Deteksi jika aplikasi sudah sukses terinstal
+window.addEventListener('appinstalled', () => {
+    console.log('Aplikasi ASIH berhasil diinstal ke Homescreen!');
+    installPopup.style.display = 'none';
+});
