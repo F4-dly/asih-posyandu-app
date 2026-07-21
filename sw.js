@@ -2,7 +2,7 @@
 // SERVICE WORKER ASIH — MESIN CACHE OFFLINE-FIRST (PWA V1.0)
 // ==================================================================
 
-const CACHE_NAME = 'asih-posyandu-cache-v24';
+const CACHE_NAME = 'asih-posyandu-cache-v100';
 
 // Daftar file yang WAJIB disimpan ke memori HP agar bisa dibuka offline
 const FILE_YANG_DICACHE = [

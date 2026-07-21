@@ -586,12 +586,14 @@
 
                 <!-- 3. INPUT CARI & FILTER KATEGORI (KAPSUL PUTIH) -->
                 <div class="admin-filter-section">
-                    <div class="figma-form-group" style="margin-bottom: 10px;">
-                        <input type="text" id="cariPasien" class="figma-input-pill" placeholder="Cari Nama Pasien / RT" onkeyup="filterTabelAdmin()">
-                        <div class="search-icon-wrapper">
+                    <div class="figma-form-group" style="margin-bottom: 10px; position: relative; width: 100%;">
+    <input type="text" id="cariPasien" class="figma-input-pill" placeholder="Cari Nama Pasien / RT" onkeyup="filterTabelAdmin()">
+    
+    <!-- Wadah Ikon Search -->
+    <div class="search-icon-wrapper">
         <img src="assets/search.png" alt="Cari">
-                        </div>
-                    </div>
+    </div>
+</div>
                     <div class="figma-form-group" style="margin-bottom: 14px;">
                         <div class="figma-select-wrapper">
                             <select id="filterKategori" class="figma-input-pill" onchange="filterTabelAdmin()">

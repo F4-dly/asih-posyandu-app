@@ -3163,20 +3163,142 @@ body:has(#page-admin.active) .figma-top-header {
 
 /* Mengatur kontainer gambar ikon */
 .search-icon-wrapper {
-    position: absolute;
-    right: 24px; 
-    top: 21%; 
-    transform: translateY(-50%); 
-    pointer-events: none; /* Agar klik ikon tetap tembus ke input */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute !important;
+    right: 16px !important;       /* 👈 Jarak pas dari lengkungan kanan kapsul */
+    top: 50% !important;          /* 👈 KUNCI MUTLAK: Wajib 50% agar berada tepat di garis tengah */
+    transform: translateY(-50%) !important; /* 👈 Menarik ikon tepat ke tengah vertikal */
+    pointer-events: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 5 !important;
+    height: 100% !important;
 }
 
-/* Mengatur ukuran gambar ikon */
 .search-icon-wrapper img {
-    width: 20px;  /* Sesuaikan ukuran jika ingin lebih besar/kecil */
-    height: 20px;
-    object-fit: contain;
-    opacity: 0.8; /* Sedikit transparan agar terlihat elegan */
+    width: 18px !important;       /* 👈 Ukuran 18px paling proporsional untuk tinggi kapsul 38px */
+    height: 18px !important;
+    object-fit: contain !important;
+    opacity: 0.85 !important;
+}
+
+/* Memastikan teks yang diketik tidak menabrak ikon search di kanan */
+#cariPasien {
+    padding-right: 42px !important;
+}
+
+/* =================================================== */
+/* KUNCI POSISI PANAH DROPDOWN (SEJAJAR IKON SEARCH)   */
+/* =================================================== */
+
+/* 1. Mengunci posisi ikon panah dropdown agar sama persis dengan ikon search */
+.figma-select-wrapper::after {
+    position: absolute !important;
+    right: 19px !important;       /* 👈 Disamakan persis dengan right: 16px milik ikon search */
+    top: 50% !important;          /* 👈 Wajib 50% agar tepat di tengah vertikal */
+    transform: translateY(-50%) rotate(90deg) !important; /* 👈 Menarik ke tengah dan memutar tanda ❯ ke bawah */
+    pointer-events: none !important;
+    font-size: 14px !important;   /* 👈 Ukuran disesuaikan agar seimbang dengan ikon search 18px */
+    color: #0D9488 !important;
+    font-weight: 800 !important;
+}
+
+/* 2. Memberi jarak aman agar teks kategori tidak menabrak panah saat dipilih */
+.figma-select-wrapper select {
+    padding-right: 42px !important; /* 👈 Disamakan dengan padding input pencarian */
+}
+
+/* ================================================================== */
+/* SOLUSI FINAL MUTLAK: PERBAIKAN BORDER RADIUS & POSISI TEKS KARTU    */
+/* ================================================================== */
+
+/* 1. KUNCI BORDER RADIUS KONTAINER (ATAS BULAT 36PX, BAWAH RATA 0PX) */
+/* Mengatasi bocoran warna hijau & membuat kontainer menempel mulus dengan bar status */
+.home-figma-container,
+#page-home .home-figma-container,
+#page-reg-balita .home-figma-container,
+#page-ukur-balita .home-figma-container,
+#page-reg-bumil .bumil-reg-container,
+#page-ukur-bumil .home-figma-container,
+#page-admin .home-figma-container {
+    border-top-left-radius: 36px !important;
+    border-top-right-radius: 36px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* 2. PERBAIKAN POSISI & RONGGA TEKS DALAM KARTU MENU (BALITA, BUMIL, ADMIN) */
+/* Memberi jarak kiri yang lega (24px) agar tidak mepet pinggir */
+.home-card-body,
+.menu-card-body,
+.figma-card-body {
+    padding: 14px 16px 14px 24px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: calc(100% - 24px) !important;
+}
+
+/* Memaksa blok teks berada persis di tengah vertikal & MENCEGAH badge melar/panjang */
+.home-card-text,
+.menu-card-text,
+.figma-card-text {
+    flex: 1 !important;
+    text-align: left !important;
+    padding-right: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* 👈 Kunci rahasia tengah vertikal */
+    align-items: flex-start !important; /* 👈 KUNCI MUTLAK: Mencegah kapsul abu-abu melar! */
+    height: 100% !important;
+}
+
+/* Jarak harmonis antar Judul, Badge Kapsul, dan Teks Penjelasan */
+.home-card-text h3,
+.menu-card-text h3,
+.figma-card-text h3 {
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    color: #128AA1 !important;
+    margin: 0 0 5px 0 !important;
+    line-height: 1.15 !important;
+}
+
+/* Kapsul Abu-abu (KMS & GIZI / SKRINING KEK): Ukuran pas, tidak melar */
+.home-badge,
+.menu-badge,
+.figma-badge {
+    background-color: #E2E8F0 !important;
+    color: #128AA1 !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 3px 10px !important;
+    border-radius: 12px !important;
+    display: inline-block !important;
+    width: auto !important;
+    max-width: max-content !important;
+    margin: 0 0 6px 0 !important;
+    text-transform: uppercase !important;
+}
+
+/* Garis Teal khusus di kartu Admin */
+.home-admin-line,
+.menu-admin-line {
+    width: 55px !important;
+    height: 2.5px !important;
+    background-color: #128AA1 !important;
+    margin: 2px 0 6px 0 !important;
+    border-radius: 4px !important;
+}
+
+/* Teks penjelasan deskripsi menu */
+.home-card-text p,
+.menu-card-text p,
+.figma-card-text p {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #128AA1 !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
 }
