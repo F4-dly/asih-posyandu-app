@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================================================================
-// 1. ROUTING & STATE MANAGEMENT (ALUR 3 LANGKAH)
+// 1. ROUTING & STATE MANAGEMENT
 // ==================================================================
 const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzk5acMfkzVe2WHoCyJzBtc8yOdBK9kccQo4f8e0q3FXZhilG36-iMYARzglB3EujEn/exec";
 
@@ -53,12 +53,9 @@ function bukaHalaman(idHalaman) {
 
 // ---> A. VALIDASI & LANJUT DARI REGISTRASI BALITA
 function lanjutKeUkurBalita() {
-
-    // 1. Ambil data yang diketik bidan di halaman registrasi sebelumnya
     const anakInput = document.getElementById('reg-balita-anak');
     const ibuInput = document.getElementById('reg-balita-ibu');
     
-    // Validasi data penting
     if (!anakInput || !anakInput.value) {
         alert("⚠️ Mohon lengkapi Nama Anak!");
         bukaHalaman('page-reg-balita');
@@ -73,34 +70,40 @@ function lanjutKeUkurBalita() {
     const namaAnak = anakInput.value;
     const namaIbu = ibuInput.value;
 
-    // 2. Tampilkan otomatis ke Kartu Identitas di halaman Pengukuran Fisik
-    // Ganti teks Nama Anak Besar
     document.getElementById('display-nama-anak').innerHTML = namaAnak.replace(" ", "<br>");
-    
-    // Ganti teks Nama Ibu di dalam pill abu-abu
     const motherNameElement = document.getElementById('display-mother-name');
     if (motherNameElement) motherNameElement.innerText = namaIbu;
 
-    const thn = document.getElementById('reg-balita-thn').value || "0";
-    const bln = document.getElementById('reg-balita-bln').value || "0";
+    const thn = parseInt(document.getElementById('reg-balita-thn').value) || 0;
+    const bln = parseInt(document.getElementById('reg-balita-bln').value) || 0;
     const ke = document.getElementById('reg-balita-ke').value || "1";
     const bpjs = document.getElementById('reg-balita-bpjs').value;
     const rt = document.getElementById('reg-balita-rt').value || "-";
     const kader = document.getElementById('reg-balita-kader').value;
+    
+    // 👇 MENGAMBIL DATA JENIS KELAMIN (Default Laki-laki jika belum terpasang di HTML)
+    const jkElement = document.getElementById('reg-balita-jk');
+    const jk = jkElement ? jkElement.value : "Laki-laki";
 
     if (!kader) {
         alert("⚠️ Mohon pilih Kader!");
         return;
     }
 
-    // Simpan ke memori draft
+    const totalBulan = (thn * 12) + bln;
+
     window.draftBalita = {
-        namaAnak: namaAnak, namaIbu: namaIbu,
-        umurTeks: `${thn} Thn ${bln} Bln`,
-        anakKe: ke, bpjs: bpjs, rt: rt, kader: kader
+        namaAnak: namaAnak, 
+        namaIbu: namaIbu,
+        jk: jk,                         // 👈 Jenis Kelamin disimpan!
+        umurTeks: `${thn} Thn ${bln} Bln (${jk})`,
+        totalBulan: totalBulan,
+        anakKe: ke, 
+        bpjs: bpjs, 
+        rt: rt, 
+        kader: kader
     };
 
-    // 3. Buka halaman pengukuran fisik
     bukaHalaman('page-ukur-balita');
 }
 
@@ -120,9 +123,12 @@ function lanjutKeUkurBumil() {
     }
 
     window.draftBumil = {
-        nama: nama, umurTeks: `${umur} Tahun`,
+        nama: nama, 
+        umurTeks: `${umur} Tahun`,
         hamilTeks: `${hamilBln} Bln ${hamilMgg} Mgg`,
-        rt: rt, senam: senam, kader: kader
+        rt: rt, 
+        senam: senam, 
+        kader: kader
     };
 
     document.getElementById('banner-bumil-nama').textContent = `${nama} (${umur} Thn)`;
@@ -132,23 +138,19 @@ function lanjutKeUkurBumil() {
 }
 
 // ==================================================================
-// 2. ALGORITMA MEDIS & DIAGNOSIS
+// 2. ALGORITMA MEDIS MULTI-DIAGNOSIS (WHO & KEMENKES RI)
 // ==================================================================
 function tampilkanModal(status, ikonPath, judul, kategori, detail, saran, dataObj) {
-    // 1. Menyesuaikan dengan class modal versi Figma yang baru
     const modalCard = document.querySelector('.modal-card-figma') || document.querySelector('.modal-card');
     if (modalCard) {
         modalCard.className = "modal-card-figma " + status;
     }
     
-    // 2. Mencegah error jika elemen id="modal-icon" terlewat di HTML
     const iconWrapper = document.getElementById('modal-icon');
     if (iconWrapper) {
         if (ikonPath.includes('.')) {
-            // Jika yang dikirim berupa nama file gambar (.svg/.png)
             iconWrapper.innerHTML = `<img src="${ikonPath}" alt="Status" style="width: 70px; height: 70px; object-fit: contain;">`;
         } else {
-            // Cadangan jika masih berupa emoji biasa
             iconWrapper.textContent = ikonPath;
         }
     }
@@ -157,15 +159,44 @@ function tampilkanModal(status, ikonPath, judul, kategori, detail, saran, dataOb
     document.getElementById('modal-nama').textContent = dataObj.nama;
     document.getElementById('modal-kategori').textContent = kategori;
     document.getElementById('modal-detail').textContent = detail;
-    document.getElementById('modal-saran').textContent = saran;
+    document.getElementById('modal-saran').innerText = saran; // Pakai innerText agar enter (\n) terbaca rapi
     
     window.dataSiapSimpan = dataObj;
-    
-    // Memunculkan pop-up modal ke layar
     document.getElementById('modal-diagnosis').style.display = "flex";
 }
-function tutupModal() { document.getElementById('modal-diagnosis').style.display = "none"; }
 
+function tutupModal() { 
+    document.getElementById('modal-diagnosis').style.display = "none"; 
+}
+
+// 👇 RUMUS WHO: Batas bawah TB/U (-2 SD) disesuaikan Jenis Kelamin
+function dapatkanBatasStunting(totalBulan, jk) {
+    let batas = 46.0;
+    if (totalBulan >= 60) batas = 103.0;
+    else if (totalBulan >= 48) batas = 96.0;
+    else if (totalBulan >= 36) batas = 89.0;
+    else if (totalBulan >= 30) batas = 85.0;
+    else if (totalBulan >= 24) batas = 82.0;
+    else if (totalBulan >= 18) batas = 77.0;
+    else if (totalBulan >= 12) batas = 71.0;
+    else if (totalBulan >= 6) batas = 63.0;
+    
+    // Anak perempuan standar WHO batas bawahnya rata-rata lebih rendah 1.0 cm dari laki-laki
+    return (jk === "Perempuan") ? batas - 1.0 : batas;
+}
+
+// 👇 RUMUS NELHAUS: Batas bawah LK disesuaikan Jenis Kelamin
+function dapatkanBatasMikrosefali(totalBulan, jk) {
+    let batas = 32.0;
+    if (totalBulan >= 12) batas = 43.0;
+    else if (totalBulan >= 6) batas = 40.0;
+    else if (totalBulan >= 1) batas = 35.0;
+    
+    // Lingkar kepala anak perempuan rata-rata lebih kecil 0.5 cm dari laki-laki
+    return (jk === "Perempuan") ? batas - 0.5 : batas;
+}
+
+// ---> C. DIAGNOSIS DAN SIMPAN HASIL BALITA (MENDUKUNG MULTI-MASALAH)
 function simpanHasilBalita() {
     if (!window.draftBalita) return alert("⚠️ Data registrasi kosong, silakan ulangi dari awal.");
     
@@ -177,16 +208,59 @@ function simpanHasilBalita() {
     const vit = document.getElementById('ukur-balita-vit').value;
     const catatan = document.getElementById('ukur-balita-catatan').value || "-";
 
-    let status = "", ikon = "", judul = "", saran = "";
+    const totalBulan = window.draftBalita.totalBulan || 12;
+    const jk = window.draftBalita.jk || "Laki-laki";
+    const batasTB = dapatkanBatasStunting(totalBulan, jk);
+    const batasLK = dapatkanBatasMikrosefali(totalBulan, jk);
+
+    // 👇 SISTEM AKUMULATOR: Menampung lebih dari 1 masalah sekaligus!
+    let daftarMasalah = [];
+    let daftarSaran = [];
+    let statusKritis = "status-aman";
+    let ikonKritis = "🟢";
+
+    // 1. Cek LiLA (Wasting / Gizi Buruk Akut)
     if (lila > 0 && lila < 11.5) {
-        status = "status-bahaya"; ikon = "🚨"; judul = "RISIKO GIZI BURUK / STUNTING!";
-        saran = "PERINGATAN: LiLA di bawah 11.5 cm (Zona Merah)! Wajib segera dirujuk ke Bidan Desa untuk pemeriksaan klinis lanjutan.";
+        daftarMasalah.push("GIZI BURUK (WASTING AKUT)");
+        daftarSaran.push(`• LiLA (${lila} cm) ZONA MERAH < 11.5 cm: Wajib segera rujuk ke Bidan/Puskesmas untuk perawatan darurat F100/RUTF!`);
+        statusKritis = "status-bahaya";
+        ikonKritis = "🚨";
     } else if (lila >= 11.5 && lila < 12.5) {
-        status = "status-waspada"; ikon = "🟡"; judul = "GIZI KURANG (ZONA KUNING)";
-        saran = "LiLA berada di Zona Kuning KMS. Berikan PMT Pemulihan tinggi protein hewani (telur/ikan) dan pantau ketat 2 minggu lagi.";
+        daftarMasalah.push("GIZI KURANG (WASTING RINGAN)");
+        daftarSaran.push(`• LiLA (${lila} cm) ZONA KUNING: Berikan PMT Pemulihan tinggi protein hewani (telur/ikan) dan pantau 2 minggu lagi.`);
+        if (statusKritis !== "status-bahaya") {
+            statusKritis = "status-waspada";
+            ikonKritis = "🟡";
+        }
+    }
+
+    // 2. Cek Tinggi Badan (Stunting)
+    if (tb > 0 && tb < batasTB) {
+        daftarMasalah.push("RISIKO STUNTING");
+        daftarSaran.push(`• Tinggi/Panjang (${tb} cm) di bawah standar WHO < -2 SD untuk ${jk} usia ${window.draftBalita.umurTeks} (Normal > ${batasTB} cm). Ada indikasi Stunting kronis! Evaluasi asupan gizi jangka panjang.`);
+        statusKritis = "status-bahaya";
+        if (ikonKritis !== "🚨") ikonKritis = "🔴";
+    }
+
+    // 3. Cek Lingkar Kepala (Mikrosefali)
+    if (lk > 0 && lk < batasLK) {
+        daftarMasalah.push("MIKROSEFALI (KEPALA KECIL)");
+        daftarSaran.push(`• Lingkar Kepala (${lk} cm) di bawah kurva normal Nelhaus (Normal > ${batasLK} cm). Rujuk ke Bidan untuk pemeriksaan stimulasi tumbuh kembang (SDIDTK) & perkembangan otak.`);
+        if (statusKritis !== "status-bahaya") {
+            statusKritis = "status-waspada";
+            if (ikonKritis !== "🔴" && ikonKritis !== "🚨") ikonKritis = "🟡";
+        }
+    }
+
+    // 4. KEPUTUSAN AKHIR DIAGNOSIS
+    let judul = "", saran = "";
+    if (daftarMasalah.length > 0) {
+        // Jika ada 1 atau lebih masalah, gabungkan judulnya dengan tanda plus (+)
+        judul = daftarMasalah.join(" + ");
+        saran = `⚠️ PERHATIAN! Ditemukan ${daftarMasalah.length} indikasi masalah klinis:\n\n` + daftarSaran.join("\n\n");
     } else {
-        status = "status-aman"; ikon = "👶"; judul = "GIZI BAIK & NORMAL";
-        saran = "Hebat! Status gizi balita normal di zona HIJAU. Lanjutkan MPASI bergizi seimbang dan lengkapi imunisasi.";
+        judul = "GIZI BAIK & NORMAL";
+        saran = `Hebat! Status gizi balita normal di zona HIJAU. Pertumbuhan ${jk} sesuai kurva WHO. Lanjutkan MPASI bergizi seimbang dan lengkapi imunisasi.`;
     }
 
     document.getElementById("modal-avatar-img").src = "assets/ill-balita.svg";
@@ -196,14 +270,17 @@ function simpanHasilBalita() {
         kategori: "Balita",
         nama: `${window.draftBalita.namaAnak} (Ibu: ${window.draftBalita.namaIbu})`,
         umur: window.draftBalita.umurTeks,
-        rt: window.draftBalita.rt, kader: window.draftBalita.kader,
-        hasilUkur: `BB ${bb}kg/TB ${tb}cm (LiLA ${lila}cm/LK ${lk}cm)`,
-        status: judul, tindakan: `Suntik: ${imun} | Vit A: ${vit}`,
+        rt: window.draftBalita.rt, 
+        kader: window.draftBalita.kader,
+        hasilUkur: `BB ${bb}kg/TB ${tb}cm (LiLA ${lila}cm/LK ${lk}cm) - ${jk}`,
+        status: judul, 
+        tindakan: `Suntik: ${imun} | Vit A: ${vit}`,
         catatan: `Anak ke-${window.draftBalita.anakKe} (${window.draftBalita.bpjs}). ${catatan}`
     };
-    tampilkanModal(status, ikon, judul, "Skrining KMS Balita", detail, saran, paket);
+    tampilkanModal(statusKritis, ikonKritis, judul, "Skrining KMS Balita", detail, saran, paket);
 }
 
+// ---> D. DIAGNOSIS DAN SIMPAN HASIL BUMIL (SENSITIVITAS ANEMIA TINGGI)
 function simpanHasilBumil() {
     if (!window.draftBumil) return alert("⚠️ Data registrasi kosong, silakan ulangi dari awal.");
 
@@ -212,13 +289,40 @@ function simpanHasilBumil() {
     const lila = parseFloat(document.getElementById('ukur-bumil-lila').value) || 0;
     const catatan = document.getElementById('ukur-bumil-catatan').value || "-";
 
+    // 👇 SCANNER SANGAT SENSITIF: Membaca segala jenis keluhan pusing/anemia/TTD
+    const teksCatatan = catatan.toLowerCase();
+    const indikasiAnemia = teksCatatan.includes("pusing") || 
+                           teksCatatan.includes("kunang") || 
+                           teksCatatan.includes("ttd") || 
+                           teksCatatan.includes("anemia") || 
+                           teksCatatan.includes("lemas") || 
+                           teksCatatan.includes("darah") || 
+                           teksCatatan.includes("mual") || 
+                           teksCatatan.includes("pucat") ||
+                           teksCatatan.includes("malas");
+
     let status = "", ikon = "", judul = "", saran = "";
-    if (lila > 0 && lila < 23.5) {
-        status = "status-bahaya"; ikon = "🔴"; judul = "RISIKO KEK & POTENSI STUNTING!";
-        saran = "BAHAYA: LiLA Ibu di bawah 23.5 cm (Kurang Energi Kronis)! Berisiko tinggi melahirkan bayi Stunting. Segera berikan PMT Bumil dan konsultasi ke Bidan!";
-    } else {
-        status = "status-aman"; ikon = "🤰"; judul = "STATUS GIZI BUMIL NORMAL";
-        saran = "Status gizi Ibu Hamil sangat baik (LiLA >= 23.5 cm). Ingatkan Ibu rutin minum Tablet Tambah Darah (TTD) minimal 90 butir.";
+
+    // 1. CEK DARURAT FATAL: KEK + Anemia/Keluhan Klinis (Kasus H3)
+    if (lila > 0 && lila < 23.5 && indikasiAnemia) {
+        status = "status-bahaya"; 
+        ikon = "🚨"; 
+        judul = "BAHAYA TINGGI — KEK & RISIKO ANEMIA BERAT";
+        saran = `KONDISI DARURAT: Ibu mengalami Kurang Energi Kronis (LiLA ${lila} cm < 23.5 cm) disertai indikasi klinis/Anemia ("${catatan}")! Sangat berisiko janin stunting, BBLR, dan perdarahan bersalin. Wajib segera dirujuk ke Bidan saat ini juga!`;
+    } 
+    // 2. CEK KEK MURNI (Kasus H2 - LiLA < 23.5 cm tanpa ketik keluhan)
+    else if (lila > 0 && lila < 23.5) {
+        status = "status-bahaya"; 
+        ikon = "🔴"; 
+        judul = "RISIKO KEK (KURANG ENERGI KRONIS)";
+        saran = `PERINGATAN: LiLA Ibu (${lila} cm) di bawah batas kritis 23.5 cm (Kurang Energi Kronis)! Janin berisiko tinggi mengalami hambatan pertumbuhan (Stunting/BBLR). Laporkan ke Bidan untuk pengajuan PMT Biskuit Bumil dan pantau asupannya.`;
+    } 
+    // 3. NORMAL / SEHAT (Kasus H1 - LiLA >= 23.5 cm)
+    else {
+        status = "status-aman"; 
+        ikon = "🟢"; 
+        judul = "STATUS GIZI BUMIL NORMAL";
+        saran = `Hebat! Status gizi Ibu Hamil sangat baik (LiLA ${lila} cm ≥ 23.5 cm), risiko janin stunting rendah. Ingatkan Ibu untuk tetap aktif senam hamil, makan bergizi seimbang, dan rutin minum Tablet Tambah Darah (TTD) minimal 90 butir.`;
     }
 
     document.getElementById("modal-avatar-img").src = "assets/ill-bumil.svg";
@@ -228,9 +332,11 @@ function simpanHasilBumil() {
         kategori: "Ibu Hamil",
         nama: window.draftBumil.nama,
         umur: `${window.draftBumil.umurTeks} (Hamil: ${window.draftBumil.hamilTeks})`,
-        rt: window.draftBumil.rt, kader: window.draftBumil.kader,
+        rt: window.draftBumil.rt, 
+        kader: window.draftBumil.kader,
         hasilUkur: `LiLA ${lila}cm (BB ${bb}kg/TB ${tb}cm)`,
-        status: judul, tindakan: `Senam: ${window.draftBumil.senam}`,
+        status: judul, 
+        tindakan: `Senam: ${window.draftBumil.senam}`,
         catatan: catatan
     };
     tampilkanModal(status, ikon, judul, "Skrining KEK Ibu Hamil", detail, saran, paket);
@@ -274,7 +380,11 @@ function kirimKeGoogleSheets(dataObj) {
     }).then(() => {
         let db = JSON.parse(localStorage.getItem('database_asih_v3')) || [];
         const idx = db.findIndex(item => item.id === dataObj.id);
-        if (idx !== -1) { db[idx].statusSync = "🟢 Masuk Sheets"; localStorage.setItem('database_asih_v3', JSON.stringify(db)); renderTabelAdmin(); }
+        if (idx !== -1) { 
+            db[idx].statusSync = "🟢 Masuk Sheets"; 
+            localStorage.setItem('database_asih_v3', JSON.stringify(db)); 
+            renderTabelAdmin(); 
+        }
     }).catch(e => console.error(e));
 }
 
@@ -295,8 +405,11 @@ function renderTabelAdmin() {
     
     db.forEach((row, idx) => {
         let bgClass = "aman";
-        if (row.status.includes("BURUK") || row.status.includes("KEK") || row.status.includes("STUNTING")) bgClass = "bahaya";
-        else if (row.status.includes("KURANG") || row.status.includes("WASPADA")) bgClass = "waspada";
+        if (row.status.includes("BURUK") || row.status.includes("KEK") || row.status.includes("STUNTING") || row.status.includes("ANEMIA")) {
+            bgClass = "bahaya";
+        } else if (row.status.includes("KURANG") || row.status.includes("WASPADA") || row.status.includes("MIKROSEFALI")) {
+            bgClass = "waspada";
+        }
         
         tbody.innerHTML += `
             <tr>
@@ -323,17 +436,21 @@ function filterTabelAdmin() {
         tr.style.display = (teks.includes(cari) && (kat === "Semua" || tr.innerHTML.includes(kat))) ? "" : "none";
     });
 }
+
 function hapusPasien(id) {
     if (!confirm("⚠️ Hapus data pasien ini?")) return;
     let db = JSON.parse(localStorage.getItem('database_asih_v3')) || [];
     localStorage.setItem('database_asih_v3', JSON.stringify(db.filter(i => i.id !== id)));
     renderTabelAdmin();
 }
+
 function hapusSemuaData() {
     if (confirm("🚨 PERINGATAN: Hapus SELURUH data posyandu dari HP ini? Pastikan sudah unduh CSV!")) {
-        localStorage.removeItem('database_asih_v3'); renderTabelAdmin();
+        localStorage.removeItem('database_asih_v3'); 
+        renderTabelAdmin();
     }
 }
+
 function sinkronkanSemuaKeSheets() {
     if (!navigator.onLine) return alert("⚠️ Internet offline! Nyalakan WiFi/Data dulu.");
     let db = JSON.parse(localStorage.getItem('database_asih_v3')) || [];
@@ -342,6 +459,7 @@ function sinkronkanSemuaKeSheets() {
     db.forEach(row => kirimKeGoogleSheets(row));
     setTimeout(() => { alert("✅ Selesai! Seluruh data terkirim."); renderTabelAdmin(); }, 2000);
 }
+
 function downloadCSV() {
     let db = JSON.parse(localStorage.getItem('database_asih_v3')) || [];
     if (db.length === 0) return alert("⚠️ Data kosong!");
@@ -356,10 +474,11 @@ function downloadCSV() {
     link.click();
 }
 
-// SINYAL MONITOR
-// SINYAL MONITOR (100% SESUAI DESAIN FIGMA GROUP 72)
+// ==================================================================
+// 4. SINYAL MONITOR & PWA INSTALLER
+// ==================================================================
 const badgeSinyal = document.getElementById('statusSinyal');
-// SINYAL MONITOR (100% SESUAI DESAIN FIGMA GROUP 72)
+
 function updateSinyal() {
     const badges = document.querySelectorAll('.home-status-bar');
     badges.forEach(badge => {
@@ -377,56 +496,36 @@ window.addEventListener('offline', updateSinyal);
 updateSinyal();
 renderTabelAdmin();
 
-// Deklarasi variabel untuk menyimpan event prompt dari browser
 let deferredPrompt;
-
-// Ambil elemen HTML yang baru saja kita buat
 const installPopup = document.getElementById('install-popup');
 const btnInstall = document.getElementById('btn-install');
 const btnCloseInstall = document.getElementById('btn-close-install');
 
-// 1. Dengarkan event beforeinstallprompt
 window.addEventListener('beforeinstallprompt', (e) => {
-    // Cegah Chrome agar tidak memunculkan prompt mini bawaannya secara otomatis
     e.preventDefault();
-    
-    // Simpan event tersebut ke variabel untuk dipanggil nanti
     deferredPrompt = e;
-    
-    // Munculkan Pop-up Kustom kita yang besar di layar warga
-    installPopup.style.display = 'flex';
+    if (installPopup) installPopup.style.display = 'flex';
 });
 
-// 2. Beri aksi pada tombol "Install Aplikasi Ini ke Homescreen"
-btnInstall.addEventListener('click', async () => {
-    // Sembunyikan pop-up kustom kita
-    installPopup.style.display = 'none';
-    
-    if (deferredPrompt) {
-        // Panggil prompt instalasi bawaan browser
-        deferredPrompt.prompt();
-        
-        // Tunggu hingga warga memilih "Install" atau "Cancel" di prompt browser
-        const { outcome } = await deferredPrompt.userChoice;
-        
-        if (outcome === 'accepted') {
-            console.log('Warga setuju menginstal aplikasi ASIH');
-        } else {
-            console.log('Warga menolak instalasi');
+if (btnInstall) {
+    btnInstall.addEventListener('click', async () => {
+        if (installPopup) installPopup.style.display = 'none';
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(outcome === 'accepted' ? 'Warga setuju instalasi' : 'Warga menolak');
+            deferredPrompt = null;
         }
-        
-        // Kosongkan variabel karena prompt hanya bisa dipanggil satu kali
-        deferredPrompt = null;
-    }
-});
+    });
+}
 
-// 3. Tombol untuk menutup pop-up jika warga memilih "Nanti Saja"
-btnCloseInstall.addEventListener('click', () => {
-    installPopup.style.display = 'none';
-});
+if (btnCloseInstall) {
+    btnCloseInstall.addEventListener('click', () => {
+        if (installPopup) installPopup.style.display = 'none';
+    });
+}
 
-// (Opsional) Deteksi jika aplikasi sudah sukses terinstal
 window.addEventListener('appinstalled', () => {
     console.log('Aplikasi ASIH berhasil diinstal ke Homescreen!');
-    installPopup.style.display = 'none';
+    if (installPopup) installPopup.style.display = 'none';
 });
